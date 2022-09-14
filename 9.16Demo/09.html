@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 229px;
+            height: 66px;
+            border: 1px solid #333;
+            margin: 30px auto;
+        }
+        button{
+            margin-left: 18px;
+            margin-top: 15px;
+            width: 190px;
+            height: 35px;
+            background: url(img/shopcar.png) no-repeat 40px 4px;
+            background-size: 13%;
+            padding-left: 29px;
+            line-height: 35px;
+            font-size: 14px;
+            border: 1px solid #e5e5e5;
+            cursor:pointer
+        }
+        button:hover{
+            color: red;
+        }
+        .s1{
+            height: 16px;
+            width: 16px;
+            background: #ff6699;
+            border-radius: 16px;
+            display: inline-block;
+            color: #fff;
+            position: relative;
+            top: 3px;
+            left: -6px;
+        }
+        .s2{
+            position: relative;
+            top: -9px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+            <button type="button">我的购物车
+                <span class="s1">
+                    <span class="s2">0</span>
+                </span>
+            </button>
+    </div>
+</body>
+</html>
