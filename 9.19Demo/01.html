@@ -6,25 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
         .container{
             width: 164px;
             height: 126px;
             background: #ffffff;
             margin: 50px auto;
             border: 1px solid #333;
+            position: relative;
         }
         h2{
             font-size: 124px;
-            position: relative;
-            top: -124px;
-            left: 6px;
             color: #f3f3f3;
+            text-align: center;
+            line-height: 126px;
         }
         p{
+            width: 100%;
             font-size: 25px;
-            position: relative;
-            top: -327px;
-            left: 35px;
+            position: absolute;
+            left: 72%;
+            top: 50%;
+            transform: translate(-50%,-50%);
         }
     </style>
 </head>
