@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .container{
+            width: 990px;
+            margin: 30px auto;
+            padding: 30px 10px;
+            border: 1px solid #333;
+        }
+        .container ul li{
+            float: left;
+            width: 330px;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+        .container ul li:nth-child(3){
+            margin-right: 0;
+        }
+        .container ul li .pic{
+            border-bottom: 2px solid orange;
+            position: relative;
+        }
+        .container ul li img{
+            width: 100%;
+            display: block;
+        }
+        .container ul li .num{
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%,50%);
+            bottom: 0;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            background: orange;
+            text-align: center;
+            line-height: 64px;
+            font-size: 18px;
+            color: #fff;
+        }  
+        .container ul li h3{
+            padding-top: 30px;
+            text-align: center;
+        } 
+        .container ul li hr{
+            width: 50px;
+            margin: 20px auto;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+        .container ul li p{
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+        }
+        .clear{
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul>
+            <li>
+                <div class="pic">
+                    <img src="img/pic6.jpg" alt="">
+                    <div class="num">01</div>
+                </div>
+                <h3>麻辣米线</h3>
+                <hr/>
+                <p>口味以麻辣鲜香为主，淡而不薄，疏香理气；鲜而不厚，原汁原味。</p>
+            </li>
+            <li>
+                <div class="pic">
+                    <img src="img/pic6.jpg" alt="">
+                    <div class="num">02</div>
+                </div>
+                <h3>番茄米线</h3>
+                <hr/>
+                <p>米线于此，不单单是果腹，更是一种纯舌头的享受，真是看着就口水直流。</p>
+            </li>
+            <li>
+                <div class="pic">
+                    <img src="img/pic6.jpg" alt="">
+                    <div class="num">03</div>
+                </div>
+                <h3>酸菜米线</h3>
+                <hr/>
+                <p>更注重北方食客的饮食习惯，推出的酸菜米线更是南北通吃，四季皆宜。</p>
+            </li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+</body>
+</html>
