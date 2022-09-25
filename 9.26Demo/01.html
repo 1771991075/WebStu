@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box1{
+            width: 783px;
+            height: 354px;
+            margin: 50px auto;
+            border: 5px solid black;
+            position: relative;
+            z-index: 3;
+        }
+        .box1 img{
+            width: 783px;
+            height: 354px;
+            display: block;
+        }
+        .box2{
+            background: rgba(0, 0, 0, 0.5);
+            width: 783px;
+            height: 354px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scale(0);
+            transition: all 0.5s;
+            transform-origin: right top;
+        }
+        .box1:hover .box2{
+            transform: scale(1,1);
+        }
+        .box3{
+            background: rgba(0, 0, 0, 0.5);
+            width: 783px;
+            height: 354px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scale(0);
+            transition: all 0.5s;
+            transform-origin: left bottom;
+        }
+        .box1:hover .box3{
+            transform: scale(1,1);
+        }
+        .box4{
+            width: 783px;   
+            height: 5px;
+            background: red;
+            transform: scale(0);
+            transition: all 0.5s;
+            position: absolute;
+            top: -5px;
+            right: 0;
+            z-index: 6;
+            transform-origin: right top;
+        }
+        .box1:hover .box4{
+            transform: scale(1,1);
+        }
+
+
+        .box5{
+            width: 783px;   
+            height: 5px;
+            background: red;
+            transform: scale(0);
+            transition: all 0.5s;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            z-index: 6;
+            transform-origin: left bottom;
+        }
+        .box1:hover .box5{
+            transform: scale(1,1);
+        }
+
+
+        .box6{
+            width: 5px;   
+            height: 100%;
+            background: red;
+            transform: scale(0);
+            transition: all 0.5s;
+            position: absolute;
+            left: -5px;
+            top: 0;
+            z-index: 6;
+            transform-origin: left bottom;
+        }
+        .box1:hover .box6{
+            transform: scale(1,1);
+        }
+
+
+        .box7{
+            width: 5px;   
+            height: 100%;
+            background: red;
+            transform: scale(0);
+            transition: all 0.5s;
+            position: absolute;
+            bottom: 0px;
+            right: -5px;
+            z-index: 6;
+            transform-origin: right top;
+        }
+        .box1:hover .box7{
+            transform: scale(1,1);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <img src="img/link-4.png" alt="">
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+        <div class="box5"></div>
+        <div class="box6"></div>
+        <div class="box7"></div>
+    </div>
+</body>
+</html>
