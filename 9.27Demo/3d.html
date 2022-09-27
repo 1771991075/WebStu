@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 202px;
+            height: 200px;
+            margin: 50px auto;
+        }
+        dl{
+            text-align: center;
+            line-height: 50px;
+            position: relative;
+            border: 1px solid #333;
+        }
+        dt{
+            background: #f69;
+            width: 200px;
+            height: 50px;
+        }
+        dt a{
+            color: #fff;
+            text-decoration: none;
+        }
+        dd{
+            position: absolute;
+            width: 200px;
+            height: 50px;
+        }
+        dd a{
+            display: block;
+            height: 50px;
+            color: #fff;
+            background: rgb(61, 220, 112);
+            /* position: absolute; */
+            border-bottom: 1px solid #fff;
+            transform: rotateY(90deg);
+            transition: all 0.5s;
+            transform-style: preserve-3d;
+            perspective: 300px;
+        }
+        dd a:nth-child(2){
+            transition-delay: 0.4s;
+        }
+        dd a:nth-child(3){
+            transition-delay: 0.8s;
+        }
+        dl:hover dd a{
+            transform: rotateY(0deg);
+        } 
+    </style>
+</head>
+<body>
+    <div class="box">
+        <dl>
+            <dt><a>一级标题</a></dt>
+            <dd>
+                <a>二级标题1</a>
+                <a>二级标题2</a>
+                <a>二级标题3</a>
+            </dd>
+        </dl>
+    </div>
+</body>
+</html>

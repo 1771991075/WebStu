@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        @keyframes flash{
+            0%{
+                opacity: 0;
+                left: -90px;
+                transform: rotate(0deg);
+            }
+            25%{
+                opacity: 1;
+                left: 500px;
+                transform: rotate(360deg);
+            }
+            75%{
+                opacity: 1;
+                left: 500px;
+                transform: rotate(360deg);
+            }
+            100%{
+                opacity: 0;
+                left: -90px;
+                transform: rotate(0deg);
+            }
+        }
+        
+        .box{
+            width: 100%;
+            height: 110px;
+            margin: 50px auto;
+            position: relative;
+        }
+        .box1{
+            width: 90px;
+            height: 90px;
+            border: 3px solid red;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            animation: flash 10s infinite;
+            transition: all 10s;
+            left: -90px;
+        }
+        .box1 img{
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+        }
+
+
+        .banner{
+            width: 300px;
+            height: 140px;
+            overflow: hidden;
+            margin: 50px auto;
+        }
+        .banner ul{
+            /* width: 1200px; */
+            width: 500%;
+            animation: banner1 5s infinite;
+            list-style: none;
+        }
+        .banner ul li{
+            /* width: 300px; */
+            width: 20%;
+            float: left;
+        }
+        .banner ul li img{
+            /* width: 300px; */
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+        @keyframes banner1{
+            0%{
+              transform: translateX(0);  
+            }
+            25%{
+                transform: translateX(-20%);  
+            }
+            50%{
+                transform: translateX(-40%);  
+            }
+            75%{
+                transform: translateX(-60%);  
+            }
+            100%{
+                transform: translateX(-80%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1">
+            <img src="./img/link2-2.png" alt="">
+        </div>
+    </div>
+    <div class="banner">
+        <ul>
+            <li>
+                <img src="./img/pic2.jpg" alt="">
+            </li>
+            <li>
+                <img src="./img/pic3.jpg" alt="">
+            </li>
+            <li>
+                <img src="./img/pic4.jpg" alt="">
+            </li>
+            <li>
+                <img src="./img/pic5.jpg" alt="">
+            </li>
+            <li>
+                <img src="./img/pic2.jpg" alt="">
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
