@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //if分支语句
+        var grade = prompt('请输入你的分数:')
+        if( grade >= 90 ){
+            alert('奖励一个小比兜。');
+        }
+        else{
+            alert('奖励一个大比兜。');
+        }
+
+        //判断数字是偶数还是奇数
+        var num = prompt('请输入一个正整数:')
+        if( num % 2 == 0 ) {
+            alert('该数为偶数');
+        }
+        else{
+            alert('该数为奇数');
+        }
+
+        //判断成绩是否及格
+        var grade1 = prompt('请输入你的分数:')
+        if( grade1 >= 80 ){
+            alert('及格');
+        }
+        else{
+            alert('不及格');
+        }
+
+        //判断年份是闰年还是平年
+        var year = prompt('请输入年份:');
+        if(year % 4 == 0 && year % 100 != 0 || year%400 == 0 ){
+            alert('该年是闰年。')
+        }
+        else{
+            alert('该年是平年。')
+        }
+
+        //判断是否成年
+        var age = prompt('请输入你的年龄:')
+        if( age >= 18 ){
+            alert('已成年，可以结婚');
+        }
+        else{
+            alert('未成年，去上学');
+        }
+
+        // 已知变量x,求y的值；
+        // 若x大于10，则y的值是x的3倍
+        // 若x大于50，则y的值是x的5倍
+        // 其他情况，y的值为x的2倍；
+        var x = prompt('请输入x的值:')
+        var y = '';
+        if( x > 10 ){
+            alert(y = x * 3);
+        }
+        else if(x > 50){
+            alert(y = x * 5);
+        }
+        else{
+            alert(y = x * 2);
+        }
+
+        //考试成绩90分以上有奖励，80分以上及格，60分以上可补考，其他重新学习
+        var grade2 = prompt('请输入你的分数:')
+        if( grade2 >= 90 ){
+            alert('有奖励');
+        }
+        else if(grade2 >= 80 ){
+            alert('及格');
+        }
+        else if(grade2 >= 60 ){
+            alert('可补考');
+        }
+        else{
+            alert('重新学习');
+        }
+
+        //      某公司根据工龄发放年终奖
+        //    1、工作满1年  工资8000以上，年终奖是工资的1.2倍；工资10000以上，年终奖是工资的1.5倍；其他味1个月工资
+        //    2、工作满2年  工资10000以上，年终奖是工资的1.5倍；工资15000以上，年终奖是工资的1.8倍；其他味1个月工资
+        //    3. 工作满3年  工资15000以上，年终奖是工资的1.8倍；工资20000以上，年终奖是工资的2.5倍；其他味1个月工资
+
+        //    根据员工的工龄计算最后一个月发工资
+        var wookage  = prompt('请输入你的工龄:');
+        var wookmoney = prompt('请输入你的工资:');
+        if( wookage == 1 && wookmoney >= 8000 && wookmoney < 10000){
+            alert('年终奖是:' + wookmoney * 1.2);
+        }
+        else if( wookage == 1 && wookmoney >= 10000){
+            alert('年终奖是:' + wookmoney * 1.5);
+        }
+        else if( wookage == 2 && wookmoney >= 10000 && wookmoney < 15000){
+            alert('年终奖是:' + wookmoney * 1.5);
+        }
+        else if( wookage == 2 && wookmoney >= 15000){
+            alert('年终奖是:' + wookmoney * 1.8);
+        }
+        else if( wookage >= 3 && wookmoney >= 15000 && wookmoney < 20000){
+            alert('年终奖是:' + wookmoney * 1.8);
+        }
+        else if( wookage >= 3 && wookmoney >= 20000){
+            alert('年终奖是:' + wookmoney * 2.5);
+        }
+        else{
+            alert('年终奖是:' + wookmoney);
+        }
+
+        // 嵌套方法
+        var wookage  = prompt('请输入你的工龄:');
+        var wookmoney = prompt('请输入你的工资:');
+        if(wookage == 1){
+            if(wookmoney >= 8000 && wookmoney < 10000){
+                alert('年终奖是:' + wookmoney * 1.2);
+            }
+            else if(wookmoney >= 10000){
+                alert('年终奖是:' + wookmoney * 1.5);
+            }
+            else{
+                alert('年终奖是:' + wookmoney);
+            }
+        }
+        else if(wookage == 2){
+            if(wookmoney >= 10000 ){
+                alert('年终奖是:' + wookmoney * 1.5);
+            }
+            else if(wookmoney >= 15000){
+                alert('年终奖是:' + wookmoney * 1.8);
+            }
+            else{
+                alert('年终奖是:' + wookmoney);
+            }
+        }
+        else if(wookage >= 3 ){
+            if(wookmoney >= 15000 ){
+                alert('年终奖是:' + wookmoney * 1.8);
+            }
+            else if(wookmoney >= 20000){
+                alert('年终奖是:' + wookmoney * 2.5);
+            }
+            else{
+                alert('年终奖是:' + wookmoney);
+            }
+        }
+
+
+        //函数方法
+        var wookage  = prompt('请输入你的工龄:');
+        var wookmoney = prompt('请输入你的工资:');
+        function getWookMoney(wookage,wookmoney){
+            if(wookage == 1){
+                if(wookmoney >= 8000 &&  wookmoney < 10000){
+                    return wookmoney * 1.2;
+                }
+                else if(wookmoney >= 10000){
+                    return wookmoney * 1.5;
+                }
+                else{
+                    return wookmoney;
+                }
+            }
+            else if(wookage == 2){
+                if(wookmoney >= 10000 && wookmoney < 15000 ){
+                    return wookmoney * 1.5;
+                }
+                else if(wookmoney >= 15000){
+                    return wookmoney * 1.8;
+                }
+                else{
+                    return wookmoney;
+                }
+            }
+            else if(wookage >= 3 ){
+                if(wookmoney >= 15000 && wookmoney < 20000 ){
+                    return wookmoney * 1.8;
+                }
+                else if(wookmoney >= 20000){
+                    return wookmoney * 2.5;
+                }
+                else{
+                    return wookmoney;
+                }
+            }
+        }
+        alert('您的年终奖是:' + getWookMoney(wookage,wookmoney));
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //函数方法
+        var wookage  = prompt('请输入你的工龄:');
+        var wookmoney = prompt('请输入你的工资:');
+        function getWookMoney(wookage,wookmoney){
+            if(wookage == 1){
+                if(wookmoney >= 8000 &&  wookmoney < 10000){
+                    return wookmoney * 1.2;
+                }
+                else if(wookmoney >= 10000){
+                    return wookmoney * 1.5;
+                }
+                else{
+                    return wookmoney;
+                }
+            }
+            else if(wookage == 2){
+                if(wookmoney >= 10000 && wookmoney < 15000 ){
+                    return wookmoney * 1.5;
+                }
+                else if(wookmoney >= 15000){
+                    return wookmoney * 1.8;
+                }
+                else{
+                    return wookmoney;
+                }
+            }
+            else if(wookage >= 3 ){
+                if(wookmoney >= 15000 && wookmoney < 20000 ){
+                    return wookmoney * 1.8;
+                }
+                else if(wookmoney >= 20000){
+                    return wookmoney * 2.5;
+                }
+                else{
+                    return wookmoney;
+                }
+            }
+        }
+        alert('您的年终奖是:' + getWookMoney(wookage,wookmoney));
+    </script>
+</body>
+</html>
