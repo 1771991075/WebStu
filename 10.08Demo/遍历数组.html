@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //数组中筛选出大于10的数
+        var arr = [2,5,8,11,23,88,66,0,6];
+        var newArr = [];
+        var j = 0;
+        for ( var i = 0; i < arr.length; i++) {
+            if (arr[i] > 10 ) {
+                newArr[j] = arr[i];
+                j++;
+            }
+        }
+        console.log(newArr);
+
+
+        var arr = [2,5,8,11,23,88,66,0,6];
+        var newArr = [];
+        for ( var i = 0; i < arr.length; i++) {
+            if (arr[i] > 10 ) {
+                newArr[newArr.length] = arr[i];
+                j++;
+            }
+        }
+        console.log(newArr);
+    </script>
+</body>
+</html>
