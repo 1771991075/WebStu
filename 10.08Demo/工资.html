@@ -14,10 +14,10 @@
         function getWookMoney(wookage,wookmoney){
             if(wookage == 1){
                 if(wookmoney >= 8000 &&  wookmoney < 10000){
-                    return wookmoney * 1.2;
+                    return Number(wookmoney * 1.2) + Number(wookmoney);
                 }
                 else if(wookmoney >= 10000){
-                    return wookmoney * 1.5;
+                    return Number(wookmoney * 1.5) + Number(wookmoney);
                 }
                 else{
                     return wookmoney;
@@ -25,10 +25,10 @@
             }
             else if(wookage == 2){
                 if(wookmoney >= 10000 && wookmoney < 15000 ){
-                    return wookmoney * 1.5;
+                    return Number(wookmoney * 1.5) + Number(wookmoney);
                 }
                 else if(wookmoney >= 15000){
-                    return wookmoney * 1.8;
+                    return Number(wookmoney * 1.8) + Number(wookmoney);
                 }
                 else{
                     return wookmoney;
@@ -36,10 +36,10 @@
             }
             else if(wookage >= 3 ){
                 if(wookmoney >= 15000 && wookmoney < 20000 ){
-                    return wookmoney * 1.8;
+                    return Number(wookmoney * 1.8) + Number(wookmoney);
                 }
                 else if(wookmoney >= 20000){
-                    return wookmoney * 2.5;
+                    return Number(wookmoney * 2.5) + Number(wookmoney);
                 }
                 else{
                     return wookmoney;
