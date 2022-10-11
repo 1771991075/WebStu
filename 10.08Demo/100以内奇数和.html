@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var i = 1;
+        // var j = 0;
+        // while(i < 100){
+        //     if(i % 2 != 0){
+        //         j += i;
+        //     }
+        //     i++
+        // }
+        // console.log(j);
+
+        // var a = 1;
+        // while( a <= 100){
+        //     if(a == 4){
+        //         break;
+        //     }
+        //     console.log('hello，world');
+        //     a++
+        // }
+
+        // var num = prompt('请输入一个0-50之间的数:');
+        // var b = 26;
+        // var c = 0;
+        // while(num <= 50){
+        //     if(num > b){
+        //         num = prompt('猜大了，请重新输入:'); 
+        //     }
+        //     else if(num < b){
+        //         num = prompt('猜小了，请重新输入:');   
+        //     }
+        //     else{
+        //         alert('猜对了');
+        //         break;
+        //     }
+        // }
+
+        var num = prompt('请输入一个0-50之间的数:');
+        var b = 26;
+        for(var c = 3; c >= 0; c--){
+            while(num <= 50){
+                if(num > b && c > 0){
+                    num = prompt('猜大了，你还有' + c +'次机会，请重新输入:'); 
+                    break;
+                }
+                else if(num != b && c == 0){
+                    alert('你没有机会了！');
+                    break;
+                }
+                else if(num < b && c > 0){
+                    num = prompt('猜小了，你还有' + c +'次机会，请重新输入:');   
+                    break;
+                }
+                else if(num == b && c > 0){
+                    alert('猜对了');
+                    break;
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //求三个变量最大值（根据用户输入）
+        var num1 = prompt('请输入第一个值:');
+        var num2 = prompt('请输入第二个值:');
+        var num3 = prompt('请输入第三个值:');
+        var max;
+        if(num1 > num2 && num1 > num3){
+            max = num1;
+            prompt('最大值为：'+ max);
+        }
+        else if(num2 > num1 && num2 > num3){
+            max = num2;
+            prompt('最大值为：'+ max);
+        }
+        else{
+            max = num3;
+            prompt('最大值为：'+ max);
+        }
+
+        
+        var arr = [];
+        arr[0] = prompt('请输入第一个值:');
+        arr[1] = prompt('请输入第二个值:');
+        arr[2] = prompt('请输入第三个值:');
+        console.log(arr);
+        function max(arr){
+            maxNum = arr[0];
+            for(var i = 1 ; i <= arr.length ; i++){
+                if(maxNum <= arr[i]){
+                    maxNum = arr[i];
+                }
+            }
+            return maxNum;
+        }
+        console.log(max(arr));
+        alert('三个变量中的最大值为:' + max(arr));
+    </script>
+</body>
+</html>
