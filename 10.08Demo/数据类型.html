@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+              <!-- 1.其它类型----数字（Number）
+                    强制转换     Number(参数) -->
+              <!-- <script>
+              //(1)字符串-数字
+              console.log(Number('hello123'));//NaN
+              console.log(Number('hello'));//NaN
+              console.log(Number('123+12'));//NaN
+              console.log(Number(''));//0
+              console.log(Number('  '));//0z 
+              //（2）布尔-数字 
+              console.log(Number(true));//1
+              console.log(Number(false));//0
+              //（3）undefined-数字
+              console.log(Number(undefined));//NaN
+              //(4)null--数字
+              console.log(Number(null));//0
+              // parseInt(参数) 整型    
+              var a ='120+hello';
+              console.log(parseInt(a));//120
+              //parsetFloat(参数) 浮点数
+              console.log(parseFloat('12.77'));
+              //隐式转换 
+              console.log(+'123');
+            </script> -->
+            <!-- 2.其它类型-----字符串String() -->
+            <!-- 强制转换   String(参数)           参数.toString()方法
+                    toString()方法不可以将undefined和null转换为字符串，但是String()方法可以 -->
+            <!-- <script>
+            //（1） 数字--字符串
+              console.log(String(123));
+              console.log((123).toString());
+            //（2）布尔-字符
+              console.log(String(true)+' '+typeof(String(true)));
+              console.log((false).toString()+' '+typeof((false).toString()));
+            //（3）undefined-字符
+              console.log(String(undefined)+' '+typeof(String(undefined)));
+            //（4）null---字符
+              console.log(String(null)+' '+typeof(String(null)));
+            // 隐式转换字符串
+              console.log(123+''+' '+typeof(123+''))
+          </script> -->
+          <!-- 3.其它类型------布尔值（Boolean） -->
+          <script>
+            //(1)字符串转boolean
+            console.log(Boolean('hello'));//true
+            //(2)数值类型转布尔值
+            console.log(Boolean(123));//true
+            //(3)undefined转布尔值
+            console.log(Boolean(undefined));//false
+            //(4)null转布尔值
+            console.log(Boolean(null));//false
+            //(5)NaN转布尔值
+            console.log(Boolean(NaN));//false
+            //(6)0转换为布尔值
+            console.log(Boolean(0));//false
+            //(7)空字符串转换为boolean
+            console.log(Boolean(''));//false
+            //(8)false转布尔值
+            console.log(Boolean(false));//false
+            //总结：NaN   null  undefined   ''   false  0   是false，其它都为true
+          </script>
+
+          <!-- 如何通过prompt()判断是否输入的是否是数字 -->
+          <script>
+            var num = parseInt(prompt('请输入'));
+            if (isNaN(num)) {
+              alert('不是数字')
+            } else {
+              alert('是数字')
+            }
+          </script>
+          <script>
+            var a1 = 10,
+              b1 = 5,
+              c = a1++ + ++b1 + b1-- + a1++ + ++b1;//10+6+6+11+6
+            console.log(c);//39
+            console.log(a1, b1)//12,6
+          </script>
+</body>
+
+</html>

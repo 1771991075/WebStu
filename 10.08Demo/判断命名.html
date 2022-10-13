@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var num = prompt('请输入一个命名:');
+        // while(num != ''){
+        //     if(num.slice(0,1) == '_'  || num.slice(0,1) == '$'){
+        //         console.log('命名正确');
+        //         break;
+        //     }
+        //     else if(num.slice(0,1) == 'a' || num.slice(0,1) == 'b' || num.slice(0,1) == 'c' || num.slice(0,1) == 'd' || num.slice(0,1) == 'e' || num.slice(0,1) == 'f' || num.slice(0,1) == 'g' || num.slice(0,1) == 'h' || num.slice(0,1) == 'i' || num.slice(0,1) == 'j' || num.slice(0,1) == 'k' || num.slice(0,1) == 'l' || num.slice(0,1) == 'm' || num.slice(0,1) == 'n' || num.slice(0,1) == 'o' || num.slice(0,1) == 'p' || num.slice(0,1) == 'q' || num.slice(0,1) == 'r' || num.slice(0,1) == 's' || num.slice(0,1) == 't' || num.slice(0,1) == 'u' || num.slice(0,1) == 'v' || num.slice(0,1) == 'w' || num.slice(0,1) == 'x' || num.slice(0,1) == 'y' || num.slice(0,1) == 'z'){
+        //         console.log('命名正确');
+        //         break;
+        //     }
+        //     else{
+        //         console.log('命名错误');
+        //         break;
+        //     }
+        // }
+
+
+
+        var num = prompt('请输入一个命名:');
+        while(num != ''){
+            if(num.slice(0,1) != '_'  || num.slice(0,1) != '$'){
+                console.log('命名错误');
+                break;
+            }
+            else if(typeof (num.slice(0,1)) == Number ){
+                console.log('命名错误');
+                break;
+            }
+            else{
+                console.log('命名正确');
+                break;
+            }
+        }
+
+    </script>
+    </script>
+</body>
+</html>
