@@ -104,6 +104,19 @@
         }
 
 
+        var vip = prompt('请输入会员卡后四位（开头不为0）');
+        var a = parseInt(vip/1000);
+        var b = parseInt(vip/100)%10;
+        var c = parseInt(vip/10)%10;
+        var d = vip%10;
+        var sum = a + b + c + d;
+        if(sum > 20){
+            alert('返利50');
+        }
+        else{
+            alert('不返利');
+        }
+
     </script>
 </body>
 </html>
