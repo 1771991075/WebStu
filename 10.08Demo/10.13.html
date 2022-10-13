@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //判断是否成年
+        // var age = prompt('请输入你的年龄:')
+        // if( age >= 18 ){
+        //     alert('可以查看');
+        // }
+        // else if(age >= 10){
+        //     prompt('是否继续查看(yes or no)');
+        // }
+        // else{
+        //     alert('不允许查看');
+        // }
+
+        //求三个变量最大值（根据用户输入）
+        // var num1 = prompt('请输入第一个值:');
+        // var num2 = prompt('请输入第二个值:');
+        // var num3 = prompt('请输入第三个值:');
+        // var max;
+        // if(num1 > num2 && num1 > num3){
+        //     max = num1;
+        //     prompt('最大值为：'+ max);
+        // }
+        // else if(num2 > num1 && num2 > num3){
+        //     max = num2;
+        //     prompt('最大值为：'+ max);
+        // }
+        // else{
+        //     max = num3;
+        //     prompt('最大值为：'+ max);
+        // }
+
+        //、会员卡四位数(开头不为0)求和，会员卡四位数求和大于20时将返利50元，否则不返利
+        //  根据用户输入的会员卡卡号(四位数)，判断是否返利   
+        var num4 = prompt('请输入你的会员卡后四位数:');
+        console.log(num4.length);
+        while(num4.length == 4){
+            while(num4.slice(0,1) == 0){
+                num4 = prompt('开头不能为0，请重新输入:');
+                if(num4.slice(0,1) != 0){
+                    var all = Number(num4.slice(0,1)) + Number(num4.slice(1,2)) + Number(num4.slice(2,3)) + Number(num4.slice(3,4));
+                    console.log(all);
+                    if(all > 20){
+                        alert('返利五十元。');
+                        break;
+                    }
+                    else{
+                        alert('不返利');
+                        break;
+                    }
+                }
+            }
+            while(num4.slice(0,1) != 0){
+                var all = Number(num4.slice(0,1)) + Number(num4.slice(1,2)) + Number(num4.slice(2,3)) + Number(num4.slice(3,4));
+                console.log(all);
+                if(all > 20){
+                    alert('返利五十元。');
+                    break;
+                }
+                else{
+                    alert('不返利');
+                    break;
+                }
+            }
+        }
+        
+        while(num4.length != 4){
+            num4 = prompt('输入的不是四位数，请重新输入:');
+            while(num4.slice(0,1) == 0){
+                num4 = prompt('开头不能为0，请重新输入:');
+                if(num4.slice(0,1) != 0){
+                    var all = Number(num4.slice(0,1)) + Number(num4.slice(1,2)) + Number(num4.slice(2,3)) + Number(num4.slice(3,4));
+                    console.log(all);
+                    if(all > 20){
+                        alert('返利五十元。');
+                        break;
+                    }
+                    else{
+                        alert('不返利');
+                        break;
+                    }
+                }
+            }
+            while(num4.slice(0,1) != 0){
+                var all = Number(num4.slice(0,1)) + Number(num4.slice(1,2)) + Number(num4.slice(2,3)) + Number(num4.slice(3,4));
+                console.log(all);
+                if(all > 20){
+                    alert('返利五十元。');
+                    break;
+                }
+                else{
+                    alert('不返利');
+                    break;
+                }
+            }
+        }
+
+
+    </script>
+</body>
+</html>
