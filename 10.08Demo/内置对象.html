@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            overflow: hidden;
+        }
+        .box{
+            height: 100px;
+            width: 300px;
+            line-height: 100px;
+            font-size: 30px;
+            color: #fff;
+            margin: 50px auto;
+            background: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box" id="box">
+
+    </div>
+
+    <script>
+        // Math对象
+
+        // 圆周率
+        var num = Math.PI;
+        console.log(num);
+
+        //2.718281828459045
+        var num1 = Math.E;
+        console.log(num1);
+
+        // 四舍五入
+        var num2 = Math.round(2.6);
+        console.log(num2);
+
+        //0-1之间的随机数
+        var num3 = Math.random(0,1);
+        console.log(num2);
+
+        //最大值
+        var num4 = Math.max(1,2,5,8);
+        console.log(num2);
+
+        //最小值
+        var num5 = Math.min(1,2,5,8);
+        console.log(num2);
+
+        //绝对值
+        var num6 = Math.abs(-6);
+        console.log(num6);
+
+        //对数进行上舍入(天花板函数)
+        var num7 = Math.ceil(6.7);
+        console.log(num7);
+
+        //对数进行下舍入(地板函数)
+        var num8 = Math.floor(6.7);
+        console.log(num8);
+
+        //返回x的y次幂
+        var num9 = Math.pow(2,3);
+        console.log(num9);
+
+        //返回数的平方根
+        var num10 = Math.sqrt(16);
+        console.log(num10);
+
+        //两个数之间的随机数  [min,max]
+        //Math.floor(Math.random() * ( max - min + 1)) + min;
+        console.log( Math.floor(Math.random() * (6 - 5 + 1)) + 5);
+
+
+       function showTime(){
+            //Date函数
+            var time1 = new Date();
+            console.log(time1);
+            //年
+            var year = time1.getFullYear();
+            console.log(time1.getFullYear());
+            //月 (0-11)
+            var month = time1.getMonth()+1;
+            console.log(time1.getMonth()+1);
+            //日 (1-31)
+            var day = time1.getDate();
+            console.log(time1.getDate());
+            //星期 (0-6)  0 是星期日
+            var week = ('星期' + time1.getDay());
+            console.log('星期' + time1.getDay());
+            switch(week){
+                case 0:
+                    week = '日';
+                    break;
+                case 1:
+                    week = '一';
+                    break;
+                case 2:
+                    week = '二';
+                    break;
+                case 3:
+                    week = '三';
+                    break;
+                case 4:
+                    week = '四';
+                    break;
+                case 5:
+                    week = '五';
+                    break;
+                case 6:
+                    week = '六';
+                    break;
+            }
+            //时间
+            var hours = time1.getHours();
+            console.log(time1.getHours());
+            hours = hours < 10 ? '0' + hours : hours;
+            //分
+            var minutes = time1.getMinutes();
+            console.log(time1.getMinutes());
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            //秒
+            var seconds = time1.getSeconds();
+            console.log(time1.getSeconds());
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            var box = document.querySelector('#box');
+            console.log(box);
+            
+            var time = (year + ':' + month + ':' + day +'  '+ hours + ':' + minutes + ':' + seconds);
+            console.log(time);
+
+            box.innerHTML = time;
+       }
+
+        // function showTime(){
+        //     document.write(time);
+        // }
+        showTime();
+        
+        setInterval(showTime,1000);
+    </script>
+</body>
+</html>
