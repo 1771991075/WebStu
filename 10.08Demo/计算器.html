@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    第一个数:
+    <input type="text" id="txt1" class="txt1">
+    <select name="slt" id="slt">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">×</option>
+        <option value="/">÷</option>
+    </select>
+    第二个数:
+    <input type="text" id="txt2">
+    <button onclick="" id="btn">=</button>
+    结果:
+    <input type="text" id="txt3">
+
+    <script>
+        var txt1 = document.querySelector('#txt1');
+        var txt2 = document.querySelector('#txt2');
+        var txt3 = document.querySelector('#txt3');
+        var btn = document.querySelector('#btn');
+        var slt = document.querySelector('#slt');
+        btn.onclick = function jisuan(){
+            var v1 = txt1.value;
+            var slt1 = slt.value;
+            var v2 = txt2.value;
+            var v3;
+            switch(slt1){
+                case '+':
+                    v3 = parseFloat(v1) + parseFloat(v2);
+                    break;
+                case '-':
+                    v3 = v1 - v2;
+                    break;
+                case '*':
+                    v3 = v1 * v2;
+                    break;
+                case '/':
+                    v3 = v1 / v2;
+                    break;
+                default:
+                    v3 = parseFloat(v1) + parseFloat(v2);
+                    break;
+            }
+            txt3.value = v3;
+        }
+    </script>
+</body>
+</html>
