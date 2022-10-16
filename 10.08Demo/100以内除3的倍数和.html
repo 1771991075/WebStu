@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //输出100以内与7有关的数     7的倍数   个位为7 十位为7
+        for( var i = 0 ; i < 100 ; i++){
+            if(i % 7 == 0 || i % 10 == 7 || parseInt(i / 10) == 7){
+                console.log(i);
+            }
+        }
+
+        //输出从1到100之间所有不能被3整除的数;并输出这些整数的和
+        var sum = 0;
+        for( var i = 0 ; i <= 100 ; i++){
+            if( i % 3 == 0){
+                continue;
+            }
+            console.log(i);
+            sum += i; 
+        }
+        console.log(sum);
+
+        //做一个小游戏，报7游戏的安全数（轮流报数，报到能被7整除或者尾数是7都要表演节目），报出1-100之间的安全数
+        for( var i = 0 ; i <= 100 ; i++){
+            if(i % 7 != 0 || i % 10 != 7 ){
+                console.log(i);
+            }
+        }
+
+        //求0到20以内所在偶数的和
+        var sum = 0;
+        for(var i = 0 ; i < 20 ; i++){
+            if(i % 2 == 0){
+                sum += i;
+            }
+        }
+        console.log(sum);
+
+        //石头、剪刀、布   小游戏，  三局两胜制，有一方累计胜利两次，则游戏结束  （每次开始，玩家和电脑都要出拳）
+        var user;
+        var computer;
+        var userSum = 0;
+        var computerSum = 0;
+        for(var i = 0 ; i < 999 ; i ++ ){
+            user = prompt('请出拳:');
+            computer = Math.floor(Math.random() * 3);
+            if(user == computer){
+                document.write('平局');
+                console.log('平局');
+            }
+            else if(user - computer == -1 || user- computer == 2){
+                userSum += 1;
+            }
+            else if(computer - user == -1 || user- computer == 2){
+                computerSum += 1;
+            }
+            if(userSum == 2){
+                console.log('you win');
+                document.write('you win');
+                break;
+            }
+            if(computerSum == 2){
+                console.log('you lose');
+                document.write('you lose');
+                break;
+            }
+        }
+    </script>
+</body>
+</html>
