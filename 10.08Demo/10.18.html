@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .t2{
+            border: 1px solid #ccc;
+        }
+        table{
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        td{
+            border: 1px solid rgb(43, 43, 43);
+        }
+    </style>
+</head>
+<body>
+    <script>
+        //  公鸡3块钱一只，母鸡2块钱一只，小鸡5毛一只，小明有100块钱，问：花光所有的钱，有多少种购买组合。
+        var x = 3;
+        var y = 2;
+        var z = 0.5;
+        var q = 0;
+        for (var i = 0 ; i < 34; i++) {
+            for (var j = 0 ; j <= 50; j++) {
+                for (var k =  0 ; k <= 200; k++) {
+                    if (x*i + y*j + z*k == 100) {
+                        console.log('公鸡：' + i);
+                        console.log('母鸡：' + j);
+                        console.log('小鸡：' + k);
+                        q++;
+                        console.log('第' + q + '种方案');
+                    }
+                }
+            }
+        }
+        console.log('共有' + q + '种方案');
+        //现在鸡兔同笼，共36个，腿有92条，问各有鸡兔几只？
+        var x = 2;
+        var y = 4;
+        for (var i = 0 ; i <= 36 ; i++) {
+            for ( var j = 0 ; j <= 36 ; j++) {
+                if (i*x + j*y == 92 && i+j == 36) {
+                    console.log('鸡有' + i + '只');
+                    console.log('兔有' + j + '只');
+                }
+            }
+        }
+        //现在100匹马，100担货，大马驼2担，中马驼1担，两只小马共驼1担，问大、中、小马各有几匹？
+        var o = 0;
+        for (var i = 0 ; i <= 50; i++) {
+            for (var j = 0 ; j <= 100; j++) {
+                for (var k =  0 ; k <= 100; k++) {
+                    if (2*i + 1*j + 0.5*k == 100 && i+j+k == 100) {
+                        console.log('大马：' + i);
+                        console.log('中马：' + j);
+                        console.log('小马：' + k);
+                        o++;
+                        console.log('第' + o + '种方案');
+                    }
+                }
+            }
+        }
+        //获取第38次斐波那契数列的值，以及 前38次值的总和;    (数列规律是：0   1   1   2   3   5   8   13      .....        
+        //分析规律是：第三个数=第一个数+第二个数)
+        var num1 = 0;
+        var num2 = 1;
+        var num3 = num1 + num2; 
+        var sum = 1;
+        for (var i = 0 ; i < 36; i++) {
+            num3 = num1 + num2;
+            num1 = num2;
+            num2 = num3;
+            sum += num3;
+        }
+        document.write('第38次斐波那契数列的值为:' + num3);
+        document.write('前38次斐波那契数列的值的总和为:' + sum);
+
+        document.write('<br>');
+
+        //思考题：
+        //（1）打印1--100以内的质数（只能被1和其本身整除的数就是质数，1不是质数）     取反法
+        for ( var i = 2 ; i < 100; i++) {
+            var z = true;
+            for ( var j = 2 ; j < i; j++) {
+                if (i % j == 0) {
+                    z = false;
+                    break;
+                }
+            }
+            if (z) {
+                document.write(i + '是质数');
+                document.write('<br>');
+            }
+        }
+
+        //1、九九乘法口决表， 输出后，出现在表格中，并加样式
+        //九九乘法表
+        document.write('<table class="t1">')
+        for(var i = 1 ; i <= 9 ; i++){
+            document.write('<tr>');
+            for(var j = 1 ; j <= i ; j++){
+                document.write('<td class="t2">');
+                document.write(j + '✖' + i  + ' = ' + i * j + '\t') ;
+                document.write('</td>');
+            }
+            document.write('</tr>');
+        }
+        document.write('</table>');
+
+        //
+        console.time('time');
+        var str = '<table>';
+        for (var i = 1; i<=9 ; i++) {
+            str += '<tr>';
+                for (var j = 1 ; j <= i ; j++ ) {
+                    str += '<td>';
+                    str += j + 'x' + i + '=' + j*i;
+                    str += '</td>';
+                }
+            str += '</tr>';
+        }
+        str += '</table>';
+        console.log(str);
+        document.write(str);
+        //运行时间
+        console.timeEnd('time');  //time: 0.22900390625 ms
+        //警示框
+        console.warn('warn');
+        //错误框
+        console.error('error');
+
+        //1.编一个程序，求出200到300之间的满足如下条件的数：三个数字之积为42，三个数之和为12.
+        for (var i = 200 ; i <= 300 ; i++) {
+            var b = parseInt(i/100);
+            var s = parseInt(i/10%10);
+            var g = i%10;
+            if (b + s + g == 12 && b * s * g == 42 ) {
+                console.log(i);
+            }
+        }
+
+        //2：有1020个西瓜，第一天卖一半多两个，以后每天卖剩下的一半多两个，问几天可以卖完，请编程计算
+        var x = 1020;
+        t = 0;
+        while(x > 0){
+            x = x / 2 - 2;
+            t++;
+        }
+        console.log(t +'天可以卖完。');
+    </script>
+</body>
+</html>
