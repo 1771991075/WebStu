@@ -76,7 +76,7 @@
         //7、求取某个日期是星期几（例如：2017/9/25）（用函数实现）
         function getWeek () {
             var time1 = new Date('2017-9-25 12:00:00');
-            var week = ('星期' + time1.getDay());
+            var week = time1.getDay();
             switch(week){
                 case 0:
                     week = '日';
@@ -102,7 +102,7 @@
             }
             return week;
         }
-        console.log(getWeek());
+        console.log('星期' + getWeek());
         //8、求100以内奇数的和（用函数实现）
         function getSum1 () {
             var sum = 0;
