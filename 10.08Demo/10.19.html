@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1、计算圆的面积（用函数实现
+        function getS (r) {
+            s = Math.PI*r*r;
+            s = s.toFixed(2);
+            return s;
+        }
+        console.log(getS(prompt('请输入圆的半径:')));
+        //2、计算长方形的面积（用函数实现）
+        function getM (num1,num2){
+            var m = num1*num2;
+            return m;
+        }
+        document.write(getM(prompt('输入长方形的长:'),prompt('输入长方形的宽:')));
+        //3、求圆的面积和长方形的面积的和（用函数实现）
+        function getSum (yr,cc,ck) {
+            sc = cc*ck;
+            sy = Math.PI*yr*yr;
+            sy = sy.toFixed(2);
+            sum = sc + sy;
+            return sum;
+        }
+        console.log(getSum(5,3,8));
+        //4、录入五个学生的成绩，输出其中的最高分（用函数实现）
+        var g1 = prompt('请输入第一个学生的成绩：');
+        var g2 = prompt('请输入第二个学生的成绩：');
+        var g3 = prompt('请输入第三个学生的成绩：');
+        var g4 = prompt('请输入第四个学生的成绩：');
+        var g5 = prompt('请输入第五个学生的成绩：');
+        function getMax (g1,g2,g3,g4,g5) {
+            var arr = [g1,g2,g3,g4,g5];
+            console.log(arr);
+            for (var i = 0; i <= arr.length -1 ; i++) {
+                for ( var j = 0; j <= arr.length - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        var temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            return arr[4];
+        }
+        console.log('最高成绩为：'  + getMax(g1,g2,g3,g4,g5));
+        //5、判断数字是否为偶数，判断数字是否为奇数（函数实现）
+        function getJo (num4) {
+            if (num4 % 2 == 0) {
+                return '该数为偶数';
+            }
+            else {
+                return '该数为奇数';
+            }
+        }
+        console.log(getJo(prompt('请输入一个大于0的数:')));
+        //6、用代码实现输出日期，日期格式为 yyyy-mm-dd(用函数实现);
+        function getTime () {
+            var time1 = new Date();
+            var year = time1.getFullYear();
+            var month = time1.getMonth()+1;
+            var day = time1.getDate();
+            month = month < 10 ? '0' + month : month;
+            day = day < 10 ? '0' + day : day;
+            rq = year + '-' + month + '-' + day;
+            return rq;
+        }
+        console.log(getTime());
+        //7、求取某个日期是星期几（例如：2017/9/25）（用函数实现）
+        function getWeek () {
+            var time1 = new Date('2017-9-25 12:00:00');
+            var week = ('星期' + time1.getDay());
+            switch(week){
+                case 0:
+                    week = '日';
+                    break;
+                case 1:
+                    week = '一';
+                    break;
+                case 2:
+                    week = '二';
+                    break;
+                case 3:
+                    week = '三';
+                    break;
+                case 4:
+                    week = '四';
+                    break;
+                case 5:
+                    week = '五';
+                    break;
+                case 6:
+                    week = '六';
+                    break;
+            }
+            return week;
+        }
+        console.log(getWeek());
+        //8、求100以内奇数的和（用函数实现）
+        function getSum1 () {
+            var sum = 0;
+            for (var i = 0 ; i < 100 ; i++) {
+                if ( i % 2 != 0) {
+                    sum += i;
+                }
+            }
+            return sum;
+        }
+        console.log(getSum1());
+        //9、一张纸的厚度是0.07毫米，假设这张纸可以限次对折，问对折几次可以超过珠峰，珠峰是8848米（用函数实现）
+        function getCount () {
+            var z = 0.07;
+            for (var i = 1 ; ; i++){
+                z *= 2;
+                if(z > 8848000){
+                    console.log(i);
+                    break;
+                }
+            }
+            return i;
+        }
+        console.log(getCount());
+        //10、国际象棋64格，第一个放一粒，后面每一格都放上一格的2倍，问第64格上会放多少粒（用函数实现）
+        function getSum2 () {
+            var sum = 1;
+            for (var i = 2; i <=64 ; i++) {
+                sum *= 2;
+            }
+            return sum;
+        }
+        console.log(getSum2());
+    </script>
+</body>
+</html>
