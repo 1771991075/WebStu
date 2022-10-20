@@ -21,50 +21,53 @@
 <body>
     <script>
         //  公鸡3块钱一只，母鸡2块钱一只，小鸡5毛一只，小明有100块钱，问：花光所有的钱，有多少种购买组合。
-        var x = 3;
-        var y = 2;
-        var z = 0.5;
-        var q = 0;
-        for (var i = 0 ; i < 34; i++) {
-            for (var j = 0 ; j <= 50; j++) {
-                for (var k =  0 ; k <= 200; k++) {
-                    if (x*i + y*j + z*k == 100) {
-                        console.log('公鸡：' + i);
-                        console.log('母鸡：' + j);
-                        console.log('小鸡：' + k);
-                        q++;
-                        console.log('第' + q + '种方案');
+        function getCo (x,y,z,q) {
+            for (var i = 0 ; i < 34; i++) {
+                for (var j = 0 ; j <= 50; j++) {
+                    for (var k =  0 ; k <= 200; k++) {
+                        if (x*i + y*j + z*k == 100) {
+                            console.log('公鸡：' + i);
+                            console.log('母鸡：' + j);
+                            console.log('小鸡：' + k);
+                            q++;
+                            console.log('第' + q + '种方案');
+                        }
                     }
                 }
             }
+            return q;
         }
-        console.log('共有' + q + '种方案');
+        getCo(3,2,0.5,0);
+        console.log('共有' + getCo(3,2,0.5,0) + '种方案');
         //现在鸡兔同笼，共36个，腿有92条，问各有鸡兔几只？
-        var x = 2;
-        var y = 4;
-        for (var i = 0 ; i <= 36 ; i++) {
-            for ( var j = 0 ; j <= 36 ; j++) {
-                if (i*x + j*y == 92 && i+j == 36) {
-                    console.log('鸡有' + i + '只');
-                    console.log('兔有' + j + '只');
-                }
-            }
-        }
-        //现在100匹马，100担货，大马驼2担，中马驼1担，两只小马共驼1担，问大、中、小马各有几匹？
-        var o = 0;
-        for (var i = 0 ; i <= 50; i++) {
-            for (var j = 0 ; j <= 100; j++) {
-                for (var k =  0 ; k <= 100; k++) {
-                    if (2*i + 1*j + 0.5*k == 100 && i+j+k == 100) {
-                        console.log('大马：' + i);
-                        console.log('中马：' + j);
-                        console.log('小马：' + k);
-                        o++;
-                        console.log('第' + o + '种方案');
+        function getJz (x,y) {
+            for (var i = 0 ; i <= 36 ; i++) {
+                for ( var j = 0 ; j <= 36 ; j++) {
+                    if (i*x + j*y == 92 && i+j == 36) {
+                        console.log('鸡有' + i + '只');
+                        console.log('兔有' + j + '只');
                     }
                 }
             }
         }
+        getJz(2,4);
+        //现在100匹马，100担货，大马驼2担，中马驼1担，两只小马共驼1担，问大、中、小马各有几匹？
+        function getJp (o) {
+            for (var i = 0 ; i <= 50; i++) {
+                for (var j = 0 ; j <= 100; j++) {
+                    for (var k =  0 ; k <= 100; k++) {
+                        if (2*i + 1*j + 0.5*k == 100 && i+j+k == 100) {
+                            console.log('大马：' + i);
+                            console.log('中马：' + j);
+                            console.log('小马：' + k);
+                            o++;
+                            console.log('第' + o + '种方案');
+                        }
+                    }
+                }
+            }
+        }
+        getJp(0);
         //获取第38次斐波那契数列的值，以及 前38次值的总和;    (数列规律是：0   1   1   2   3   5   8   13      .....        
         //分析规律是：第三个数=第一个数+第二个数)
         var num1 = 0;
@@ -84,34 +87,38 @@
 
         //思考题：
         //（1）打印1--100以内的质数（只能被1和其本身整除的数就是质数，1不是质数）     取反法
-        for ( var i = 2 ; i < 100; i++) {
-            var z = true;
-            for ( var j = 2 ; j < i; j++) {
-                if (i % j == 0) {
-                    z = false;
-                    break;
+        function getZs () {
+            for ( var i = 2 ; i < 100; i++) {
+                var z = true;
+                for ( var j = 2 ; j < i; j++) {
+                    if (i % j == 0) {
+                        z = false;
+                        break;
+                    }
+                }
+                if (z) {
+                    document.write(i + '是质数');
+                    document.write('<br>');
                 }
             }
-            if (z) {
-                document.write(i + '是质数');
-                document.write('<br>');
-            }
         }
-
+        getZs();
         //1、九九乘法口决表， 输出后，出现在表格中，并加样式
         //九九乘法表
-        document.write('<table class="t1">')
-        for(var i = 1 ; i <= 9 ; i++){
-            document.write('<tr>');
-            for(var j = 1 ; j <= i ; j++){
-                document.write('<td class="t2">');
-                document.write(j + '✖' + i  + ' = ' + i * j + '\t') ;
-                document.write('</td>');
+        function getJJ () {
+            document.write('<table class="t1">')
+            for(var i = 1 ; i <= 9 ; i++){
+                document.write('<tr>');
+                for(var j = 1 ; j <= i ; j++){
+                    document.write('<td class="t2">');
+                    document.write(j + '✖' + i  + ' = ' + i * j + '\t') ;
+                    document.write('</td>');
+                }
+                document.write('</tr>');
             }
-            document.write('</tr>');
+            document.write('</table>');
         }
-        document.write('</table>');
-
+        getJJ();
         //
         console.time('time');
         var str = '<table>';
@@ -145,13 +152,15 @@
         }
 
         //2：有1020个西瓜，第一天卖一半多两个，以后每天卖剩下的一半多两个，问几天可以卖完，请编程计算
-        var x = 1020;
-        t = 0;
-        while(x > 0){
-            x = x / 2 - 2;
-            t++;
+        function getJt (x,t) {
+            while(x > 0){
+                x = x / 2 - 2;
+                t++;
+            }
+            return t;
         }
-        console.log(t +'天可以卖完。');
+        getJt(1020,0);
+        console.log(getJt(1020,0) +'天可以卖完。');
     </script>
 </body>
 </html>

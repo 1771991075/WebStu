@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //自执行
+        var h1 = (function () {
+            var x = 10;
+            var y = 5;
+            return function () {
+                return x + y;
+            };
+        })()();
+        console.log(h1);
+        //赋值
+        var h2 = function () {
+            var x = 10;
+            var y = 5;
+            return function () {
+                return x + y;
+            }
+        };
+        h2();
+        var b = h2();
+        var c = b();
+        console.log(c);
+
+
+        var h3 = function () {
+            document.write('hello');
+            return function () {
+                var x = 10;
+                var y = 20;
+                if (x > y) {
+                    return x * y;
+                } else {
+                    return x - y;
+                }
+            }
+        }
+        var a = h3();
+        var b = a();
+        console.log(b);
+
+
+        var a = function () {
+            return 5;
+        }()
+        var h4 = (function (a) {
+             console.log(a);
+        });
+        h4(a);
+        console.log(h4(a));
+
+
+        //1、接收用户输入的数据，若接收到数据，则在页面上显示接收到了数据，否则显示无数据（用函数实现）
+        function getDate(date1){
+            if (date1 != '') {
+                document.write('收到数据。')
+            }
+            else{
+                document.write('无数据。')
+            }
+        }
+        getDate(prompt('请输入数据：'));
+        //2、超市迎国庆，回馈新老客户，消费满1000元，商品打9.5折；满500元，打9.8折，根据用户消费金额，计算找零信息( 用函数实现)
+      
+    </script>
+</body>
+
+</html>
