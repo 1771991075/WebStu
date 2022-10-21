@@ -54,24 +54,106 @@
             return 5;
         }()
         var h4 = (function (a) {
-             console.log(a);
+            console.log(a);
         });
         h4(a);
         console.log(h4(a));
 
 
         //1、接收用户输入的数据，若接收到数据，则在页面上显示接收到了数据，否则显示无数据（用函数实现）
-        function getDate(date1){
+        function getDate(date1) {
             if (date1 != '') {
                 document.write('收到数据。')
             }
-            else{
+            else {
                 document.write('无数据。')
             }
         }
         getDate(prompt('请输入数据：'));
         //2、超市迎国庆，回馈新老客户，消费满1000元，商品打9.5折；满500元，打9.8折，根据用户消费金额，计算找零信息( 用函数实现)
-      
+        function getMoney(price) {
+            if (price >= 1000) {
+                price *= 0.95;
+                return price;
+            }
+            else if (price >= 500) {
+                price *= 0.98;
+                return price;
+            }
+            else {
+                return price;
+            }
+        }
+        document.write(getMoney(prompt('请输入金额:')));
+
+        //如果 x=20;y=30; 怎么做，可以得到一个600
+        var fn = function show(x, y) {
+            return function () {
+                console.log(x * y);
+            };
+        }
+        var a = fn(20, 30);
+        var b = a();
+
+        //a的结果是什么？
+        var a = (function () {
+            var x = 10;
+            var y = 5;
+            return function () {
+                return x * y
+            };
+        })()();
+        console.log(a);
+        console.log(typeof NaN);
+        confirm();
+
+        var g1 = +prompt('请输入第一个数：');
+        var g2 = +prompt('请输入第二个数：');
+        var g3 = +prompt('请输入第三个数：');
+        function max(g1, g2, g3) {
+            var max = g1;
+            if (max < g2) {
+                max = g2;
+            }
+            if (max < g3) {
+                max = g3;
+            }
+            console.log('最大值为:' + max);
+        }
+        max(g1, g2, g3)
+
+        //1. 以下表达式的运行结果是：   Something
+        var val = 'value';
+        console.info('Value id ' + (val === 'value') ? 'Something' : 'Nothing');
+
+        //2.以下表达式的运行结果是：  Goodbye Jack   预解析var  function  提前
+        var name = 'World';
+        (function () {
+            if (typeof name === 'undefined') {
+                var name = "Jack";
+                console.info('Goodbye ' + name);
+            } else {
+                console.info('Hello ' + name);
+            }
+        })();
+
+        //3.以下表达式的运行结果是：   Do not know!
+        function showCase(value) {
+            switch (value) {
+                case 'A':
+                    console.info('Case A');
+                    break;
+                case 'B':
+                    console.info('Case B');
+                    break;
+                case undefined:
+                    console.info('undefined');
+                    break;
+                default:
+                    console.info('Do not know!');
+            }
+        }
+        showCase(new String('A'));
     </script>
 </body>
 
