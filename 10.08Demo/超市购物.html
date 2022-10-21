@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getMoney (num,price) {
+            var oneMoney = num * price ;
+            return oneMoney;
+        }
+
+        function getTotalMoney () {
+            var flag = confirm('欢迎来到超市购物,您确定购物吗?');
+            var totalMoney = 0;
+            while (true) {
+                if (flag) {
+                    var goodsName = prompt('请输入商品名称:');
+                    var price = prompt('请输入' + goodsName + '的价格:');
+                    var num = prompt('请输入' + goodsName + '的数量');
+                    var oneMoney = getMoney(num,price);
+                    totalMoney += oneMoney;
+                    flag = confirm('您确定继续购物吗?');
+                }
+                else {
+                    break;
+                }
+            }
+            console.log(totalMoney);
+            if (totalMoney >= 1000) {
+                totalMoney *= 0.95;
+            }
+            else if (totalMoney >= 500) {
+                totalMoney *= 0.98;
+            }
+            else {
+                totalMoney = totalMoney;
+            }
+            return totalMoney;
+        }
+        // getTotalMoney();
+
+        function zhaoLing (payMoney,totalMoney) {
+            var zhaoLing = payMoney - totalMoney;
+            console.log(zhaoLing);
+        }
+        var totalMoney = getTotalMoney();
+        var payMoney = prompt('您消费了' + totalMoney + '元，请支付');
+        zhaoLing(payMoney,totalMoney);
+    </script>
+</body>
+</html>

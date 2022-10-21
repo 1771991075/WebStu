@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1、数组录入班级学生姓名，当遇到exit结束录入，输出所有学生的姓名
+        var arr = [];
+        for (var i = 0; ; i++) {
+            var name1 = prompt('请输入学生的姓名：');
+            console.log(arr);
+            if ( name1 == 'exit' ) {
+                break;
+            }
+            arr[i] = name1;
+        }
+        for (var i = 0; i <arr.length ; i++) {
+            console.log(arr[i]);
+        }
+        //2、计算数组中奇数的和（数组自己定义）
+        var arr = [1,2,3,4,5,6,7,8,9,0];
+        var sum = 0;
+        for (var i = 0 ; i <=arr.length-1 ; i++) {
+            if (arr[i] % 2 != 0) {
+                sum += arr[i];
+            }
+        }
+        console.log(sum);
+
+        //3、将数组中所有的字符串输出
+        var arr = ['张三' , '李四' , '赵五'];
+        for (var i = 0 ; i <=arr.length-1 ; i++) {
+            console.log(arr[i]);
+        }
+
+        //4、在数组的末尾添加一个数据（修改原数组
+        var arr = ['张三' , '李四' , '赵五'];
+        var arr = ['张三' , '李四' , '赵五' ,'赵六'];
+        console.log(arr);
+
+        //5、在数组的末尾添加一个数据（不修改原数组）
+        var arr = ['张三' , '李四' , '赵五'];
+        arr.push('赵六');
+
+        //6、在数组的头部插入一个数据，不修改原数组
+        var arr = ['张三' , '李四' , '赵五'];
+        arr.unshift('赵六');
+
+        //7、查找数组元素第一次出现的位置，如果存在返回位置，不存在返回-1（写成函数形式）
+        function getArr (arr1) {
+            var arr = ['张三' , '李四' , '赵五'];
+            for (var i = 0; i < arr.length ; i++) {
+                if (arr1 == arr[i]) {
+                    return i;
+                }
+                else{
+                    return -1;
+                }
+            }
+        }
+        console.log(getArr('李四'));
+        var arr = ['张三' , '李四' , '赵五'];
+        function getArr () {
+            arr.indexOf('李四');
+        }
+        getArr();
+
+        //8、数组：录入学生成绩，当遇到‘exit’时结束录入，求班级学生成绩的和以及平均分（写成函数形式）
+        var arr = [];
+        var ave;
+        function getGrade (sum) {
+            for (var i = 0; ; i++) {
+                var name1 = prompt('请输入第'+ (i+1) +'个学生的成绩：');
+                if ( name1 == 'exit' ) {
+                    break;
+                }
+                arr.push(name1);
+                sum += Number(arr[i]);
+                ave = sum / arr.length;
+            }
+            console.log('班级总成绩为: ' + sum);
+            console.log('班级平均分为：' + ave);
+        }
+        getGrade(0);
+
+        //9、数组：录入班级成绩，当遇到‘exit’时结束录入，输出最高分和最低分
+        var arr = [];
+        var ave;
+        function getGrade(sum) {
+            for (var i = 0; ; i++) {
+                var name1 = prompt('请输入第' + (i + 1) + '个学生的成绩：');
+                if (name1 == 'exit') {
+                    break;
+                }
+                arr.push(name1);
+            }
+            for (var x = 0; x <= arr.length - 1; x++) {
+                for (var j = 0; j <= arr.length - x - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        var temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            console.log('最高分为: ' + arr[arr.length-1]);
+            console.log('最低分为：' + arr[0]);
+        }
+        getGrade(0);
+
+        //10、查找数组中数值大于18对象的位置  arr0=[5,19,21,83,10]   (用函数实现)
+        function getDayu () {
+            arr0=[5,19,21,83,10];
+            for (var i = 0 ; i < arr0.length ; i++) {
+                if (arr[i] > 18) {
+                    console.log(arr[i]);
+                }
+            }
+        }
+
+        //11、将数组中数字内容求和  arr=[5,"张三"，9，80，true,28]
+        arr=[5,"张三",9,80,true,28];
+        var sum = 0;
+        for (var i = 0 ; i < arr.length ; i++) {
+            console.log(typeof(arr[i]));
+            if (typeof(arr[i]) == 'number') {
+                sum += arr[i];
+            }
+        }
+        console.log(sum);
+
+        //12、找出数组中“5”的位置（用函数实现）  arr =["4","5","6","jack",true]
+        function getAddress () {
+            arr =["4","5","6","jack",true];
+            for (var i = 0 ; i < arr.length ; i++) {
+                if ( '5' == arr[i]) {
+                    console.log('数组中“5”的在数组中的索引是: ' + i);
+                }
+            }
+        }
+        getAddress();
+    </script>
+</body>
+</html>
