@@ -39,16 +39,30 @@
 
         //4、在数组的末尾添加一个数据（修改原数组
         var arr = ['张三' , '李四' , '赵五'];
-        var arr = ['张三' , '李四' , '赵五' ,'赵六'];
+        var newArr = arr;
+        newArr[newArr.length] = 'temp';
         console.log(arr);
+        console.log(newArr);
 
         //5、在数组的末尾添加一个数据（不修改原数组）
         var arr = ['张三' , '李四' , '赵五'];
-        arr.push('赵六');
+        var newArr = [];
+        for (var i = 0; i< arr.length; i++) {
+            newArr[newArr.length] = arr[i];
+        }
+        newArr[newArr.length] = '赵六';
+        console.log(arr);
+        console.log(newArr);
 
         //6、在数组的头部插入一个数据，不修改原数组
         var arr = ['张三' , '李四' , '赵五'];
-        arr.unshift('赵六');
+        var newArr = [];
+        newArr[0] = '赵六';
+        for (var i = 0; i< arr.length; i++) {
+            newArr[newArr.length] = arr[i];
+        }
+        console.log(arr);
+        console.log(newArr);
 
         //7、查找数组元素第一次出现的位置，如果存在返回位置，不存在返回-1（写成函数形式）
         function getArr (arr1) {
