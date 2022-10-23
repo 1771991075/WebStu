@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1：查找数组中数值大于18对象的位置 ，arr=[5,19,21,9,83,10];
+        function getDayu() {
+            arr = [5, 19, 21, 83, 10];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] > 18) {
+                    console.log(i);
+                }
+            }
+        }
+        getDayu();
+
+        //2.改变传入的数组，将数组中第 n(从 0 开始算 ) 个元素放到数组的开头 (用函数实现)
+        function changeArr(n) {
+            var arr = [1, 2, 3, 4, 5, 6, 7];
+            var newArr = [];
+            newArr[0] = arr[n - 1];
+            for (var i = 0; i < arr.length; i++) {
+                if (i != n - 1) {
+                    newArr[newArr.length] = arr[i];
+                }
+            }
+            return newArr;
+        }
+        changeArr(4);
+        console.log(changeArr(4));
+
+        //4.将数组中重复的元素去掉,其中数组元素均为基本类性 arr1=[1,2,2,3,4,4,4,4]; arr2=[1,2,'M','e','r', 'r', 'y'];
+        function getNewArr(arr) {
+            var newArr = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (newArr.indexOf(arr[i]) === -1) {
+                    newArr.push(arr[i]);
+                }
+            }
+            return newArr;
+        }
+        var demo = getNewArr(['a', 'b', 'c', 'a', 'g', 'd', 'h', 'j', 'a']);
+        console.log(demo);
+        //arr1=[1,2,2,3,4,4,4,4]
+        //arr2=[1,2,'M','e','r', 'r', 'y']
+
+
+        //5.找出数组中元素"5"的位置（用函数实现）。arr=["4","5","6","jack",true];
+        function demot12(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] === '5') {
+                    console.log(i);
+                }
+            }
+        }
+        var arr = ["4", '5', "6", "jack", true];
+        demot12(arr);
+
+        //6.在数组 arr 末尾添加元素 item。不要直接修改数组 arr=['jack','lucy','merry','tom','mike'];
+        function addYs(arr, item) {
+            var newArr = [];
+            for (var i = 0; i < arr.length; i++) {
+                newArr.push(arr[i]);
+            }
+            newArr.push(item);
+            return newArr;
+        }
+        arr = ['jack', 'lucy', 'merry', 'tom', 'mike'];
+        addYs(arr, 'item');
+        console.log(addYs(arr, 'item'));
+
+        //7.删除数组 arr 最后一个元素。不要直接修改数组 arr，结果返回新的数组
+        arr = ['jack', 'lucy', 'merry', 'tom', 'mike'];
+        var newArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            newArr.push(arr[i]);
+        };
+        newArr.pop();
+        console.log(arr);
+        console.log(newArr);
+
+        //8.在数组 arr 开头添加元素 item。不要直接修改数组 arr，结果返回新的数组
+        arr = ['jack', 'lucy', 'merry', 'tom', 'mike'];
+        var newArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            newArr.push(arr[i]);
+        };
+        newArr.unshift('item');
+        console.log(arr);
+        console.log(newArr);
+
+        //9.删除数组 arr 第一个元素。不要直接修改数组 arr，结果返回新的数组
+        arr = ['jack', 'lucy', 'merry', 'tom', 'mike'];
+        var newArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            newArr.push(arr[i]);
+        };
+        newArr.shift();
+        console.log(arr);
+        console.log(newArr);
+    </script>
+</body>
+
+</html>
