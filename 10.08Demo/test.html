@@ -8,13 +8,11 @@
 </head>
 <body>
     <script>
-        var arr = ['张三' , '李四' , '赵五'];
-        var newArr = [];
-        newArr[0] = '赵六';
-        for (var i = 0; i< arr.length; i++) {
-            newArr[newArr.length] = arr[i];
-        }
+        var arr = ['jack', 'lucy', 'merry', 'tom', 'mike'];
+        var arr1 = ["4", '5', "6", "jack", true];
+        var newArr = arr.concat(arr1);
         console.log(arr);
+        console.log(arr1);
         console.log(newArr);
     </script>
 </body>
