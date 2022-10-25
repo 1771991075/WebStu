@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1. 把一个字符串转化为驼峰写法（例如：margin - left=> marginLeft）
+        var str = 'marginleft';
+        var str = str.replace('l','L');
+        console.log(str);
+
+        //2. 查找字符串出现最多的字符和个数
+        var str = 'ashdohoqowihofoqbw';
+        var o = {};
+        for (var i = 0; i < str.length ; i++) {
+            var chars = str.charAt(i);
+            if(o[chars]) {
+                o[chars]++;
+            }
+            else{
+                o[chars] = 1;
+            }
+        }
+        console.log(o);
+        //遍历对象
+        var max = 0;
+        var ch ='';
+        for (var k in o) {
+            if (o[k] > max){
+                max = o[k];
+                ch = k;
+            }
+        }
+        console.log(max);
+        console.log('最多的字符是:' + ch);
+
+        //3.返回一个只包含数字类型的数组（例如：afjasoeigjs123sgdhedhhe456osddhnofd789 => [123, 456, 789]）（用原生和不原生两种方法来做）
+        //原生方法
+        var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
+        function getStr (index) {
+            var newstr = '';
+            for (var i = index; i < index+3; i++) {
+                newstr += str[i];
+            }
+            return newstr;
+        }
+        getStr(11);
+        getStr(23);
+        getStr(35);
+        var arr = [getStr(11),getStr(23),getStr(35)];
+        console.log(arr);
+
+        //不原生方法
+        var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
+        var str1 = str.substr(11,3);
+        console.log(str1);
+        var str2 = str.substr(23,3);
+        console.log(str2);
+        var str3 = str.substr(35,3);
+        console.log(str3);
+        str4 = str1 + '&' + str2 + '&' + str3;
+        console.log(str4);
+        var arr = str4.split('&');
+        console.log(arr);
+
+        //4.去掉字符串中的空格
+        var str = 'sadhi awd ad';
+        var newstr = '';
+        for (var i = 0; i < str.length; i++) {
+            if (str[i] !== ' ') {
+                newstr += str[i];
+            }
+            else{
+                continue;
+            }
+        }
+        console.log(newstr);
+
+        //5.字符串首字母改大写
+        var str = 'ihasdoqwhfpi';
+        console.log(str[0].toUpperCase());
+        str.replace(str[0],str[0].toUpperCase());
+        console.log(str);
+
+        //6.去字符串头尾空格 （用原生和不原生（内置方法）两种方法来做）
+        //第一种方法
+        var str = ' asidi  ';
+        console.log(str);
+        str1 = '';
+        for (var i = 0; i < str.length; i++) {
+            if(str[i] !== ' '){
+                str1 += str[i];
+            }
+            else{
+                continue;
+            }
+        }
+        console.log(str1);
+
+        //第二种方法
+        var str = ' asidi  ';
+        console.log(str.trim());
+
+        //7.删除字符串中所有的数字（用原生和不原生（内置方法）两种方法来做）
+        //原生方法
+        var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
+        var newstr = '';
+        console.log(str);
+        for (var i = 0; i < str.length; i++) {
+            if (+str[i] / 1 != str[i]) {
+                newstr += str[i];
+            }
+        }
+        console.log(newstr);
+        //内置方法
+        var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
+        var str1 = str.substr(0,11);
+        var str2 = str.substr(14,9);
+        var str3 = str.substr(26,9);
+        var newstr = str1 + str2 + str3;
+        console.log(newstr);
+
+        //8.反转字符串
+        var str = 'asdfghjkl';
+        var newstr = '';
+        for (var i = str.length-1; i >=0 ; i--) {
+            newstr += str[i];
+        }
+        console.log(newstr);
+
+    </script>
+
+</body>
+
+</html>
