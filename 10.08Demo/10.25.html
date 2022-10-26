@@ -11,10 +11,26 @@
 <body>
     <script>
         //1. 把一个字符串转化为驼峰写法（例如：margin - left=> marginLeft）
-        var str = 'margin-left';
-        str = str.replace('-','');
-        str = str.replace('l','L');
-        console.log(str);
+        function getEndStr(str) {
+            console.log(str);
+            var arr = str.split('-');
+            console.log(arr);
+            endstr = '';
+            endstr = arr[1];
+            for (var i = 1; i < arr.length; i++) {
+                var newstr = '';
+                var str1 = arr[i][0].toUpperCase();
+                var str2 = '';
+                for (var j = 1; j < arr[i].length; j++) {
+                    str2 += arr[i][j];
+                }
+                newstr = str1 + str2;
+                endstr += newstr;
+            }
+            return endstr;
+        }
+        getEndStr('asd-fgh-jkl');
+        console.log(getEndStr('asd-fgh-jkl'));
 
         //2. 查找字符串出现最多的字符和个数
         var str = 'ashdohoqowihofoqbw';
@@ -85,8 +101,12 @@
 
         //5.字符串首字母改大写
         var str = 'ihasdoqwhfpi';
-        console.log(str[0].toUpperCase());
-        str.replace(str[0],str[0].toUpperCase());
+        var str1 = str[0].toUpperCase();
+        var str2 = '';
+        for (var i = 1;i < str.length; i++) {
+            str2 += str[i];
+        }
+        str = str1+str2;
         console.log(str);
 
         //6.去字符串头尾空格 （用原生和不原生（内置方法）两种方法来做）
@@ -119,6 +139,9 @@
             }
         }
         console.log(newstr);
+        //正则
+        str = str.replace(/\d+/g,'');
+        console.log(str);
         //内置方法
         var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
         var str1 = str.substr(0,11);
