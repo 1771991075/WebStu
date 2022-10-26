@@ -11,8 +11,9 @@
 <body>
     <script>
         //1. 把一个字符串转化为驼峰写法（例如：margin - left=> marginLeft）
-        var str = 'marginleft';
-        var str = str.replace('l','L');
+        var str = 'margin-left';
+        str = str.replace('-','');
+        str = str.replace('l','L');
         console.log(str);
 
         //2. 查找字符串出现最多的字符和个数
