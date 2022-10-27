@@ -46,10 +46,10 @@
             //现在的毫秒
             var nowTime = time1.getTime();
             //未来的毫秒
-            var endTime = new Date('2022-10-15 12:00:00');
+            var endTime = new Date('2022-05-01 12:00:00');
             var endTime = endTime.getTime();
             //获取差值 转换成秒
-            var newTime = (endTime - nowTime)/1000;
+            var newTime = (nowTime - endTime)/1000;
             //转换成时分秒
             var h = parseInt(newTime/3600%24);
             var m = parseInt(newTime/60%60);

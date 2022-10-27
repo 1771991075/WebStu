@@ -11,6 +11,7 @@
 <body>
     <script>
         //1. 把一个字符串转化为驼峰写法（例如：margin - left=> marginLeft）
+        //第一种方法
         function getEndStr(str) {
             console.log(str);
             var arr = str.split('-');
@@ -32,24 +33,72 @@
         getEndStr('asd-fgh-jkl');
         console.log(getEndStr('asd-fgh-jkl'));
 
+        //第二种方法
+        function getNew(str) {
+            while (str.includes('-')) {
+                var index = str.indexOf('-');
+                str = str.replace('-', '');
+                var char = str.charAt(index).toUpperCase();
+                var newstr = '';
+                for (var j = 0; j < str.length; j++) {
+                    if (j == index) {
+                        newstr += char;
+                    }
+                    else {
+                        newstr += str[j];
+                    }
+                }
+                str = newstr;
+            }
+            return str;
+        }
+        getNew('margin-left');
+        getNew('asd-fgh-jkl');
+        console.log(getNew('margin-left'));
+        console.log(getNew('asd-fgh-jkl'));
+
+        //第三种
+        function getNew(str) {
+            for (var i = 0; i < str.length; i++) {
+                var index = str.indexOf('-');
+                str = str.replace('-', '');
+                var char = str.charAt(index).toUpperCase();
+                var newstr = '';
+                for (var j = 0; j < str.length; j++) {
+                    if (j == index) {
+                        newstr += char;
+                    }
+                    else {
+                        newstr += str[j];
+                    }
+                }
+                str = newstr;
+            }
+            return str;
+        }
+        getNew('margin-left');
+        getNew('asd-fgh-jkl');
+        console.log(getNew('margin-left'));
+        console.log(getNew('asd-fgh-jkl'));
+
         //2. 查找字符串出现最多的字符和个数
         var str = 'ashdohoqowihofoqbw';
         var o = {};
-        for (var i = 0; i < str.length ; i++) {
+        for (var i = 0; i < str.length; i++) {
             var chars = str.charAt(i);
-            if(o[chars]) {
+            if (o[chars]) {
                 o[chars]++;
             }
-            else{
+            else {
                 o[chars] = 1;
             }
         }
         console.log(o);
         //遍历对象
         var max = 0;
-        var ch ='';
+        var ch = '';
         for (var k in o) {
-            if (o[k] > max){
+            if (o[k] > max) {
                 max = o[k];
                 ch = k;
             }
@@ -60,9 +109,29 @@
         //3.返回一个只包含数字类型的数组（例如：afjasoeigjs123sgdhedhhe456osddhnofd789 => [123, 456, 789]）（用原生和不原生两种方法来做）
         //原生方法
         var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
-        function getStr (index) {
+        var str = newstr;
+        var arr = [];
+        for (var i = 0; i < str.length; i++) {
+            if (+str[i] <= 9 && str[i] >= 0) {
+                newstr += str[i];
+            }
+            else {
+                if (newstr != '') {
+                    arr.push = newstr;
+                }
+                newstr = '';
+            }
+        }
+        if (newstr != '') {
+            arr.push = newstr;
+        }
+        console.log(arr);
+
+
+        var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
+        function getStr(index) {
             var newstr = '';
-            for (var i = index; i < index+3; i++) {
+            for (var i = index; i < index + 3; i++) {
                 newstr += str[i];
             }
             return newstr;
@@ -70,20 +139,29 @@
         getStr(11);
         getStr(23);
         getStr(35);
-        var arr = [getStr(11),getStr(23),getStr(35)];
+        var arr = [getStr(11), getStr(23), getStr(35)];
         console.log(arr);
 
         //不原生方法
         var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
-        var str1 = str.substr(11,3);
+        var str1 = str.substr(11, 3);
         console.log(str1);
-        var str2 = str.substr(23,3);
+        var str2 = str.substr(23, 3);
         console.log(str2);
-        var str3 = str.substr(35,3);
+        var str3 = str.substr(35, 3);
         console.log(str3);
         str4 = str1 + '&' + str2 + '&' + str3;
         console.log(str4);
         var arr = str4.split('&');
+        console.log(arr);
+
+        //match方法   正则   /\d+/g    \d是数字      +是一个或多个以上    g是全局
+        var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
+        var arr = str.match(/\d+/g);
+        console.log(arr);
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = +arr[i];
+        }
         console.log(arr);
 
         //4.去掉字符串中的空格
@@ -93,7 +171,7 @@
             if (str[i] !== ' ') {
                 newstr += str[i];
             }
-            else{
+            else {
                 continue;
             }
         }
@@ -103,10 +181,10 @@
         var str = 'ihasdoqwhfpi';
         var str1 = str[0].toUpperCase();
         var str2 = '';
-        for (var i = 1;i < str.length; i++) {
+        for (var i = 1; i < str.length; i++) {
             str2 += str[i];
         }
-        str = str1+str2;
+        str = str1 + str2;
         console.log(str);
 
         //6.去字符串头尾空格 （用原生和不原生（内置方法）两种方法来做）
@@ -115,10 +193,10 @@
         console.log(str);
         str1 = '';
         for (var i = 0; i < str.length; i++) {
-            if(str[i] !== ' '){
+            if (str[i] !== ' ') {
                 str1 += str[i];
             }
-            else{
+            else {
                 continue;
             }
         }
@@ -134,26 +212,29 @@
         var newstr = '';
         console.log(str);
         for (var i = 0; i < str.length; i++) {
-            if (+str[i] / 1 != str[i]) {
-                newstr += str[i];
+            if (str[i] != '') {
+                if (+str[i] >= 9 && str[i] <= 0) {
+                    continue;
+                }
             }
+            newstr += str[i];
         }
         console.log(newstr);
         //正则
-        str = str.replace(/\d+/g,'');
+        str = str.replace(/\d+/g, '');
         console.log(str);
         //内置方法
         var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
-        var str1 = str.substr(0,11);
-        var str2 = str.substr(14,9);
-        var str3 = str.substr(26,9);
+        var str1 = str.substr(0, 11);
+        var str2 = str.substr(14, 9);
+        var str3 = str.substr(26, 9);
         var newstr = str1 + str2 + str3;
         console.log(newstr);
 
         //8.反转字符串
         var str = 'asdfghjkl';
         var newstr = '';
-        for (var i = str.length-1; i >=0 ; i--) {
+        for (var i = str.length - 1; i >= 0; i--) {
             newstr += str[i];
         }
         console.log(newstr);
