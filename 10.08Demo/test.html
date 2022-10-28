@@ -10,10 +10,36 @@
 
 <body>
     <script>
-        var str = 'margin-left';
-        str = str.replace('-','');
-        str = str.replace('l','L');
-        console.log(str);
+       function Star(name, age, sex, height, weight, salary, savings, house) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.height = height;
+            this.weight = weight;
+            this.salary = salary;
+            this.savings = savings;
+            this.house = house;
+        }
+        Star.prototype.boyDemind = function (n) {
+            if (n.sex == '女' && n.height >= 170 && n.weight <= 90 && this.age > n.age && n.age <= 25 ) {
+                console.log('要求合适');
+            }else{
+                console.log('要求不合适');
+            }
+        }
+        Star.prototype.girlDemind = function (n) {
+            if (n.sex == '男' && n.height - this.height >= 7 && n.salary >= 20000 && n.age > this.age && n.savings > 2000000 && n.house > 140 ) {
+                console.log('要求合适');
+            }else{
+                console.log('要求不合适');
+            }
+        }
+        var gtl = new Star('古天乐', 20 , '男' , 180, 75 , 100000 , 100000000 , 300);
+        var dlrb = new Star('迪丽热巴', 18 , '女' , 175, 50 , 80000 , 20000000 , 200);
+        console.log(gtl);
+        console.log(dlrb);
+        gtl.boyDemind(dlrb);
+        dlrb.girlDemind(gtl);
     </script>
 </body>
 

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //﻿1、生成3个学生实例，调用学生实例的showInfo方法（注：showInfo方法打印出学生的学号，姓名，年龄，年级，宿舍编号）
+        function CreateStu(stu_id, name, age, year, num) {
+            this.stu_id = stu_id;
+            this.name = name;
+            this.age = age;
+            this.year = year;
+            this.num = num;
+        }
+        CreateStu.prototype.showInfo = function () {
+            console.log('学号：' + this.stu_id, '姓名：' + this.name, '年龄：' + this.age, '年级：' + this.year, '宿舍编号：' + this.num);
+        }
+        var zs = new CreateStu('001', '张三', 20, 2022, 421);
+        var ls = new CreateStu('002', '李四', 18, 2021, 521);
+        var ww = new CreateStu('003', '王五', 19, 2020, 621);
+        zs.showInfo();
+        ls.showInfo();
+        ww.showInfo();
+
+        //2、生成三台笔记本电脑实现，调用电脑的开始和关闭方法
+        var arr = [];
+        for (var i = 0; i < 3; i++) {
+            var obj = {
+                brand: prompt('请输入电脑型号:'),
+                id: prompt('请输入电脑编号:',),
+                open: function (brand) {
+                    console.log('开启' + brand + '电脑');
+                },
+                close: function (brand) {
+                    console.log('关闭' + brand + '电脑');
+                }
+            }
+            arr[i] = obj;
+        }
+        console.log(arr);
+        arr[0].open(arr[0].brand);
+        arr[1].close(arr[1].brand);
+        arr[2].open(arr[2].brand);
+
+        //3、生成一个point对象，调用point对象的cal函数，计算两点之间的距离（横线和竖线）
+        var point = {
+            x1: prompt('请输入第一个点的横坐标'),
+            y1: prompt('请输入第一个点的纵坐标'),
+            x2: prompt('请输入第二个点的横坐标'),
+            y2: prompt('请输入第二个点的纵坐标'),
+            cal: function (x1, y1, x2, y2) {
+                gap = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+                document.write('两个点之间的距离为:' + gap);
+            }
+        }
+        point.cal(point.x1, point.y1, point.x2, point.y2);
+
+        //4、录入班级学生信息（比如 姓名  年龄 性别）
+        // 提示： 每一个学生都是一个对象
+        //再把所有的学生，放入一个数组     要用循环
+        //是否结束录入？判断条件confirm('是否结束录入')     单击确定按钮，是true ,结束录入
+        //取消            false 继续录入
+        var arr = [];
+        while (true) {
+            var obj = {
+                stuName: prompt('请输入学生姓名:'),
+                age: prompt('请输入学生年龄:'),
+                sex: prompt('请输入学生性别:'),
+            }
+            arr[i] = obj;
+            if (confirm('是否结束录入?')) {
+                break;
+            }
+        }
+        console.log(arr);
+
+        //5、用构造函数来完成
+        // 相亲交友: 
+        // 有个男的叫古天乐，有个女的叫迪丽热巴，现在他们要相亲
+        // 男方要求: 
+        // 1.女方的身高不能低于170 
+        // 2.女方的体重不能超过90 
+        // 3.女方的年龄不能比自己大
+        // 4.女方的年龄不能大于25 
+        // 5.女方必须是女的 
+        // 女方要求: 
+        // 1.男的必须比自己大
+        // 2.男的身高必须比自己高7CM以上
+        // 3.男方的税后工资必须大于2万 
+        // 4.男方的存款必须大于200w 
+        // 5.男方的房子面积必须大于140 
+        // 6.对方必须是男的
+        function Star(name, age, sex, height, weight, salary, savings, house) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.height = height;
+            this.weight = weight;
+            this.salary = salary;
+            this.savings = savings;
+            this.house = house;
+        }
+        Star.prototype.boyDemind = function (n) {
+            if (n.sex == '女' && n.height >= 170 && n.weight <= 90 && this.age > n.age && n.age <= 25 ) {
+                console.log('要求合适');
+            }else{
+                console.log('要求不合适');
+            }
+        }
+        Star.prototype.girlDemind = function (n) {
+            if (n.sex == '男' && n.height - this.height >= 7 && n.salary >= 20000 && n.age > this.age && n.savings > 2000000 && n.house > 140 ) {
+                console.log('要求合适');
+            }else{
+                console.log('要求不合适');
+            }
+        }
+        var gtl = new Star('古天乐', 20 , '男' , 180, 75 , 100000 , 100000000 , 300);
+        var dlrb = new Star('迪丽热巴', 18 , '女' , 175, 50 , 80000 , 20000000 , 200);
+        console.log(gtl);
+        console.log(dlrb);
+        gtl.boyDemind(dlrb);
+        dlrb.girlDemind(gtl);
+    </script>
+</body>
+
+</html>
