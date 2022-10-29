@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person (name,sex) {
+            this.name = name;
+            this.sex = sex;
+        }
+        Person.prototype.say = function () {
+            console.log('say hi');
+        }
+        function Student (name,sex,score) {
+            Person.call(this,name,sex);
+            this.score = score;
+        }
+
+        Student.prototype = new Person();
+        Student.prototype.constructor = Student;
+
+        Student.prototype.test = function () {
+            console.log('我是' + this.name + ',考试的分数为:' + this.score);
+        }
+        function Teacher (name,sex,course) {
+            Person.call(this,name,sex);
+            this.course = course;
+        }
+
+        Teacher.prototype = new Person();
+        Teacher.prototype.constructor = Teacher;
+
+        Teacher.prototype.teach = function () {
+            console.log('我是' + this.name + '老师，我教' + this.course);
+        }
+
+        var stu_1 = new Student('张三', '男', 99 );
+        var teach1 = new Teacher('李四', '女' , '数学');
+        stu_1.test();
+        stu_1.say();
+        teach1.teach();
+        teach1.say();
+
+        var p1 = new Person('王五','男');
+        p1.say();
+    </script>
+</body>
+</html>
