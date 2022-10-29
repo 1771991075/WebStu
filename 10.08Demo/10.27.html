@@ -107,25 +107,58 @@
             this.house = house;
         }
         Star.prototype.boyDemind = function (n) {
-            if (n.sex == '女' && n.height >= 170 && n.weight <= 90 && this.age > n.age && n.age <= 25 ) {
-                console.log('要求合适');
-            }else{
-                console.log('要求不合适');
+            if (n.sex != '女') {
+                console.log('性别不合适');
+                return flase;
+            }else if ( n.height < 170 ) {
+                console.log('女生有点矮');
+                return flase;
+            }else if ( n.weight > 90 ) {
+                console.log('女生有点胖');
+                return flase;
+            }else if (this.age < n.age || n.age > 25) {
+                console.log('女生年龄有点大');
+                return flase;
+            }else {
+                console.log('女生符合要求');
+                return true;
             }
         }
         Star.prototype.girlDemind = function (n) {
-            if (n.sex == '男' && n.height - this.height >= 7 && n.salary >= 20000 && n.age > this.age && n.savings > 2000000 && n.house > 140 ) {
-                console.log('要求合适');
-            }else{
-                console.log('要求不合适');
+            if (n.sex != '男') {
+                console.log('性别不合适');
+                return flase;
+            }else if (n.height - this.height < 7) {
+                console.log('男生有点矮');
+                return flase;
+            }else if (n.salary < 20000) {
+                console.log('男生收入有点低');
+                return flase;
+            }else if (n.age < this.age) {
+                console.log('男生年龄有点小');
+                return flase;
+            }else if (n.savings < 2000000) {
+                console.log('男生存款有点少');
+                return flase;
+            }else if (n.house < 140) {
+                console.log('男生房子有点小');
+                return flase;
+            }else {
+                console.log('男生符合要求');
+                return true;
             }
         }
-        var gtl = new Star('古天乐', 20 , '男' , 180, 75 , 100000 , 100000000 , 300);
-        var dlrb = new Star('迪丽热巴', 18 , '女' , 175, 50 , 80000 , 20000000 , 200);
+        var gtl = new Star('古天乐', 20 , '男' , 185, 135 , 100000 , 100000000 , 300);
+        var dlrb = new Star('迪丽热巴', 18 , '女' , 175, 85 , 80000 , 20000000 , 200);
         console.log(gtl);
         console.log(dlrb);
         gtl.boyDemind(dlrb);
         dlrb.girlDemind(gtl);
+        if (gtl.boyDemind(dlrb) == true && dlrb.girlDemind(gtl) == true) {
+            console.log('相亲成功');
+        }else {
+            console.log('相亲失败');
+        }
     </script>
 </body>
 
