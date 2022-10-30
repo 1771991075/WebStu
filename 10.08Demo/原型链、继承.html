@@ -20,7 +20,7 @@
             this.score = score;
         }
 
-        Student.prototype = new Person();
+        Student.prototype = Object.create(Person.prototype);
         Student.prototype.constructor = Student;
 
         Student.prototype.test = function () {
@@ -31,7 +31,7 @@
             this.course = course;
         }
 
-        Teacher.prototype = new Person();
+        Teacher.prototype = Object.create(Person.prototype);
         Teacher.prototype.constructor = Teacher;
 
         Teacher.prototype.teach = function () {
