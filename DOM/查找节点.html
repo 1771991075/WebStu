@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <ul id="box">
+            <li>AAA</li>
+            <li>BBB</li>
+            <li>CCC</li>
+        </ul>
+    </div>
+    <script>
+        //查找子节点  childNodes;
+        var box = document.querySelector('#box');
+        console.log(box);
+
+        var lis = box.childNodes;
+        console.log(lis);
+
+        for (var i = 0; i < lis.length ; i++) {
+            if (lis[i].nodeType == 1) {
+                lis[i].style.color = 'red';
+            }
+        }
+
+        //查找元素节点 children;
+        var z1 = box.children;
+        console.log(z1);
+
+
+        //查找父节点  parentNode;
+        var f1 = lis[1].parentNode;
+        console.log(f1);
+        var f2 = lis[1].parentNode.parentNode;
+        console.log(f2);
+
+
+
+        //兄弟节点  上兄弟   previousSibling
+        console.log(lis[1].previousSibling);  //#text
+
+
+        //兄弟节点   下兄弟   nextSibling
+        console.log(lis[1].nextSibling);       //#text
+
+
+    </script>
+</body>
+</html>
