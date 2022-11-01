@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 250px;
+            border: 1px solid #333;
+            margin: 50px auto;
+        }
+
+        .box ul {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .box ul li {
+            text-align: center;
+        }
+
+        table {
+            width: 800px;
+            border: 1px solid #333;
+            background: rgb(255, 255, 255);
+            margin: 20px auto;
+            box-sizing: border-box;
+            /* 边线重叠 */
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        table thead tr th {
+            /* width: 100px; */
+            height: 50px;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        table tbody tr td {
+            /* width: 100px; */
+            height: 50px;
+            border: 1px solid #333;
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li>ID</li>
+            <li>姓名</li>
+            <li>年龄</li>
+            <li><span>操作</span></li>
+        </ul>
+        <ul id="ul1">
+            <li>1000</li>
+            <li>小明</li>
+            <li>18</li>
+            <li><a href="#" id="btn">删除</a></li>
+        </ul>
+    </div>
+
+    <div class="tbox">
+
+    </div>
+
+    <script>
+        // 1、查找并删除节点，单击删除，把当前行移除
+        var ul1 = document.getElementById('ul1');
+        var btn = document.getElementById('btn');
+        btn.onclick = function () {
+            this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+        }
+
+        //2、通过createElement()  和 appendChild()  及 innerHTML，创建如下一个表格
+        // var table = document.createElement('table');
+        // document.body.appendChild(table);
+        // table.innerHTML = '<caption>员工信息表</caption><thead><tr><th>ID</th><th>姓名</th><th>年龄</th><th><span>操作</span></th></tr></thead><tbody><tr><td>1000</td><td>小明</td><td>18</td><td><a href="">删除</a></td></tr><tr><td>1001</td><td>小红</td><td>20</td><td><a href="">删除</a></td></tr><tr><td>1002</td><td>小红</td><td>30</td><td><a href="">删除</a></td></tr><tr><td>1003</td><td>小红</td><td>30</td><td><a href="">删除</a></td></tr></tbody>';
+        var tab = document.createElement('table');
+
+
+        //3、
+        var stuArr = [
+            { ID: '1001', name: '赵吉祥', age: 18, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1002', name: '吴坤宇', age: 19, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1003', name: '臧文豪', age: 18, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1004', name: '宋志伟', age: 18, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1005', name: '李向阳', age: 19, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1006', name: '祁亚迪', age: 18, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1007', name: '刘世文', age: 18, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1008', name: '谢承宇', age: 19, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1009', name: '王  旭', age: 18, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1010', name: '熊改革', age: 18, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1011', name: '郑心语', age: 19, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1012', name: '朱文涛', age: 18, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1013', name: '周美芳', age: 18, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1014', name: '方慧慧', age: 19, del: "<a href='javascript:;'>删除</a>" },
+            { ID: '1015', name: '高梦梁', age: 18, del: "<a href='javascript:;'>删除</a>" },
+        ];
+
+        var table = document.createElement('table');
+        document.body.appendChild(table);
+        table.innerHTML = '<thead><tr><th>ID</th><th>name</th><th>age</th><th>del</th></tr></thead><tbody></tbody>';
+        var tbody = document.querySelector('tbody');
+        //每一行
+        for (var i = 0; i < stuArr.length; i++) {
+            var tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            //每一行中的单元格数量
+            for (var k in stuArr[i]) {
+                var td = document.createElement('td');
+                //获取对象中的属性赋值给td
+                td.innerHTML = stuArr[i][k];
+                tr.appendChild(td);
+            }
+        }
+        //删除
+        var a = document.querySelectorAll('a');
+        console.log(a);
+        for (var x = 0; x < a.length; x++) {
+            a[x].onclick = function () {
+                this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+            }
+        }
+
+        //2
+        var tab = document.createElement('table');
+        document.body.appendChild(tab);
+        //2.caption
+        var cap = document.createElement('caption');
+        cap.innerHTML = '学生信息表';
+        tab.appendChild(cap);
+        //3.thead
+        var thead = document.createElement('thead');
+        var thead_tr = document.createElement('tr');
+        var th1 = document.createElement('th');
+        var th2 = document.createElement('th');
+        var th3 = document.createElement('th');
+        var th4 = document.createElement('th');
+        th1.innerHTML = 'ID';
+        th2.innerHTML = '姓名';
+        th3.innerHTML = '年龄';
+        th4.innerHTML = '<span>操作</span>';
+        thead_tr.appendChild(th1);
+        thead_tr.appendChild(th2);
+        thead_tr.appendChild(th3);
+        thead_tr.appendChild(th4);
+        thead.appendChild(thead_tr);
+        tab.appendChild(thead);
+
+        //4. tbody
+
+        var tbody = document.createElement('tbody');
+        //  里面的数据  tr  td 及数据  遍历
+        for (var i = 0; i < stuArr.length; i++) {
+            // 数组中有15行 表格创建15行
+            var tr = document.createElement('tr');
+            //内层循环，创建单元格
+            for (var key in stuArr[i]) {
+                var td = document.createElement('td');
+                td.innerHTML = stuArr[i][key]
+                tr.appendChild(td);
+            }
+            tbody.appendChild(tr);
+        }
+
+
+        tab.appendChild(tbody);
+
+
+        // 5.删除
+        var dels = document.querySelectorAll('.del');
+        console.log(dels);
+        for (var j = 0; j < dels.length; j++) {
+            dels[j].onclick = function () {
+                this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)
+            }
+        }
+    </script>
+</body>
+
+</html>
