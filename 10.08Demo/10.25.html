@@ -109,7 +109,7 @@
         //3.返回一个只包含数字类型的数组（例如：afjasoeigjs123sgdhedhhe456osddhnofd789 => [123, 456, 789]）（用原生和不原生两种方法来做）
         //原生方法
         var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
-        var str = newstr;
+        var newstr = '';
         var arr = [];
         for (var i = 0; i < str.length; i++) {
             if (+str[i] <= 9 && str[i] >= 0) {
@@ -117,13 +117,13 @@
             }
             else {
                 if (newstr != '') {
-                    arr.push = newstr;
+                    arr.push(newstr);
                 }
                 newstr = '';
             }
         }
         if (newstr != '') {
-            arr.push = newstr;
+            arr.push(newstr);
         }
         console.log(arr);
 
@@ -210,7 +210,6 @@
         //原生方法
         var str = 'afjasoeigjs123sgdhedhhe456osddhnofd789';
         var newstr = '';
-        console.log(str);
         for (var i = 0; i < str.length; i++) {
             if (str[i] != '') {
                 if (+str[i] >= 9 && str[i] <= 0) {
