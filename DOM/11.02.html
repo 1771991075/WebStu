@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            margin: auto;
+            border: 1px solid #333;
+        }
+
+        .box1 {
+            margin: auto;
+            border: 1px solid #333;
+        }
+
+        .box2 {
+            width: 450px;
+            height: 100px;
+            border: 1px solid #333;
+            margin: 100px auto;
+            background: #000;
+            padding-top: 40px;
+        }
+
+        .box3 {
+            width: 500px;
+            margin: 50px auto;
+            border: 1px solid #333;
+        }
+
+        .box5 {
+            width: 200px;
+            margin: 50px auto;
+            border: 1px solid #333;
+            padding: 30px 30px;
+        }
+
+        table {
+            width: 800px;
+            border: 1px solid #333;
+            background: rgb(255, 255, 255);
+            margin: 20px auto;
+            box-sizing: border-box;
+            /* 边线重叠 */
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        table thead tr th {
+            /* width: 100px; */
+            height: 50px;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        table tbody tr td {
+            /* width: 100px; */
+            height: 50px;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .box7 {
+            width: 700px;
+            height: 700px;
+            border: 1px solid #333;
+            margin: 100px auto;
+            background: url(../img/clockface.jpg) no-repeat center;
+            /* background-size: 90%; */
+            position: relative;
+        }
+
+        .box7 img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* transform: translate(-50%,-50%) rotate(45deg); */
+            transform-origin: (50%, 50%);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="box">
+        <button class="btn">点击去掉一张图片</button>
+        <img src="../img/zq-role1.png" alt="" class="img1">
+        <img src="../img/zq-jjl-role1.png" alt="" class="img2">
+    </div>
+
+    <div class="box1">
+        <button class="btn1">点击切换图片</button>
+        <img src="../img/zq-role1.png" alt="" class="img3">
+    </div> -->
+
+    <!-- 4 时间 -->
+    <div class="box2">
+        <span>
+            <img src="../img/alarm1.png" alt="">;
+        </span>
+        <span id="h">
+            <img src="../img/0.png" alt="" class="img1">;
+            <img src="../img/0.png" alt="" class="img2">;
+        </span>
+        <span>
+            <img src="../img/second1.png" alt="">;
+        </span>
+        <span id="m">
+            <img src="../img/0.png" alt="" class="img3">;
+            <img src="../img/0.png" alt="" class="img4">;
+        </span>
+        <span>
+            <img src="../img/second1.png" alt="">;
+        </span>
+        <span id="s">
+            <img src="../img/0.png" alt="" class="img5">;
+            <img src="../img/0.png" alt="" class="img6">;
+        </span>
+    </div>
+
+
+
+    <!-- 计算器 -->
+    第一个数:
+    <input type="text" id="txt1" class="txt1">
+    <select name="slt" id="slt">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">×</option>
+        <option value="/">÷</option>
+    </select>
+    第二个数:
+    <input type="text" id="txt2">
+    <button onclick="" id="btn">=</button>
+    结果:
+    <input type="text" id="txt3" disabled>
+
+    <!-- 3全选 -->
+    <div class="box3">
+        <input type="checkbox" id="selAll">全选/全不选<input type="checkbox" id="selRev">反选
+        <h2>项目:</h2>
+        <div class="list">
+            <input type="checkbox" class="cekbox">游泳 <input type="checkbox" class="cekbox">爬山 <input type="checkbox"
+                class="cekbox">看书
+        </div>
+    </div>
+
+
+
+    <!-- 时钟 -->
+    <div class="box7">
+        <img src="../img/hourhand.png" alt="" id="hours">
+        <img src="../img/minhand.png" alt="" id="minutes">
+        <img src="../img/sechand.png" alt="" id="second">
+    </div>
+
+    <!-- 5 员工 -->
+    <div class="box5">
+        ID:</br>
+        <input type="text" id="id"></br>
+        username:
+        <input type="text" id="username"></br>
+        age:
+        <input type="text" id="age"></br></br>
+        <input type="button" value="添加" id="addbtn">
+    </div>
+
+
+    <script>
+        //1、有两张图片，和一个按钮，单击按钮，图片2变为1
+        // var box = document.querySelector('.box');
+        // var img1 = document.querySelector('.img1');
+        // var img2 = document.querySelector('.img2');
+        // var btn = document.querySelector('.btn');
+        // btn.onclick = function(){
+        //     box.removeChild(img2);
+        // }
+
+
+        //2、切换图片，点击切换按钮换一个，再点击再换回来
+        // var box1 = document.querySelector('.box1');
+        // var img3 = document.querySelector('.img3');
+        // var btn1 = document.querySelector('.btn1');
+        // var flag = 1;
+        // btn1.onclick = function(){
+        //     if (flag) {
+        //         img3.src = '../img/zq-jjl-role1.png';
+        //         flag = 0;
+        //     }else{
+        //         img3.src = '../img/zq-role1.png';
+        //         flag = 1;
+        //     }
+        // }
+
+        //6、将数字时钟    （将数字时钟替换为图片时钟）  正计时   15：54：55
+
+        //第一种
+        function showTime() {
+            var time1 = new Date();
+            //时间
+            var hours = time1.getHours();
+            hours = hours < 10 ? '0' + hours : hours;
+            //分
+            var minutes = time1.getMinutes();
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            //秒
+            var seconds = time1.getSeconds();
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            var box = document.querySelector('.box2');
+            var nowtime = String(hours) + String(minutes) + String(seconds);
+            var img1 = document.querySelector('.img1');
+            var img2 = document.querySelector('.img2');
+            var img3 = document.querySelector('.img3');
+            var img4 = document.querySelector('.img4');
+            var img5 = document.querySelector('.img5');
+            var img6 = document.querySelector('.img6');
+            for (var i = 0; i < nowtime.length; i++) {
+                if (i == 0) {
+                    var img = document.querySelector('.img1');
+                } else if (i == 1) {
+                    var img = document.querySelector('.img2');
+                } else if (i == 2) {
+                    var img = document.querySelector('.img3');
+                } else if (i == 3) {
+                    var img = document.querySelector('.img4');
+                } else if (i == 4) {
+                    var img = document.querySelector('.img5');
+                } else if (i == 5) {
+                    var img = document.querySelector('.img6');
+                }
+                switch (nowtime[i]) {
+                    case '0':
+                        img.src = '../img/0.png';
+                        break;
+                    case '1':
+                        img.src = '../img/1.png';
+                        break;
+                    case '2':
+                        img.src = '../img/2.png';
+                        break;
+                    case '3':
+                        img.src = '../img/3.png';
+                        break;
+                    case '4':
+                        img.src = '../img/4.png';
+                        break;
+                    case '5':
+                        img.src = '../img/5.png';
+                        break;
+                    case '6':
+                        img.src = '../img/6.png';
+                        break;
+                    case '7':
+                        img.src = '../img/7.png';
+                        break;
+                    case '8':
+                        img.src = '../img/8.png';
+                        break;
+                    case '9':
+                        img.src = '../img/9.png';
+                        break;
+                }
+            }
+        }
+        showTime();
+        setInterval(showTime, 1000);
+
+        //第二种
+        // function showTime() {
+        //     var date = new Date();
+        //     var h = date.getHours();
+        //     var m = date.getMinutes();
+        //     var s = date.getSeconds()
+
+        //     console.log(h, m, s);
+
+        //     //数的分解
+        //     var h1 = parseInt(h / 10);
+        //     var h2 = h % 10;
+
+        //     var m1 = parseInt(m / 10);
+        //     var m2 = m % 10;
+
+        //     var s1 = parseInt(s / 10);
+        //     var s2 = s % 10;
+
+        //     console.log(h1, h2, m1, m2, s1, s2);
+
+
+        //     var imgs = document.querySelectorAll('img');
+        //     imgs[0].src = './images/images/' + h1 + '.png'
+        //     imgs[1].src = './images/images/' + h2 + '.png'
+        //     imgs[3].src = './images/images/' + m1 + '.png'
+        //     imgs[4].src = './images/images/' + m2 + '.png'
+        //     imgs[6].src = './images/images/' + s1 + '.png'
+        //     imgs[7].src = './images/images/' + s2 + '.png'
+
+        // }
+
+        // showTime();
+        // setInterval(showTime, 1000);
+
+
+        //4、实现计算器  简易计算器
+        var txt1 = document.querySelector('#txt1');
+        var txt2 = document.querySelector('#txt2');
+        var txt3 = document.querySelector('#txt3');
+        var btn = document.querySelector('#btn');
+        var slt = document.querySelector('#slt');
+        btn.onclick = function jisuan() {
+            var v1 = txt1.value;
+            var slt1 = slt.value;
+            var v2 = txt2.value;
+            var v3;
+            switch (slt1) {
+                case '+':
+                    v3 = parseFloat(v1) + parseFloat(v2);
+                    break;
+                case '-':
+                    v3 = v1 - v2;
+                    break;
+                case '*':
+                    v3 = v1 * v2;
+                    break;
+                case '/':
+                    v3 = v1 / v2;
+                    break;
+                default:
+                    v3 = parseFloat(v1) + parseFloat(v2);
+                    break;
+            }
+            txt3.value = v3;
+        }
+
+        //3、实现 表单中    全选/全不选    反选 的操作
+        //项目：   游泳    爬山   看书
+        var setAll = document.querySelector('#selAll');
+        var selRev = document.querySelector('#selRev');
+        var allbox = document.querySelectorAll('.cekbox');
+        setAll.onchange = function () {
+            for (var i = 0; i < allbox.length; i++) {
+                allbox[i].checked = this.checked;
+            }
+        }
+        selRev.onchange = function () {
+            for (var i = 0; i < allbox.length; i++) {
+                allbox[i].checked = !allbox[i].checked;
+                setAll.checked = true;
+                for (var j = 0; j < allbox.length; j++) {
+                    if (!allbox[j].checked) {
+                        setAll.checked = false;
+                        break;
+                    }
+                }
+            }
+        }
+        for (var i = 0; i < allbox.length; i++) {
+            allbox[i].onchange = function () {
+                setAll.checked = true;
+                for (var j = 0; j < allbox.length; j++) {
+                    if (!allbox[j].checked) {
+                        setAll.checked = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        //5、根据用户输入内容创建员工信息表
+
+        var addbtn = document.querySelector('#addbtn');
+        var stuArr = [];
+
+        //创建表头
+        var tab = document.createElement('table');
+        document.body.appendChild(tab);
+        //2.caption
+        var cap = document.createElement('caption');
+        cap.innerHTML = '员工信息表';
+        tab.appendChild(cap);
+        //3.thead
+        var thead = document.createElement('thead');
+        var thead_tr = document.createElement('tr');
+        var th1 = document.createElement('th');
+        var th2 = document.createElement('th');
+        var th3 = document.createElement('th');
+        var th4 = document.createElement('th');
+        th1.innerHTML = 'ID';
+        th2.innerHTML = '姓名';
+        th3.innerHTML = '年龄';
+        th4.innerHTML = '<span>操作</span>';
+        thead_tr.appendChild(th1);
+        thead_tr.appendChild(th2);
+        thead_tr.appendChild(th3);
+        thead_tr.appendChild(th4);
+        thead.appendChild(thead_tr);
+        tab.appendChild(thead);
+
+        //点击添加对象
+        addbtn.onclick = function () {
+            var id = document.querySelector('#id').value;
+            var username = document.querySelector('#username').value;
+            var age = document.querySelector('#age').value;
+            if (id.trim().length == 0 || username.trim().length == 0 || age.trim().length == 0) {
+                alert('信息不完善，请重新填写。');
+                document.querySelector('#id').value = '';
+                document.querySelector('#username').value = '';
+                document.querySelector('#age').value = '';
+                return;
+            } else {
+                //把值赋值给对象
+                var obj = {
+                    id: id,
+                    username: username,
+                    age: age,
+                    del: "<a href='javascript:;'>删除</a>",
+                }
+                stuArr.push(obj);
+                document.querySelector('#id').value = '';
+                document.querySelector('#username').value = '';
+                document.querySelector('#age').value = '';
+
+                var tbody = document.createElement('tbody');
+                // 遍历数据
+                for (var i = 0; i < stuArr.length; i++) {
+                    var tr = document.createElement('tr');
+                    for (var key in stuArr[i]) {
+                        var td = document.createElement('td');
+                        td.innerHTML = stuArr[i][key]
+                        tr.appendChild(td);
+                    }
+                    tbody.appendChild(tr);
+                }
+                tab.appendChild(tbody);
+                // 5.删除
+                var dels = document.querySelectorAll('a');
+                console.log(dels);
+                for (var j = 0; j < dels.length; j++) {
+                    dels[j].onclick = function () {
+                        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)
+                    }
+                }
+            }
+
+        }
+
+
+        //7、做一个表盘时钟，并让时钟指针走起来
+        function showTime1() {
+            var time1 = new Date();
+            //时间
+            var hours = time1.getHours();
+            //分
+            var minutes = time1.getMinutes();
+            //秒
+            var seconds = time1.getSeconds();
+
+            var zzall = document.querySelectorAll('.box7>img');
+            zzall[0].style.transform = 'translate(-50%,-50%) rotate(' + (hours * 30 + minutes/2 ) + 'deg)';
+            zzall[1].style.transform = 'translate(-50%,-50%) rotate(' + (minutes * 6 + seconds/10 )  + 'deg)';
+            zzall[2].style.transform = 'translate(-50%,-50%) rotate(' + seconds*6  + 'deg)';
+        }
+        showTime1();
+        setInterval(showTime1, 1000);
+
+    </script>
+</body>
+
+</html>

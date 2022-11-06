@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            border: 2px solid red;
+
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+       克隆节点  ---轮播图时
+       节点对象.cloneNode(deep)     deep  true  false(默认)  也需要再添加节点
+
+       替换节点
+       父节点.replaceChild(newnode,exitnode)
+
+     -->
+     <div class="box">
+         <p>我是一个段落</p>
+     </div>
+     <script>
+        document.querySelectorAll
+        // //1.  
+        //  var box=  document.querySelector('.box');
+
+        // //2.克隆
+        // var box1= box.cloneNode(true);// 暂存内容
+
+        // console.log(box1);
+
+        // //3.要不追加节点   ，插入节点
+        // document.body.appendChild(box1)
+
+
+          //1.替换节点
+          var h2=  document.createElement('h2');// 新的
+          h2.innerHTML='我是标题2';
+
+          var p= document.querySelector('p')// 旧的
+
+          var box=  document.querySelector('.box');
+          box.replaceChild(h2,p)
+
+            
+           
+     </script>
+
+     <!-- 
+      总结：
+      1.document.createElement
+      2.parentnode.appendChild(child)
+      3.parentnode.insertBefore(new,old)
+      4.parentnode.removeChild(child)
+      5.node.cloneNode(true)  false
+      6.parentnode.replaceChild(newnode,oldnode) 
+
+
+      -->
+</body>
+</html>
