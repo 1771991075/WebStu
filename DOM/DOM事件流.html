@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father{
+            width: 500px;
+            height: 500px;
+            background: red;
+            display: flex;
+        }
+        .son{
+            width: 300px;
+            height: 300px;
+            background: blue;
+            margin: auto;
+            display: flex;
+        }
+        .son1{
+            width: 150px;
+            height: 150px;
+            background: yellow;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">
+            <div class="son1">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        var father = document.querySelector('.father');
+        var son = document.querySelector('.son');
+        var son1 = document.querySelector('.son1');
+        
+        //js代码中只能执行捕获或者冒泡其中一个阶段
+        //onclick    attachEvent  只能得到冒泡阶段
+        //onblur   onfocus   onmouseenter    onmouseleave  是没有冒泡机制的
+
+        //冒泡机制    从内向外
+        father.addEventListener('click',function(){
+            alert('father');
+        },false);
+        son.addEventListener('click',function(){
+            alert('son');
+        },false);
+        son1.addEventListener('click',function(){
+            alert('son1');
+        },false);
+
+        //捕获阶段    从外向内
+        father.addEventListener('click',function(){
+            alert('father');
+        },true);
+        son.addEventListener('click',function(){
+            alert('son');
+        },true);
+        son1.addEventListener('click',function(){
+            alert('son1');
+        },true);
+
+    </script>
+</body>
+</html>

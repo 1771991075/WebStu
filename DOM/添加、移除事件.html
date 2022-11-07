@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <button id="add">添加事件</button>
+    <button id="remove">移除事件</button>
+
+    <div class="box">
+
+    </div>
+
+    <script>
+        var add = document.querySelector('#add');
+        var remove = document.querySelector('#remove');
+        var box = document.querySelector('.box');
+
+        add.addEventListener('click',function(){
+            box.addEventListener('mouseover',function(){
+                console.log('mouseover');
+            })
+
+            // box.addEventListener('click',function(){
+            //     console.log('click');
+            // })
+            box.addEventListener('click',show);
+
+            box.addEventListener('mouseout',function(){
+                console.log('out');
+            })
+        })
+
+        //移除事件        函数是一个对象，函数长得一样，并不是同一个，
+        remove.addEventListener('click',function(){
+            box.removeEventListener('click',show);
+        })
+        //函数名才代表同一个函数，一样不代表同一个
+        function show(){
+            console.log('click');
+        }
+    </script>
+
+    <!-- -------------------------------------------- -->
+
+
+    <script>
+        add.addEventListener('click',function(){
+            box.onmouseover = function(){
+                console.log('onmouseover');
+            }
+            box.onclick = function(){
+                console.log('onclick');
+            }
+            box.onmouseout = function(){
+                console.log('out');
+            }
+        })
+
+        remove.addEventListener('click',function(){
+            box.onclick = null;
+        })
+    </script>
+
+
+    <script>
+        //兼容性方案
+        function removeEventListener(ele,event,callback){
+            if(ele.removeEventListener){
+                ele.removeEventListener(event,callback);
+            }else if(ele.datachEvent){
+                ele.datachEvent('on'+ event,callback);
+            }else{
+                ele['on'+ event] = null;
+            }
+        }
+    </script>
+</body>
+</html>

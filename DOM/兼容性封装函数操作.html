@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <button id="add">添加事件</button>
+    <button id="remove">移除事件</button>
+
+    <div class="box">
+
+    </div>
+
+    <script>
+        var add = document.querySelector('#add');
+        var remove = document.querySelector('#remove');
+        var box = document.querySelector('.box');
+        //兼容性方案
+        //增加事件的函数封装
+        function addEventListener(ele,event,callback){
+            if(ele.addEventListener){
+                ele.addEventListener(event,callback);
+            }else if(ele.attachEvent){
+                ele.attachEvent('on'+ event,callback);
+            }else{
+                ele['on'+ event] = callback;
+            }
+        }
+        //移除事件的函数封装
+        function removeEventListener(ele,event,callback){
+            if(ele.removeEventListener){
+                ele.removeEventListener(event,callback);
+            }else if(ele.datachEvent){
+                ele.datachEvent('on'+ event,callback);
+            }else{
+                ele['on'+ event] = null;
+            }
+        }
+
+        addEventListener(add,'click',function(){
+            addEventListener(box,'mouseover',function(){
+                console.log('over');
+            })
+
+            addEventListener(box,'click',show);
+
+            addEventListener(box,'mouseout',function(){
+                console.log('out');
+            })
+        })
+        
+        addEventListener(remove,'click',function(){
+            removeEventListener(box,'mouseover',function(){
+                console.log('over');
+            })
+
+            removeEventListener(box,'click',show);
+
+            removeEventListener(box,'mouseout',function(){
+                console.log('out');
+            })
+        })
+
+        function show(){
+            console.log('click');
+        }
+    </script>
+</body>
+</html>
