@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <script>
+        //鼠标事件对象
+        //      e.clientX      鼠标相对与浏览器可视区域的坐标
+        //      e.clientY
+
+        //      e.pageX        鼠标相对与文档页面左上角的坐标 （特别滚动）   可视距离+ 页面卷进去的距离（滚动过的距离）
+        //      e.pageY
+
+
+        //      e.screenX      鼠标相对于屏幕左上角的坐标
+        //      e.screenY
+
+        var box = document.querySelector('.box');
+        box.onclick = function(e){
+            e = e||window.event;
+            console.log('e.clientX=' + e.clientX,'e.clientY=' + e.clientY);
+            console.log('e.pageX=' + e.pageX,'e.pageY=' + e.pageY);
+            console.log('e.screenX=' + e.screenX,'e.screenY=' + e.screenY);
+        }
+
+    </script>
+</body>
+</html>
