@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/swiper-bundle.min.css">
+    <style>
+        .banner {
+            width: 640px;
+            height: 340px;
+            padding: 20px;
+            margin: auto;
+            box-sizing: border-box;
+        }
+
+        .swiper {
+            width: 600px;
+            height: 300px;
+            padding-bottom: 35px;
+        }
+
+        .swiper-horizontal>.swiper-pagination-bullets,
+        .swiper-pagination-bullets.swiper-pagination-horizontal,
+        .swiper-pagination-custom,
+        .swiper-pagination-fraction {
+            bottom: 6px;
+            left: 0;
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper .swiper-pagination-bullet {
+            width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 15px));
+            height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 15px));
+            display: inline-block;
+            border-radius: 50%;
+            background: var(--swiper-pagination-bullet-inactive-color, transparent);
+            opacity: var(--swiper-pagination-bullet-inactive-opacity, .3);
+            position: relative;
+        }
+
+        .swiper .swiper-pagination-bullet:after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            display: block;
+            border-radius: 100%;
+            background: #c37d2e;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -4px;
+        }
+
+        .swiper .swiper-pagination-bullet-active {
+            opacity: var(--swiper-pagination-bullet-opacity, 1);
+            width: 33px;
+            height: 23px;
+            background: url(../img/sprite.png) no-repeat -719px -474px;
+        }
+
+        .swiper .swiper-pagination-bullet-active::after {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="">
+                        <img src="../img/mdt1.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="">
+                        <img src="../img/mdt2.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="">
+                        <img src="../img/mdt3.jpg" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="">
+                        <img src="../img/mdt4.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- 如果需要滚动条 -->
+            <!-- <div class="swiper-scrollbar"></div> -->
+        </div>
+        <button id="btn1">暂停</button>
+        <button id="btn2">开始</button>
+    </div>
+
+    <script src="../js/swiper-bundle.min.js"></script>
+
+    <script>
+        var mySwiper = new Swiper('.swiper', {
+            direction: 'horizontal', // 垂直切换选项
+            loop: true, // 循环模式选项
+            autoplay: true,
+            autoplayDisableOnInteraction: false,
+
+            // 如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+
+            // 如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // 如果需要滚动条
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        })
+        //鼠标覆盖停止自动切换
+        mySwiper.el.onmouseover = function () {
+            mySwiper.autoplay.stop();
+        }
+
+        //鼠标离开开始自动切换
+        mySwiper.el.onmouseout = function () {
+            mySwiper.autoplay.start();
+        }
+        var btn1 = document.querySelector('#btn1');
+        var btn2 = document.querySelector('#btn2');
+        btn1.onclick = function(){
+            mySwiper.autoplay.stop();
+        }
+        btn2.onclick = function(){
+            mySwiper.autoplay.start();
+        }
+        // $('#btn1').click(function () {
+        //     mySwiper.autoplay.stop();
+        // })
+        // $('#btn2').click(function () {
+        //     mySwiper.autoplay.start();
+        // })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+  一、  setTimeout (调用函数，［延迟的毫秒数］);
+    在指定的毫秒数后，调用一次
+
+    有三种写法
+     （1）setTimeout(function(){},1000)
+      (2)setTimeout(回调函数名,1000);
+      (3)setTimeout("回调函数名(),1000);
+
+      如果函数中有形参出现，形参会传在哪里 ，
+    setTimeout(回调函数名,1000,形参1，形参2);
+
+
+       // 标识符  timer  全局变量    
+       var timer;   
+       var timer=null;;
+
+    二、清除定时器
+     clearTimeout(标识符)
+     clearTimeout(timer);
+    -->
+
+
+    <button id="btn">单击</button>
+    <button id="btn1">清除定时器</button>
+
+    <script>
+        var btn = document.querySelector('#btn');
+        var timer;
+        //  btn.onclick=function(){
+
+        //    timer=setTimeout(function(){
+        //          console.log('hello');
+        //       },2000);
+
+        //       console.log('nice');
+
+        //       console.log(timer);
+
+        //  }
+
+
+        btn.onclick = function () {
+
+            timer = setTimeout(show, 2000, '打游戏');
+
+            console.log('nice');
+
+            console.log(timer);
+
+        }
+        // //   回调函数
+        //   function show(){
+        //     console.log('时间到了');
+
+        //   }
+
+        //   回调函数
+        function show(str) {
+            console.log('时间到了' + str);
+
+        }
+        //   btn.onclick=function(){
+
+        //     timer=setTimeout("show('写代码')",2000);
+
+        //        console.log('nice');
+
+        //        console.log(timer);
+
+        //   }
+        //   回调函数
+        //   function show(str){
+        //     console.log('时间到了'+str);
+
+        //   }
+        // 清除定时器
+        var btn1 = document.querySelector('#btn1');
+        btn1.onclick = function () {
+            clearTimeout(timer)
+        }
+    </script>
+
+</body>
+
+</html>

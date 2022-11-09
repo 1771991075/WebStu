@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .banner {
+            width: 600px;
+            height: 342px;
+            margin: 100px auto 0px;
+            overflow: hidden;
+        }
+
+        .banner ul {
+            width: 3000px;
+        }
+
+        li {
+            width: 600px;
+            float: left;
+        }
+
+        li img {
+            width: 600px;
+            height: 342px;
+        }
+
+        .btn {
+            width: 100px;
+            height: 30px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-around;
+        }
+        .btn1{
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            color: aliceblue;
+            background: rgb(45, 169, 236);
+            border: none;
+            border-radius: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .btn2{
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            color: aliceblue;
+            background: rgb(45, 169, 236);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <ul>
+            <li>
+                <a href="">
+                    <img src="../img/mdt1.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="../img/mdt2.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="../img/mdt3.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="../img/mdt4.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="../img/mdt1.jpg" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="btn">
+        <button class="btn1">暂停</button>
+        <button class="btn2">开始</button>
+    </div>
+    <script>
+        var ul = document.querySelector('ul');
+        var btn1 = document.querySelector('.btn1');
+        var btn2 = document.querySelector('.btn2');
+        var flag = 0;
+        var timer;
+        function banner (){
+            if (flag <= -3000) {
+                flag = 0;
+            }
+            ul.style.marginLeft = flag + 'px';
+            var n = (flag % 600 == 0) ? n = 2400 : n = 10;
+            flag -= 10;
+            timer = setTimeout(banner,n);
+        };
+        banner();
+        btn1.onclick = function () {
+            clearInterval(banner);
+        }
+        btn2.onclick = function () {
+
+        }
+    </script>
+</body>
+
+</html>

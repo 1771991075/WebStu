@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <button class="btn">发送短信</button>
+    <script>
+        var btn = document.querySelector('.btn');
+        var value;
+        btn.onclick = function(){
+            btn.disabled = true;
+            value = 5;
+            time = setInterval(function (){
+                if(value == 0){
+                    clearInterval(time);
+                    btn.disabled = false;
+                    btn.innerHTML = '发送短信';
+                }else{
+                    btn.innerHTML = '还剩' + value + '秒';
+                    value--;
+                }
+            },1000);
+        }
+    </script>
+</body>
+</html>
