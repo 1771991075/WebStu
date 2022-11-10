@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- location 当前位置   定位
+   URL  统一资源定位符  地址栏中的地址
+     document.URL
+protocol://host[:port]/path/[?query]#fragment
+http://www.baidu.cn/index.html?name=ryan&pwd=168#link
+
+ 默认的端口号 80 省略
+
+ http://127.0.0.1:5500/18day/07.location%E5%AF%B9%E8%B1%A1.html?userName=Tom&pwd=123456#link
+    
+    
+    -->
+    <form action="./07.location对象.html" method="get">
+        <input type="text" name="userName">
+        <input type="password" name="pwd">
+        <button>提交</button>
+    </form>
+    <script>
+        // console.log(Location);//ƒ Location() { [native code] }
+
+        // console.log(window.location,location);
+
+        console.log(document.URL);//file:///D:/ftp/2022-10-11%E5%BC%80%E5%A7%8Bjs/js20221011/18day/07.location%E5%AF%B9%E8%B1%A1.html
+        // http://127.0.0.1:5500/18day/07.location%E5%AF%B9%E8%B1%A1.html
+
+        //  location 对象属性
+
+        /* 
+         hash    锚名 
+         host   主机名和URL的端口号
+         hostname   主机名
+         href     设置或返回完整URL-------重点
+         pathname  设置或返回路径路径部分
+         port    端口号
+         protocol  URL协议
+         search  设置或返回从?开始的URL-----重点
+        */
+
+        console.log(location.hash);//#link
+        console.log(location.host);//127.0.0.1:5500
+        console.log(location.hostname);//127.0.0.1
+        console.log(location.href);//http://127.0.0.1:5500/18day/07.location%E5%AF%B9%E8%B1%A1.html?userName=Tom&pwd=123456#link
+
+        //  location.href='http://yw.qq.com' 自动跳转到妖尾
+        console.log(location.pathname);
+        console.log(location.port);//5500
+        console.log(location.protocol);//http:
+
+        console.log(location.search);//?userName=Tom&pwd=123456
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">倒计时时间</div>
+    <script>
+        var box = document.querySelector('#box');
+
+        var time = 5;
+        box.innerHTML = '5秒之后跳转页面'
+        var timer = setInterval(function () {
+            if (time == 0) {
+                clearInterval(timer);
+                location.href = 'http://yw.qq.com';
+            } else {
+                time--;
+                box.innerHTML = '还剩' + time + '秒跳转页面';
+            }
+        }, 1000)
+    </script>
+</body>
+
+</html>
