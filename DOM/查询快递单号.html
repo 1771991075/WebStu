@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .container{
+            width: 300px;
+            height: 150px;
+            margin: 100px auto;
+        }
+        .bt{
+            height: 20px;
+            line-height: 20px;
+        }
+        .bt span{
+            display: block;
+            width: 20px;
+            height: 18px;
+            float: left;
+            background: url(../img/kuaidi-logo-all-small1227.png) no-repeat 0px -1504px;
+        }
+        .bt a{
+            color: red;
+            font-size: 14px;
+            float: left;
+        }
+        .box{
+            width: 300px;
+            height: 100px;
+            margin: auto;
+            background: whitesmoke;
+            display: flex;
+            font-size: 12px;
+        }
+        .box ul{
+            margin: auto;
+            font-size: 12px;
+            position: relative;
+        }
+        .box ul .li1 select{
+            font-size: 12px;
+            width: 156px;
+            height: 23px;
+            outline: none;
+        }
+        .li1{
+            margin-bottom: 10px;
+        }
+        .li2{
+            display: flex;
+            align-items: baseline;
+            
+        }
+        .li2 input{
+            width: 150px;
+            height: 20px;
+            margin-right: 5px;
+            font-size: 12px;
+            outline: none;
+        }
+        .li2 span{
+            font-size: 12px;
+            margin-right: 8px;
+        }
+        .option1{
+            background: url(../img/kuaidi-logo-all-small1227.png) no-repeat 0px -1504px;
+        }
+        .btn{
+            width: 50px;
+            height: 23px;
+            background: #388bff;
+            color: aliceblue;
+            font-size: 12px;
+            text-align: center;
+            border: none;
+            line-height: 23px;
+        }
+        .btn:hover{
+            text-decoration: underline;
+        }
+        .after{
+            width: 145px;
+            height: 20px;
+            position: absolute;
+            top: 10px;
+            border-radius: 5px;
+            left: 60px;
+            background: #888;
+            color: aliceblue;
+            display: none;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="bt">
+            <span>
+
+            </span>
+            <a href="">京东快递</a>
+        </div>
+        <div class="box">
+            <ul>
+                <li class="li1">
+                    公司名称&nbsp;    
+                    <select name="" id="">
+                        <option value="" class="option1"><a></a>京东快递</option>
+                        <option value="">运通快递</option>
+                        <option value="">申通快递</option>
+                        <option value="">顺丰快递</option>
+                    </select>
+                </li>
+                <li class="li2">
+                    <span>快递单号</span><input type="text" placeholder="请输入你的快递单号">
+                    <button class="btn">查询</button>
+                </li>
+                <div class="after">
+
+                </div>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var input = document.querySelector('.li2 input')
+        var after = document.querySelector('.after');
+
+        input.onkeyup = function(){
+            if(this.value == ''){
+                after.style.display = 'none';
+            }else{
+                after.style.display = 'block';
+                after.innerHTML = this.value;
+            }
+        }
+
+        //获焦
+        input.onfocus = function(){
+            if(this.value == ''){
+                after.style.display = 'none';
+            }else{
+                after.style.display = 'block';
+                after.innerHTML = this.value;
+            }
+        }
+
+        //失焦
+        input.onblur = function(){
+            after.style.display = 'none';
+        }
+
+    </script>
+</body>
+</html>
