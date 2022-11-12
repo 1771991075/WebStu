@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- navigator 对象     导航者  领航者
+       获取浏览器的信息   判断浏览器是pc还是移动
+        userAgent
+
+    (phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)
+    说明是移动端
+
+    // 正则          match方法           存在返回数组  ，不存在 null
+    -->
+    <Script>
+        console.log(window.navigator);
+
+        var str = navigator.userAgent;
+        console.log(str);// 浏览器的信息
+
+        var arr = str.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/ig);
+        console.log(arr);  // ['iPhone', 'iPhone', 'Mobile']    null
+
+
+        if (arr) {
+            // 移动端
+            location.href = 'http://m.zhubaojie.com'
+        } else {
+            // pc端
+            location.href = 'http://www.zhubaojie.com'
+        }
+    </Script>
+</body>
+
+</html>

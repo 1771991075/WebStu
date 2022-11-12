@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //当网页全部加载完毕之后触发
+        window.addEventListener('load',function(){
+            var btn = document.querySelector('#btn');
+            console.log(btn);
+        })
+        //窗口加载事件   当html加载完毕时就触发，不包括图片，样式表，flash等，适用于图片多的网站
+        window.addEventListener('DOMContentLoaded',function(){
+            console.log('asd');
+        })
+        //
+
+    </script>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <div class="box" style="height: 2000px;">
+
+    </div>
+    <script>
+        //onresize  窗口尺寸变化
+        window.onresize = function(){
+            console.log('窗口尺寸变化了');
+        }
+        //onscroll    窗口滚动了
+        window.onscroll = function(){
+            console.log('窗口滚动了');
+        }
+    </script>
+</body>
+</html>

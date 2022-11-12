@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        innerWidth      返回窗口的文档显示区的宽度
+        innerHeight     返回窗口的文档显示区的高度
+        outerHeight     返回窗口的外部高度  包含工具条与滚动条
+        pageYOffset     设置或返回当前页面相对于窗口显示区的左上角的Y位置
+        pageXOffset     设置或返回当前页面相对于窗口显示区的左上角的X位置
+        scrollTo(x,y)   把内容滚动到指定的坐标
+
+     -->
+    <!--
+      一、 ECMAScript   核心语法部分
+          DOM  Document Object  Model
+
+          BOM  Browser Object  Model  浏览器对象模型
+         其核心对象是window  （顶层对象）---省略不写
+
+    二、BOM 构成
+
+                       window对象 ---省略不写      window.属性     window.方法（）
+
+   属性      document文档   navigator 导航者（浏览器相关信息）   location 位置  screen 屏幕     history 历史记录
+
+本身也是对象  Document       Navigator                             Location           Screen       History  
+
+
+
+  三. window 全局对象
+
+     1.全局声明的属性和方法， 都归属window      this  ---window
+     在调用的时候可以省略window
+
+    2.前面学过一些内置方法
+     alert()  警告框      prompt()  输入框    confirm() 确认框
+     没有返回值            有返回值            有返回值
+
+     setTimeout(回调函数，时间)  延迟调用      只调一次          this---window
+     setInterval(回调函数，时间) 周期调用     每隔一定时间调用一次
+     clearInterval()   清除定时器
+     clearTimeout()
+
+     getComputedStyle()       window.getComputedStyle(node,null).样式名    只读  行内和外部的样式都可以取到
+     focus() 自动获焦	把键盘焦点给予一个窗口。 
+ 
+      属性：
+     innerWidth	    返回窗口的文档显示区的宽度。----用的多
+     innerHeight	返回窗口的文档显示区的高度。----用的多
+     outerHeight	返回窗口的外部高度，包含工具条与滚动条。---用的少
+     pageYOffset	设置或返回当前页面相对于窗口显示区左上角的 Y 位置。---用的多    卷进去的距离
+     pageXOffset	设置或返回当前页面相对于窗口显示区左上角的 X 位置。
+     scrollTo(x,y)	把内容滚动到指定的坐标。
+
+     web 存储再讲  和交互没有关系
+     localStorage	在浏览器中存储 key/value 对。没有过期时间。
+     sessionStorage	在浏览器中存储 key/value 对。 在关闭窗口或标签页之后将会删除这些数据。
+
+     注意：window下的一个特殊属性window.name      平时声明变量不建议用name
+      -->
+    <script>
+
+        console.log(window.document);
+
+        console.log(window.location);// 它们是window 的属性，本身也是对象        都会有属性和方法  
+        console.log(window.navigator);
+        console.log(history, screen);//window 省略
+
+
+
+        var a = 10;
+        function show() {
+            console.log(this);// this----window
+
+        }
+        console.log(this);//this----window
+
+        // window.a=10;
+        // show();
+        // window.show();
+
+    </script>
+    <script>
+
+    </script>
+</body>
+
+</html>
