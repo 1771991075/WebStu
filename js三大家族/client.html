@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            background: aqua;
+            border: 5px solid #333;
+            padding: 10px;
+        }
+        .box1{
+            width: 800px;
+            height: 2000px;
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        client  可视
+        ele.属性
+
+        1. clientWidth   可视宽度
+        clientHeight  
+        clientTop
+        clientLeft  左边框
+     -->
+     <div class="box">
+
+     </div>
+     <div class="box1">
+
+     </div>
+     <script>
+        var box = document.querySelector('.box');
+        console.log(box.clientHeight);
+        console.log(box.clientTop);
+
+        var pageW = document.documentElement.clientWidth;   //不包含滚动条
+        console.log(pageW);
+        var pageW1 = window.innerWidth;                     //包含滚动条
+        console.log(pageW1);
+        var box1 = document.querySelector('.box1');
+     </script>
+</body>
+</html>

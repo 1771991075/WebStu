@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: greenyellow;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <script>
+        box = document.querySelector('.box');
+        box.onmousedown = function (e) {
+            e = e || window.event;
+            var x1 =  e.pageX - this.offsetLeft;
+            var y1 =  e.pageY - this.offsetTop;
+            document.onmousemove = function (e) {
+                e = e || window.event;
+                var x2 = e.pageX;
+                var y2 = e.pageY;
+                box.style.left = x2 - x1 +'px';
+                box.style.top = y2 - y1 +'px';
+            }
+            document.onmouseup = function () {
+                document.onmousemove = null;
+            }
+        }
+       console.log( getComputedStyle(box,null).backgroundColor);
+    </script>
+</body>
+</html>

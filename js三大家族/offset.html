@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .father{
+            width: 500px;
+            height: 500px;
+            margin: 100px;
+            background: aqua;
+            overflow: hidden;
+        }
+        .father .son{
+            width: 200px;
+            height: 200px;
+            background: red;
+            border: 5px solid blue;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        offset 偏移量
+        1.获得元素距离带有定位父元素的位置
+        2.获得元素自身的大小
+        3.返回的数值都不带单位
+
+        都是只读，不能赋值
+
+        offsetLeft   元素距离X轴偏移量（如果父元素有定位，那就是距离父元素的偏移量） 
+        父无定位，那就是参照body来算偏移量
+        
+        offsetWidth      width+ padding + border  
+    
+        offsetparent    获得的是距离谁的定位
+
+        offset   style   区别
+        offset:
+            (1)offsetWidth  所有属性都是只读的    只能获取不能赋值
+            (2)offsetWidth  包括padding + width + border 
+            (3) 没有单位
+            (4) 获取值的时候，行内和外部都可以获取
+        style:
+            (1)style 可读写   可以读取可以赋值
+            (2)style.width    只有宽度
+            (3) 带单位
+            (4) 只能获取行内
+
+            获取值的时候用offset    更改值的时候用style更合适
+     -->
+
+     <div class="father">
+        <div class="son">
+
+        </div>
+     </div>
+     <script>
+        var son = document.querySelector('.son');
+        var l = son.offsetLeft;
+        console.log(l);
+     </script>
+</body>
+</html>
