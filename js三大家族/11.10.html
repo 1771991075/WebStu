@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .tab_box {
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            border: 1px solid #333;
+        }
+
+        .tab_tit {
+            height: 80px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .tab_tit li {
+            line-height: 80px;
+            cursor: pointer;
+        }
+
+        .item {
+            display: none;
+        }
+
+        .dis {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab_box">
+        <ul class="tab_tit">
+            <li class="on">图片</li>
+            <li>视频</li>
+            <li>音乐</li>
+        </ul>
+        <div class="tab_con">
+            <div class="item dis">图片图片图片</div>
+            <div class="item">视频视频视频</div>
+            <div class="item">音乐音乐音乐</div>
+        </div>
+    </div>
+    <script>
+        var lis = document.querySelectorAll('.tab_tit li');
+        var cons = document.querySelectorAll('.item');
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].setAttribute('index', i);
+            lis[i].onmouseover = function () {
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                    cons[i].className = 'item';
+                }
+                this.className = 'on';
+                var index = this.getAttribute('index');
+                cons[index].className = 'item dis';
+            }
+        }
+    </script>
+</body>
+
+</html>

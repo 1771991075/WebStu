@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .focus{
+            width: 500px;
+            height: 300px;
+            background: aqua;
+            margin: 0 auto;
+            /* overflow: hidden; */
+            position: relative;
+        }
+        .focus .pic_box{
+            width: 2500px;
+            height: 100%;
+        }
+        .focus .pic_box li{
+            width: 500px;
+            height: 300px;
+            float: left;
+            text-align: center;
+            line-height: 300px;
+            font-size: 50px;
+        }
+        .focus .pic_box li:nth-child(1){
+            background: rgba(0, 255, 255, 1)
+        }
+        .focus .pic_box li:nth-child(2){
+            background: rgba(255, 255, 0, 1)
+        }
+        .focus .pic_box li:nth-child(3){
+            background: rgba(0, 255, 0, 1)
+        }
+        .focus .pic_box li:nth-child(4){
+            background: rgba(255, 0, 255, 1)
+        }
+        .focus .pic_box li:nth-child(5){
+            background: rgba(0, 255, 255, 1)
+        }
+        .focus .circle{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .focus .circle li{
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            margin: 0 5px;
+            float: left;
+            border-radius: 50%;
+        }
+        .focus .circle li.on{
+            background: #000;
+        }
+        .focus .arrow{
+            width: 30px;
+            height: 40px;
+            display: block;
+            border-radius: 30px 0 0 30px;
+            background: #333;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .focus .prev{
+            left: 0;
+            border-radius: 0 30px 30px 0;
+        }
+        .focus .next{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 轮播 -->
+    <div class="focus">
+        <!-- 图片 -->
+        <ul class="pic_box">
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <!-- 指示器 -->
+        <ol class="circle">
+            <!-- <li class="on"></li> -->
+        </ol>
+        <!-- 左右按钮 -->
+        <span class="arrow prev"><</span>
+        <span class="arrow next">></span>
+    </div>
+    <script src="../js/animate.js"></script>
+    <script src="../js/lunbo.js"></script>
+</body>
+</html>
