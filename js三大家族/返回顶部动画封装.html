@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function animate(obj, target, callback) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+
+                var speed = (target - window.pageYOffset) / 10;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                if (window.pageYOffset == target) {
+                    clearInterval(obj.timer);
+                    //逻辑运算符 如果前面是假，后面不执行，如果是真，后面执行
+                    callback && callback();
+                }
+                // obj.style.left = obj.offsetLeft + speed + 'px';
+                window.scrollTo(0, window.pageYOffset + speed);
+            }, 15);
+
+        }
+    </script>
+</body>
+
+</html>
