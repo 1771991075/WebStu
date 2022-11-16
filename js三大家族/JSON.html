@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // JSON
+        var obj = '{ "name" : "Tom" , "age" : 18}';
+        console.log(obj, typeof obj);
+        // JSON数组格式
+        var arr = '[10,20,30]';
+        console.log(arr, typeof arr);
+
+        // JSON转js对象
+        var jsobj = JSON.parse(obj);
+        console.log(jsobj);
+
+        //js对象转为JSON
+        var obj1 = {name:'jack',age:20};
+        console.log(obj1,typeof obj1);
+        var jsonobj = JSON.stringify(obj1);
+        console.log(jsonobj,typeof jsonobj);
+    </script>
+</body>
+</html>

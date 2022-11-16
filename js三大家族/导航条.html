@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .nav {
+            width: 640px;
+            height: 80px;
+            background: #000;
+            margin: 100px auto;
+            position: relative;
+        }
+        .nav ul {
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+        .nav li {
+            width: 80px;
+            color: #fff;
+            float: left;
+            text-align: center;
+            line-height: 80px;
+            cursor: pointer;
+        }
+        .nav .line {
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: aqua;
+            position: absolute;
+            top: 0;
+            left: 15px;
+        }
+        .nav ul li.on {
+            color: aqua;
+        }
+        .nav ul li:hover {
+            color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <span class="line"></span>
+        <ul>
+            <li class="on">首页</li>
+            <li>业务</li>
+            <li>案例</li>
+            <li>客户</li>
+            <li>品质</li>
+            <li>增值</li>
+            <li>关于</li>
+            <li>联系</li>
+        </ul>
+    </div>
+    <script src="../js/animate.js"></script>
+    <script>
+        var line = document.querySelector('.line');
+        var lis = document.querySelectorAll('.nav ul li');
+        var current = 15;
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].onmouseenter = function () {
+                animate(line, this.offsetLeft + 15);
+            }
+            lis[i].onmouseleave = function () {
+                animate(line, current);
+            }
+            lis[i].onclick = function () {
+                current = this.offsetLeft + 15;
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                }
+                this.className = 'on';
+            }
+        }
+    </script>
+</body>
+
+</html>

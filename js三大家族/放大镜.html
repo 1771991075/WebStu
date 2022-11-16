@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .preview-box{
+            width: 450px;
+            height: 320px;
+            margin: 100px;
+            background: aqua;
+        }
+        .preview-box .preview-img{
+            width: 450px;
+            height: 320px;
+            border: 1px solid #333;
+            position: relative;
+        }
+        .preview-box .preview-img img{
+            width: 450px;
+        }
+        .preview-box .preview-img .mask{
+            width: 200px;
+            height: 200px;
+            background: #FFEFA7;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .preview-box .preview-img .big-box{
+            width: 710px;
+            height: 600px;
+            position: absolute;
+            top: 0px;
+            left: 452px;
+            overflow: hidden;
+        }
+        .preview-box .preview-img .big-box img{
+            width: 800px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-box">
+        <div class="preview-img">
+            <div class="mask">
+
+            </div>
+            <img src="../img/mdt3.jpg" alt="">
+            <div class="big-box">
+                <img src="../img/mdt3.jpg" alt="" id="bigpic">
+            </div>
+        </div>
+    </div>
+    <script>
+        var preview_box = document.querySelector('.preview-box');
+        var preview_img = document.querySelector('.preview-img');
+        var mask = document.querySelector('.mask');
+        var big_box = document.querySelector('.big-box');
+        var bigpic = document.getElementById('bigpic');
+        preview_img.onmousemove = function (e) {
+            var x = e.pageX-this.offsetLeft;
+            var y = e.pageY-this.offsetTop;
+            //遮罩层
+            maskX = x - mask.offsetWidth/2;
+            maskY = y - mask.offsetHeight/2
+            //遮罩层在盒子内移动
+            var maxX = preview_img.offsetWidth - mask.offsetWidth;
+            var maxY = preview_img.offsetHeight - mask.offsetHeight;
+            if (maskX <= 0) {
+                maskX = 0;
+            }else if(maskX >= maxX) {
+                maskX = maxX;
+            }
+            if (maskY <= 0) {
+                maskY = 0;
+            }else if(maskY >= maxY) {
+                maskY = maxY;
+            }
+            mask.style.left = maskX + 'px';
+            mask.style.top = maskY + 'px';
+            //右侧图片移动的最大距离
+            var big_picMax = big_box.offsetWidth - bigpic.offsetWidth;
+            var big_picMaxY = big_box.offsetHeight - bigpic.offsetHeight;
+            var big_picX = maskX * big_picMax / maxX;
+            var big_picY = maskY * big_picMaxY / maxY;
+            bigpic.style.left = big_picX +'px';
+            bigpic.style.top = big_picY +'px';
+        }
+    </script>
+</body>
+</html>
