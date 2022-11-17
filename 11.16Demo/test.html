@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 500px;
+            height: 30px;
+            border: 1px solid #333;
+        }
+
+        table td {
+            width: 100px;
+            height: 30px;
+            background: rgb(255, 255, 255);
+            border: 1px solid #333;
+        }
+        .box{
+            width: 100px;
+            height: 200px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <button>点击</button>
+    <button>点击</button>
+    <button>点击</button><br>
+
+    <button class="btnzc">注册</button>
+
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="box">
+        <input type='text' id='test' value='zhangsan' class='dd'/> 
+    </div>
+    
+
+    <script>
+        // 1. 点击一个按钮，被点击的按钮显示“呜呜”，其它按钮显示“哈哈”
+        var btns = document.querySelectorAll('button');
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].onclick = function () {
+                for (var i = 0; i < btns.length - 1; i++) {
+                    btns[i].innerHTML = '哈哈';
+                }
+                this.innerHTML = '呜呜';
+            }
+        }
+
+        //2. 十秒钟后协议文本框下的注册按钮才能点击(注册按钮显示倒计时时间)
+        var zhuce = document.querySelector('.btnzc');
+        var time = 10;
+
+        var timer = setInterval(function () {
+            zhuce.disabled = true;
+            time--;
+            zhuce.innerHTML = '还剩' + time + '秒';
+            if (time <= 0) {
+                zhuce.disabled = false;
+                clearInterval(timer);
+                zhuce.innerHTML = '注册';
+            }
+        }, 1000);
+
+
+        //3. 评分控件，用一个单行5列的Table做评分控件，监听td的click事件，点击一个td的时候，将这个td及之前的td背景色变为红色，之后的td背景色变为白色
+        var td = document.querySelectorAll('td');
+        for (var j = 0; j < td.length; j++) {
+            td[j].setAttribute('index', j);
+            td[j].addEventListener('click', function () {
+                var idx = this.getAttribute('index');
+                for (var k = 0; k <= idx; k++) {
+                    td[k].style.background = 'red';
+                }
+            })
+        };
+
+        //4. 截取字符串中abcdefg中的de 
+        var str = 'abcdefg';
+        var newstr = '';
+        var newstr1 = '';
+        for (var i = 0; i < str.length; i++) {
+            if (str.charAt(i) == 'd' || str.charAt(i) == 'e') {
+                newstr += str.charAt(i);
+            }
+        }
+        console.log(newstr);
+
+        newstr1 = str.substring(3, 5);
+        console.log(newstr1);
+
+
+        //5.	写一个function， 统计字符串中出现最多的字符和个数
+        function getCount(str1) {
+            var obj = {};
+            for (var i = 0; i < str1.length; i++) {
+                var chars = str1.charAt(i);
+                if (obj[chars]) {
+                    obj[chars]++;
+                } else {
+                    obj[chars] = 1;
+                }
+            }
+            var max = 0;
+            var ch = '';
+            for (var k in obj) {
+                if (obj[k] > max) {
+                    max = obj[k];
+                    ch = k;
+                }
+            }
+            console.log('字符串中最多的字符是：' + ch, '个数为：' + max);
+        }
+        getCount('asdiohqwifiqhwfnkxnc');
+
+        //6.	编写一个方法实现js面向对象中的继承---最好是完美的继承方案
+        function Person (name,sex) {
+            this.name = name;
+            this.sex = sex;
+        }
+        Person.prototype.say = function () {
+            console.log('say hi');
+        }
+        function Student (name,sex,score) {
+            Person.call(this,name,sex);
+            this.score = score;
+        }
+
+        Student.prototype = Object.create(Person.prototype);
+        Student.prototype.constructor = Student;
+
+        Student.prototype.test = function () {
+            console.log('我是' + this.name + ',考试的分数为:' + this.score);
+        }
+        var stu_1 = new Student('张三', '男', 99 );
+        stu_1.test();
+        stu_1.say();
+
+        //7. <input type=”text” id=’test’ value=”zhangsan” class=”dd”/> 
+        // （1）获取当前元素  
+        var input = document.querySelector('.dd');
+        // （2）获取文本框中的值,并改变文本框中的值      
+        var value = input.value;
+        console.log(value);
+        input.value = '李四';
+        // （3）改变文本框得class属性(两种方法) 
+        input.classList.add('on');
+        input.className = 'on';
+        // （4）在input标签上面生成一个div 设置他的背景颜色为橙色
+        var box = document.querySelector('.box');
+        var div = document.createElement('div');
+        box.insertBefore(div,input);
+        div.style.width = '160px';
+        div.style.height = '20px';
+        div.style.background = 'orange';
+
+        
+    </script>
+</body>
+
+</html>

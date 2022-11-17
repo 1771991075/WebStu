@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function getL (str) {
+            var last = str.substr(-1);
+            var l = str.lastIndexOf(last) + 1;
+            console.log('该字符串的长度为:' + l);
+        }
+        getL('aoihdouhqfbuohiqnwiwea');
+        var o = null;
+        console.log(typeof o);
+        var time = new Date(2018-1-1);
+        console.log(time.getDay());
+    </script>
+
+
+    <!-- <input type="text" class="ipt1">
+    <input type="text" class="ipt2">
+    <button class="btn3">运算</button>
+    <input type="text" disabled="true" class="ipt3">
+    <script>
+
+        var ipt1 = document.querySelector('.ipt1');
+        var ipt2 = document.querySelector('.ipt2');
+        var ipt3 = document.querySelector('.ipt3');
+        var btn3 = document.querySelector('.btn3');
+        btn3.onclick = function(){
+            ipt3.value = +ipt1.value + +ipt2.value;
+        }
+        
+    </script> -->
+
+
+    <!-- <script>
+        function newArr(arr) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = 0; j < arr.length - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        var temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            console.log(arr);
+        }
+        newArr([2, 3, 6, 74, 8, 9, 66]);
+    </script> -->
+    <!-- <div class="box1">
+        <div id="h"></div>:
+        <div id="m"></div>:
+        <div id="s"></div>
+    </div>
+    <script>
+        function getTime () {
+            var time1 = new Date();
+            var h = time1.getHours();
+            var m = time1.getMinutes();
+            var s = time1.getSeconds();
+            h = h < 10 ? '0' + h : h;
+            m = m < 10 ? '0' + m : m;
+            s = s < 10 ? '0' + s : s;
+            document.getElementById('h').innerHTML = h;
+            document.getElementById('m').innerHTML = m;
+            document.getElementById('s').innerHTML = s;
+        }
+        getTime();
+        setInterval(getTime,1000);
+    </script> -->
+</body>
+
+</html>
