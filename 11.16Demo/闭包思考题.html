@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 思考题：
+    //     var name = "The Window";
+    //     var object = {
+    //         name: "My Object",
+    //         getNameFunc: function () {
+    //             return function () {
+    //                 return this.name;
+    //             };
+    //         }
+    //     };
+    //     console.log(object.getNameFunc()());// 结果是什么？"The Window"
+
+    //     //整个来说，没有局部变量，没有闭包产生
+
+
+    //     // 如果是 "The Window"   this 指向是 window
+    //     // 如果是"My Object"      this 指向是object
+    //     // 结果是什么？
+    //     var fn = object.getNameFunc();
+    //     console.log(fn);
+    //     var res = fn();//  fn的this是指向window
+    //     console.log(res); // window.name
+
+    // </script>
+
+    <script>
+        var name = "The Window";
+        var object = {
+            name: "My Object",
+            getNameFunc: function () {
+                var that = this;  // 此函数的this 赋值给一个变量   ，它指向是函数的调用者  Object             
+                return function () {
+                    return that.name;
+                };
+            }
+        };
+        console.log(object.getNameFunc()());//My Object
+
+        // 它是有闭包的       getNameFunc 闭包函数    that变量
+    </script>
+</body>
+</html>

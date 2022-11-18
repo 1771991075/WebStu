@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        闭包
+        简单知道哪一种函数是闭包  ，会利用闭包解决问题
+        但是 编程时不建议用闭包来编程-----没有必要去网上特别深的去学习闭包
+
+        全局变量和局部变量
+        1. 函数内部声明的变量是局部变量，但它可以使用全局变量
+        2. 函数外部不可以函数内部的局部变量。
+        3. 当函数执行完毕，本作用域内的局部变量会销毁。
+
+        闭包： 函数套函数， 内部函数可以访问外部函数作用域的变量或参数   （符合作用域链）
+              导致： 函数中的变量一直在内存中   占着内存  不能及时释放内存，这种情况内存泄露
+
+              国外概念中 把内部的函数通过返回值返回
+
+        闭包（closure）指有权访问另一个函数作用域中变量的函数。简单理解就是 ，
+        一个作用域可以访问另外一个函数内部的局部变量。
+
+    -->
+
+    <script>
+        // function show() {
+        //     var num = 0;
+        //     var fn = function () {
+        //         num++;
+        //         console.log(num);
+        //     }
+        //     return fn;
+
+        // }
+
+
+        function show() {
+            var num = 0;
+            return function () {
+                num++;
+                console.log(num);
+            }
+
+        }
+
+      var fn=  show();
+        //  console.log(fn);
+        fn();//  num=1
+        fn()//  num=2
+        fn()// num=3
+
+        // 可以认为show 是一个闭包函数  ，  闭包现象 表达更合适    
+        //  也有人认为fn是闭包函数
+
+        // 作用：延伸变量的作用范围
+
+        // 百度一下闭包
+    </script>
+</body>
+</html>

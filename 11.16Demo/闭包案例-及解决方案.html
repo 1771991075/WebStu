@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <script>
+        //  案例1. 利用闭包的方式得到当前li 的索引号
+        var lis = document.querySelectorAll('ul>li');
+        //    for(var i=0;i<lis.length;i++){
+        //         lis[i].setAttribute('index',i)
+        //         lis[i].onclick=function(){
+        //             // console.log(i);//5
+        //           var idx=  this.getAttribute('index');
+        //           console.log(idx);
+
+        //         }
+        //    }
+
+        //用闭包的方法来解决
+        for (var i = 0; i < lis.length; i++) {
+            // 立即执行函数也成为小闭包因为立即执行函数里面的任何一个函数都可以使用它的i这变量
+            (function(i) {
+                lis[i].onclick = function () {
+                    console.log(i);
+                }
+            })(i);
+
+        }
+
+
+
+        // es6
+
+        for(let i=0;i<lis.length;i++){
+             lis[i].onclick=function(){
+                 console.log(i);
+             }
+        }
+    </script>
+</body>
+</html>
