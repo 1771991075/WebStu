@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .nav {
+            width: 1300px;
+            height: 80px;
+            background: #000;
+            margin: 0 auto;
+            position: relative;
+        }
+        .nav ul {
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+        .nav li {
+            width: 155px;
+            color: #fff;
+            float: left;
+            text-align: center;
+            line-height: 80px;
+            cursor: pointer;
+        }
+        .nav ul li a{
+            color: #fff;
+            text-decoration: none;
+        }
+        .nav ul li.on a{
+            color: aqua;
+        }
+        .nav ul li:hover a{
+            color: aqua;
+        }
+        .top{
+            width: 1300px;
+            height: 40px;
+            background: rgb(4, 112, 112);
+            margin: 0 auto;
+        }
+        .banner{
+            width: 1300px;
+            height: 1000px;
+            background: rgb(214, 240, 109);
+            margin: 0 auto;
+        }
+        .news{
+            width: 1300px;
+            height: 540px;
+            background: rgb(109, 212, 212);
+            margin: 0 auto;
+        }
+        .mdsml{
+            width: 1300px;
+            height: 800px;
+            background: rgb(130, 98, 233);
+            margin: 0 auto;
+        }
+        .yxzl{
+            width: 1300px;
+            height: 400px;
+            background: rgb(109, 212, 212);
+            margin: 0 auto;
+        }
+        .mxzn{
+            width: 1300px;
+            height: 600px;
+            background: rgb(136, 52, 136);
+            margin: 0 auto;
+        }
+        .stzx{
+            width: 1300px;
+            height: 900px;
+            background: rgb(228, 57, 85);
+            margin: 0 auto;
+        }
+        .mdslm{
+            width: 1300px;
+            height: 600px;
+            background: rgb(216, 99, 20);
+            margin: 0 auto;
+        }
+        .cdkey{
+            width: 1300px;
+            height: 540px;
+            background: rgb(76, 208, 83);
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="top"></div>
+    <div class="nav">
+        <ul>
+            <li class="on">
+                <a href="javascript:;">官网首页</a>
+            </li>
+            <li>
+                <a href="javascript:;">妖尾速报</a>
+            </li>
+            <li>
+                <a href="javascript:;">魔导士名录</a>
+            </li>
+            <li>
+                <a href="javascript:;">游戏资料</a>
+            </li>
+            <li>
+                <a href="javascript:;">冒险指南</a>
+            </li>
+            <li>
+                <a href="javascript:;">视听中心</a>
+            </li>
+            <li>
+                <a href="javascript:;">魔导士联盟</a>
+            </li>
+            <li>
+                <a href="javascript:;">CDKEY兑换</a>
+            </li>
+        </ul>
+    </div>
+    <div class="banner">banner</div>
+    <div class="news">妖尾速报</div>
+    <div class="mdsml">魔导士名录</div>
+    <div class="yxzl">游戏资料</div>
+    <div class="mxzn">冒险指南</div>
+    <div class="stzx">视听中心</div>
+    <div class="mdslm">魔导士联盟</div>
+    <div class="cdkey">CDKEY兑换</div>
+    <div class="footer"></div>
+
+    <script src="../js/animate1.js"></script>
+    <script>
+        var banner = document.querySelector('.banner');
+        var bannerTop = banner.offsetTop;
+        var news = document.querySelector('.news');
+        var newsTop = news.offsetTop;
+        var mdsml = document.querySelector('.mdsml');
+        var mdsmlTop = mdsml.offsetTop;
+        var yxzl = document.querySelector('.yxzl');
+        var yxzlTop = yxzl.offsetTop;
+        var mxzn = document.querySelector('.mxzn');
+        var mxznrTop = mxzn.offsetTop;
+        var stzx = document.querySelector('.stzx');
+        var stzxTop = stzx.offsetTop;
+        var mdslm = document.querySelector('.mdslm');
+        var mdslmTop = mdslm.offsetTop;
+        var cdkey = document.querySelector('.cdkey');
+        var cdkeyTop = cdkey.offsetTop;
+        var topArr = [bannerTop,newsTop,mdsmlTop,yxzlTop,mxznrTop,stzxTop,mdslmTop,cdkeyTop];
+        var lis = document.querySelectorAll('.nav ul li');
+        for ( var i = 0; i< lis.length; i++) {
+            lis[i].setAttribute('index',i);
+            lis[i].onclick = function () {
+                var idx = this.getAttribute('index');
+                animate1(window,topArr[idx]);
+                for ( var i = 0; i < lis.length; i++) {
+                    lis[i].classList.remove('on');
+                }
+                this.classList.add('on');
+            }
+        }
+    </script>
+</body>
+</html>

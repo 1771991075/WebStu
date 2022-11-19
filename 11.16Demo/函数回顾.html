@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1. 普通函数  命名函数
+        fn();
+        function fn() {
+            console.log('hello');
+        }
+        fn();
+
+        //2.对象的方法    obj.函数名（）   obj.方法名（）
+
+        var obj = {
+            name: 'Tom',
+            age: 18,
+            say: function () {
+                console.log('nice');
+            }
+        }
+
+        obj.say();
+
+        //3.构造函数
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+            this.walk = function () {
+                console.log(this.name + 'is saying');
+            }
+        }
+        var p1 = new Person('Tom', 18);
+        p1.walk();
+
+        //4. 绑定事件函数    回调函数
+
+        //    document.onclick=function(){
+        //         console.log('单击了才会执行，回调函数');
+
+        //    }
+
+        //    document.onclick=callback;// 坚决不能加 ()   callback()是错误
+
+        //    function callback(){
+        //        console.log('回调函数');
+        //    }
+
+        //5.定时器中函数          回调函数
+        // setInterval(function(){
+        //     console.log('快下课了');
+
+        // },1000)
+
+        setInterval(callback, 1000);
+        // setInterval("callback()",1000)
+
+        // setInterval(callback,1000,形参1,形参2)
+        function callback() {
+            console.log('回调函数');
+        };
+
+        //6. 立即执行函数(自调用函数)  匿名函数  ---自我执行
+
+        (function () {
+            console.log('自我执行');
+
+        })();
+
+        //7.匿名函数---函数表达式
+
+        var show = function () {
+            console.log('函数表达式');
+
+        }
+        show();
+    </script>
+</body>
+
+</html>

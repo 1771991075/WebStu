@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+         递归函数 ：是函数嵌套中的一种特殊的调用，函数在其函数体内调用自身的过程
+         自身调自身  
+         
+         有规律的编程  求n的阶乘    斐波那契数列    杨辉三角形    对象深拷贝
+          递归特别耗内存，开发慎用递归
+
+          都是以相反的顺序结束， 程序找到出口 把调用结束
+     -->
+    <script>
+        //普通方法
+        function jieCheng(n){
+            var ji = 1;
+            for (var i = 1 ; i<= n;i++) {
+                ji*=i;
+            }
+            return ji;
+        }
+        jieCheng(5);
+        console.log(jieCheng(5));
+
+        //递归方法
+        function jC(n){
+            if(n==1){
+                return 1;
+            }
+            return n*jC(n-1);
+        }
+        jC(5);
+        console.log(jC(5));
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //普通方法
+        // function feibonaqi(n) {
+        //     if (n < 0) {
+        //         return 'n不能小于0';
+        //     } else if (n == 0) {
+        //         return 0;
+        //     } else if (n == 1 || n == 2) {
+        //         return 1;
+        //     } else {
+        //         var one = 0;
+        //         var two = 1;
+        //         var three;
+        //         for (var i = 2; i < n; i++) {
+        //             three = one + two;
+        //             one = two;
+        //             two = three;
+        //         }
+        //         return three;
+        //     }
+        // }
+        // feibonaqi(5);
+        // console.log(feibonaqi(5));
+
+
+
+        //递归方法
+            function feibonaqi(n){
+                if(n<0){
+                    return 'n不能小于0';
+                }else if(n == 0){
+                    return 0;
+                }else if(n == 1){
+                    return 1;
+                }
+                return feibonaqi(n-2)+feibonaqi(n-1);
+            }
+            console.log(feibonaqi(5));
+
+
+        //普通递归
+        function fibonacci(n){
+            if (n == 1 || n == 2) {
+                return 1;
+            }
+            return fibonacci(n-2) + fibonacci(n-1);
+        }
+        fibonacci(30);
+    </script>
+</body>
+
+</html>

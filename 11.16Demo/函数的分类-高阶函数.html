@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- 
+       普通函数    --命名函数
+       匿名函数----赋值再执行（函数表达式）  自执行函数
+       构造函数
+       回调函数
+
+       高阶函数-----
+         定义：高阶函数是对其他函数进行操作的函数，它接收函数作为参数或将函数作为返回值输出 
+         
+         
+       闭包函数
+       递归函数
+
+     -->
+     <script>
+        //1. 参数部分是一个函数
+        var callback1 = function () {
+            console.log('我是一个回调函数');
+        }
+
+        function callback2() {
+            console.log('我是一个回调函数22222');
+        }
+
+        // 函数形参部分是一个函数
+        function fn(callback) {
+
+          callback && callback();
+
+        }
+
+        fn( callback1)
+        fn( callback2)
+        fn()
+
+
+    //2. 返回值是一个函数
+       function fn1(){
+         return function(){
+             console.log('我是一个在返回值部分的函数');
+         }
+       }
+       fn1()();
+
+    </script>
+</body>
+</html>
