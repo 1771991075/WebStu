@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        sessionStorage  会话存储，临时存储
+        1.生命周期短，关闭浏览器窗口结束
+        2.在同一个窗口下数据可以共享   可以存也可以取
+        3.以键值对的形式存储  key:value
+        4.存储容量约5M
+
+
+        sessionStorage 对象 属性和方法
+        1. 存储数据
+        sessionStorage.setItem(key,value);
+
+        2. 获取数据
+         sessionStorage.getItem(key);
+
+        3. 删除数据
+         sessionStorage.clear();
+     -->
+
+    <script>
+        console.log(window.sessionStorage, sessionStorage);
+    </script>
+
+    <input type="text">
+    <button class="set">存储数据</button>
+    <button class="get">获取数据</button>
+    <button class="remove">删除数据</button>
+    <button class="del">清空所有数据</button>
+
+    <script>
+        //1.
+        var ipt = document.querySelector('input');
+        var set = document.querySelector('.set');
+        var get = document.querySelector('.get');
+        var remove = document.querySelector('.remove');
+        var del = document.querySelector('.del');
+        // 存储数据
+        set.addEventListener('click',function(){
+            sessionStorage.setItem("userName",ipt.value);
+        })
+        //读取数据
+        get.addEventListener('click',function(){
+            sessionStorage.getItem("userName");
+            console.log(sessionStorage.getItem("userName"));
+        })
+        //删除数据
+        remove.addEventListener('click',function(){
+            sessionStorage.removeItem("userName");
+        })
+        //清空
+        del.addEventListener('click',function(){
+            sessionStorage.clear();
+        })
+
+
+    </script>
+</body>
+
+</html>
