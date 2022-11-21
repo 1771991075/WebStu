@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2>用户注册</h2>
+        用户名：<input type="text" id="user"><br>
+        密&nbsp;&nbsp;&nbsp;码：<input type="password" id="pwd"><br>
+        电&nbsp;&nbsp;&nbsp;话：<input type="text" id="tel"><br>
+        <input type="button" value="注册" id="btnReg">
+        <input type="checkbox" checked="checked" name="remember_user" id="remember_user">记住用户名
+        <input type="checkbox" checked="checked" name="remember_pwd" id="remember_pwd">记住密码
+        <br><br><br>
+        <textarea id="txt" cols="30" rows="10"></textarea><br>
+        <button id="btnGet">取值</button>
+        <button id="btnclear">清除数据</button>
+    </div>
+
+    <script>
+        var user = document.getElementById('user');
+        var pwd = document.getElementById('pwd');
+        var tel = document.getElementById('tel');
+        var btnReg = document.getElementById('btnReg');
+        var btnGet = document.getElementById('btnGet');
+        var txt = document.getElementById('txt');
+        var rem_user = document.getElementById('remember_user');
+        var rem_pwd = document.getElementById('remember_pwd');
+        var btnclear = document.getElementById('btnclear');
+        var arr = [];
+        var flag = 1;
+        btnReg.addEventListener('click', function () {
+            var users = {};
+            users.userName = user.value;
+            users.pwd = pwd.value;
+            users.tel = tel.value;
+            arr.push(users);
+            localStorage.setItem('data', JSON.stringify(arr));
+            user.value = '';
+            pwd.value = '';
+            tel.value = '';
+        })
+        var data = localStorage.getItem('data');
+        var jsData = JSON.parse(data);
+        console.log(jsData);
+        if (jsData != '') {
+            var remobj = {};
+            remobj.user = jsData[jsData.length - 1].userName;
+            remobj.pwd = jsData[jsData.length - 1].pwd;
+            remobj.tel = jsData[jsData.length - 1].tel;
+            if (rem_user.checked == true) {
+                user.value = remobj.user;
+            }
+            if (rem_pwd.checked) {
+                pwd.value = remobj.pwd;
+            }
+        }
+        
+        btnGet.addEventListener('click', function () {
+            var data = localStorage.getItem('data');
+            var jsData = JSON.parse(data);
+            var str = '';
+            for (var k in jsData) {
+                str += '用户名:' + jsData[k].userName + '密码:' + jsData[k].pwd + '电话:' + jsData[k].tel + '\n';
+            }
+            txt.value = str;
+        })
+        btnclear.addEventListener('click', function () {
+            localStorage.clear()
+        });
+    </script>
+</body>
+
+</html>

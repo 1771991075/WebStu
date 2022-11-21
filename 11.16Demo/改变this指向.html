@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        改变this指向
+        函数内置方法   call()  apply()   bind()
+        
+        1.  call  apply  如果没有传参，等于函数的调用 ，用法一样
+            bind      没有传参，返回值是一个函数,原函数改变this之后产生的新函数,  调用一次函数，调用2次
+           
+        2.  call apply  传参    对象是必传的  可以改变this指向， 除非是null 
+            this指向对象
+            call(对象，实参1,实参2，...);
+            apply(对象，[实参1,实参2,...]);
+
+
+
+     -->
+
+    <script>
+        function show(a, b) {
+            console.log('a=' + a, 'b=' + b);
+            console.log(this);
+        }
+        show(10, 20);
+        show.call();
+        show.apply();
+        var fn = show.bind();  //返回一个函数
+        console.log(fn);  //输出一个函数
+        fn();               //函数调用
+        //正确用法
+        show.bind()();
+
+        // 2.传参
+        var obj1 = {name:'张三',age:18};
+        var obj2 = {name:'李四',age:18};
+        show.call(null,10,10);  //this指向没变，还是window
+        show.call(obj1,20,20);  //this指向改变，指向obj1
+        show.apply(obj2,[20,20]);  //this指向改变，指向obj2
+
+        show.bind(obj1,20,20)();  //不能数组传
+
+
+        // call  bind  apply
+        // 共同点：都是改变this指向的
+        /* 不同点:  传参
+            1. call 和 apply  会调用函数, 并且改变函数内部this指向
+            2. call 和 apply传递的参数不一样,call传递参数使用逗号隔开,apply使用数组传递
+            3.bind 不会调用函数, 可以改变函数内部this指向.   传递参数使用逗号隔开
+            如果调用函数  bind(对象，实参1，实参2，...)()
+        */
+        // 应用场景
+            // 1.  call 经常做继承. 
+            //2.  apply经常跟数组有关系.  比如借助于数学对象实现数组最大值最小值
+            //3.  3. bind  不调用函数,但是还想改变this指向. 比如改变定时器内部的this指向. 
+
+    </script>
+
+
+</body>
+
+</html>

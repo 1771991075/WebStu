@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1.全局作用域声明的变量和函数，this指向的window
+        var a = 10;
+        // window.a = 10;
+        function show() {
+            console.log(this);
+        }
+        show();
+        // window.show();
+
+
+        //2.构造函数   this指向实例对象的，原型对象上的this也是指向实例对象的
+        function Student(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        Student.prototype.test = function(){
+            console.log(this.name + 'is student');
+        }
+
+        var s1 = new Student('张三',18);
+
+        //3.对象方法的调用  this指向方法所属对象
+        var obj = {
+            name:'李四',
+            age:18,
+            say:function(){
+                console.log(this);
+            }
+        }
+        obj.say();
+        
+
+        //4.事件绑定方法 绑定事件对象  事件的触发者（调用者）
+        document.onclick = function(){
+            console.log(this);
+        }
+
+        //5.定时器   this指向window
+        setTimeout(function(){
+            console.log(this);
+        },2000);
+
+        //6.立即执行函数   也是指向window 的
+        (function(){
+            console.log(this);
+        })();
+
+        //7.箭头函数   没有自己的this  指向定义箭头函数作用域下的this
+        // 上层作用域this指向的谁，它就指向谁
+        var show =function(){
+            console.log(this);
+        }
+        var show = ()=>{
+            console.log(this);
+        }
+        show();
+
+        
+
+    </script>
+    
+</body>
+</html>

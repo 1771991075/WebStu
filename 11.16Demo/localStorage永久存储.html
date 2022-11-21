@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        一、localStorage  永久存储
+        1.生命周期长，永久生效 ，除非手动删除
+        2.多个窗口共享（同一浏览器可以共享）
+        3. 存储数据  约5M    可以到20M
+        4.以键值对的形式存储使用  key:value
+
+        二、方法
+        1.存储数据：
+
+          localStorage.setItem(key, value)
+
+        2.获取数据：
+
+         localStorage.getItem(key)
+
+        3.删除数据：
+
+            localStorage.removeItem(key)
+
+         4.删除所有数据：
+
+       localStorage.clear()
+     -->
+    <input type="text">
+    <button class="set">存储数据</button>
+    <button class="get">获取数据</button>
+    <button class="remove">删除数据</button>
+    <button class="del">清空所有数据</button>
+    <script>
+        //1.
+        var ipt = document.querySelector('input');
+        var set = document.querySelector('.set');
+        var get = document.querySelector('.get');
+        var remove = document.querySelector('.remove');
+        var del = document.querySelector('.del');
+
+        //2.
+        set.addEventListener('click', function () {
+            localStorage.setItem('pwd', ipt.value)
+        });
+        get.addEventListener('click', function () {
+            console.log(localStorage.getItem('pwd'))
+
+
+        });
+        remove.addEventListener('click', function () {
+            localStorage.removeItem('pwd')
+        });
+        del.addEventListener('click', function () {
+            localStorage.clear()
+        });
+    </script>
+</body>
+
+</html>

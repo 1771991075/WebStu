@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button>单击</button>
+    <script>
+        // 应用场景
+            // 1.  call 经常做继承. 
+            
+            function Person(name,age){
+                this.name = name;
+                this.age = age;
+                this.say = function(){
+                    console.log('saying');
+                }
+            }
+            function Student(name,age,no){
+                Person.call(this,name,age);
+                // Person.apply(this,[name,age]);
+                this.no = no;
+                this.test = function(){
+                    console.log('testing');
+                }
+            }
+            var s1 = new Student('张三',18,'1001');
+            console.log(s1.name,s1.age,s1.no);
+            s1.say();
+            s1.test();
+
+            
+        //2.  apply经常跟数组有关系.  比如借助于数学对象实现数组最大值最小值
+            // Math.max(10,12,20);
+            // Math.min(89,12,13);
+
+            var arr = [10,20,30];
+            var max = Math.max.apply(Math,arr);
+            console.log(max);
+
+
+        // 3. bind  不调用函数,但是还想改变this指向. 比如改变定时器内部的this指向. 
+
+            var btn = document.querySelector('button');
+            btn.onclick = function () {
+                this.disabled =true;
+                setTimeout(function(){
+                    btn.disabled = false;
+                },2000)
+            }
+
+            //作用域链，
+            btn.onclick = function () {
+                this.disabled =true;
+                var that = this;
+                setTimeout(function(){
+                    that.disabled = false;
+                },2000)
+            }
+
+            //bind
+            btn.onclick = function () {
+                this.disabled =true;
+                setTimeout(function(){
+                    this.disabled = false;
+                }.bind(this),2000)
+            }
+
+    </script>
+</body>
+</html>

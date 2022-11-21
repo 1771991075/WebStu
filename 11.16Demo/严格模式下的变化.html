@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        //1.变化1   严格模式后使用未声明的变量
+        // num=10;
+        // console.log(num);//Uncaught ReferenceError: num is not defined
+
+        //2.变化2      严格模式不允许删除变量         非严格模式下删除不了变量，但是不报错
+        // var b=20;
+        // delete b;
+
+        //3.在函数中this的问题  非严格模式下  this---window   严格模式 this---undefined
+        function show() {
+            console.log(this);//undefined
+        }
+        show();
+        //4. 构造函数   严格模式下,如果 构造函数不加new调用, this 指向的是undefined 如果给他赋值则 会报错
+        function Star(name) {
+            this.name = name;
+            console.log(this);
+
+        }
+        //  Star('周琛');
+
+        var s1 = new Star('周琛');
+
+        //5.   this 没有变  还是 指向window
+        setTimeout(function () {
+            console.log(this); //严格模式下，定时器 this 还是指向 window
+        }, 2000);
+
+      
+    </script>
+</body>
+</html>

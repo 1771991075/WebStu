@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 严格模式（strict mode） 
+       如何开启严格模式
+       脚本开启严格模式和为函数开启严格模式两种情况
+
+       1.为脚本开启严格模式     "use strict" ;
+
+       2.对函数开启严格模式
+    
+    -->
+    <!-- <script>
+        var a=10;
+        var a=20;
+        console.log(a);//20  es5 不报错   ，虽然不建议
+        c=80;
+        console.log(c);
+
+    </script>
+    <script>
+        "use strict" ;  //当前script标签开启严格模式
+    
+        b=10;// 不声明变量  不能再使用  除非 var
+        console.log(b);
+
+    </script> -->
+    <script>
+        var a=10;
+        var a=20;
+        console.log(a);
+
+        // (function(){
+        //     "use strict" ;
+        //     c=10;
+        //     console.log(c);
+
+        // })();
+
+        function show(){
+            "use strict";
+            d=10;
+            console.log(d);
+           
+        }
+        show();
+    </script>
+</body>
+</html>
