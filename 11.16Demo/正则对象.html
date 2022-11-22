@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- 
+      RegExp  正则对象      RegExp  也是一个构造函数
+      ^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$
+
+      一、如何创建正则 两种方法
+       1. 字面量  var patt= /规则/修饰符       /red/ig    i 不区分大小写   g全局  m多行
+       2. 构造函数  var patt= new RegExp('red','ig')  \d---\\d
+
+     二、测试正则表达式 
+      1. test()    检查字符串是否符合该规则
+       var flag= patt.test(字符串);
+        true (合法) false （不合法）
+     -->
+     <script>
+        // 规则    
+        //  var patt=/red/ig   //  字符串不 加引号
+        //  var patt=/\d/ig 
+        //  console.log(patt);
+
+        // //  var patt1=new RegExp('red','ig'); // 加有引号
+        //  var patt1=new RegExp('\\d','ig');//需要常规的字符转义规则（在前面加反斜杠 \）
+        //  console.log(patt1);
+
+        //  校验 test
+
+          var p=/123/g
+        var flag=  p.test('123hello');
+        console.log(flag);//true
+
+        var flag1=  p.test('1he2ll3o');
+        console.log(flag1);//false
+
+
+
+     </script>
+</body>
+</html>

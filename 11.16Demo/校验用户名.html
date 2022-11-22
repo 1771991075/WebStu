@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            color: #aaa;
+            font-size: 14px;
+        }
+        .right{
+            color: green;
+        }
+        .wrong{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" class="uname"> <span>请输入用户名</span>
+    <script>
+        //用户只能输入英文字母，数字下划线 中划线
+        //规则  https://c.runoob.com/front-end/854/
+        var patt = /^[A-z0-9_-]{6,16}$/;
+
+        //事件  失焦事件
+        var span = document.querySelector('span');
+        document.querySelector('.uname').onblur = function(){
+            var flag = patt.test(this.value);
+            if(flag){
+                span.innerHTML = '用户名格式输入正确';
+                span.className = 'right';
+            }else{
+                span.innerHTML = '用户名格式输入错误';
+                span.className = 'wrong';
+            }
+        };
+    </script>
+
+    <script>
+        // 验证座机号码   座机号码验证:  全国座机号码  两种格式:   010-12345678  或者  0530-1234567
+        var patt1=/^\d{3,4}-\d{7,8}$/
+        var reg = /^\d{3}-\d{8}|\d{4}-\d{7}$/;
+
+    </script>
+</body>
+</html>

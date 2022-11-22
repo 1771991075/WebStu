@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- 正则表达式中的特殊字符
+        1.边界符  两个字符
+        ^ 开头    表示匹配行首的文本（以谁开始）
+        $结尾     表示匹配行尾的文本（以谁结束）
+
+        如果 ^和 $ 在一起，表示必须是精确匹配。
+    
+    -->
+    <script>
+        //1. 只要包含abc 字符串即可
+        var patt=/abc/;// 正则表达式中  数字和字符串都不加引号
+        console.log(patt.test('abc'));//true
+        console.log(patt.test('abcd'));//true
+        console.log(patt.test('aadabcd'));//true
+
+        // 2.^ 开头 以abc字符串开头
+        var patt1=/^abc/;
+
+        console.log(patt1.test('ab'));//false
+        console.log(patt1.test('abc'));//true
+        console.log(patt1.test('abcde'));//true
+        console.log(patt1.test('dabcde'));//false
+
+        //3. $结尾   以abc字符串结尾
+        var patt2=/abc$/;
+        console.log(patt2.test('abced'));//false
+        console.log(patt2.test('edabc'));//true
+
+        //4.^  $  精确匹配   必须是abc这三个字符
+
+         var patt3=/^abc$/
+         console.log(patt3.test('abc'));//true
+         console.log(patt3.test('abcabc'));//false
+    </script>
+</body>
+</html>

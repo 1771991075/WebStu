@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--  方括号 []   相当于或者  |
+        表示有一系列字符可供选择，只要匹配其中一个就可以了
+    1. [abc]   ---  a|b|c    查找方括号之间的任何一个字符
+    2. [0-9]       0|1|2|3|4|....|9   查找任何从 0 至 9 的数字。
+    3. [a-z]     查找任何从小写 a 到小写 z 的字符。
+    4. [A-Z]     查找任何从大写 A 到小写 Z的字符。
+    5. [A-z]	 查找任何从大写 A 到小写 z 的字符。   [A-Za-z]
+    6. [^0-9]    取反的 查找不在方括号中任何字符
+    -->
+    <script>
+        //1.
+        var patt1 = /[abc]/;//只要包含有a 或者 包含有b 或者包含有c 都返回为true
+         patt1=/a|b|c/;
+         console.log(patt1.test('a'));//true
+         console.log(patt1.test('b'));//true
+         console.log(patt1.test('c'));//true
+         console.log(patt1.test('bcd'));//true
+
+         var patt2=/^[abc]$/; //三选一 只有是a 或者是 b  或者是c 这三个字母才返回 true
+         console.log(patt2.test('a'));//true
+         console.log(patt2.test('b'));//true
+         console.log(patt2.test('c'));//true
+         console.log(patt2.test('bcd'));//false
+
+        //2.
+        var p = /[0-9]/;
+        console.log(p.test('hello2'));//true
+
+        //3.如果包含数字 字母 都是假
+
+        var p1 = /^[^A-Za-z0-9]$/;
+
+        console.log(p1.test('6'));//false
+        console.log(p1.test('!'));//true
+    </script>
+
+</body>
+
+</html>

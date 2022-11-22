@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn-disable {
+            width: 100px;
+            height: 40px;
+            background: #333;
+            color: #fff;
+            border: 0 none;
+            cursor: pointer;
+        }
+        .btn-able {
+            width: 100px;
+            height: 40px;
+            background: rgba(255, 0, 0, 0.4);
+            color: #fff;
+            border: 0 none;
+            cursor: pointer;
+        }
+        span {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        元字符
+        1.    .    查找单个字符，除了换行 \n和  行结束符 ;。
+        2.    \d    查找数字。    [0-9]
+        3.    \w   查找字母 数字  下划线  [A-Za-z0-9_]
+        4.    \s  查找空白字符   空格符  制表符\t  回车符\r  换行符\n 换页符\f 等
+        5.    \D   查找非数字字符。  [^0-9]
+        6.    \W     [^A-Za-z0-9_]
+    -->
+    <form action="../11.16Demo/success.html" method="GET" onsubmit="return disForm() ">
+        <p> <label for="">用户名: </label><input type="text" name="user" id="txt1"><span id="txt1 -tip">*用户名不能为空(8-12)位数字和字母组合</span></p>
+        <p> <label for="">密&nbsp;&nbsp;码: </label><input type="password" name="pwd1" id="txt2"><span id=" txt2 -tip">*密码为6位数字</span></p>
+        <p> <label for="">重复密码: </label><input type="password" name="pwd2" id="txt3"><span id="txt3-tip">*两次输入密码要一致</span></p>
+        <p> <label for="">电&nbsp;&nbsp;话: </label><input type="text" name="tel" id="txt4"><span id="txt4-tip">请输入手机号</span></p>
+        <p><input type="checkbox" id="cbx">同意***协.议</p>
+        <input type="submit" value="注册" class="btn-disable" id="btn">
+    </form>
+
+    <script>
+        var txt1 = document.getElementById('txt1');
+        var txt2 = document.getElementById('txt2');
+        var txt3 = document.getElementById('txt3');
+        var txt4 = document.getElementById('txt4');
+        var txt1Tip = document.getElementById('txt1-tip');
+        var txt2Tip = document.getElementById('txt2-tip');
+        var txt3Tip = document.getElementById('txt3-tip');
+        var txt4Tip = document.getElementById('txt4-tip');
+        var cbx = document.getElementById('cbx');
+        var btn = document.getElementById('btn');
+        // 2、设置按钮的状态 
+        function setButton(obj) {
+            if (obj.checked) {
+                //按钮的状态为 可用状态
+                btn.className = "btn-able";
+                btn.disabled = false;
+            } else {
+                btn.className = "btn-disable";
+                btn.disabled = true;
+
+            }
+        }
+        setButton(cbx);
+        //3、 单击复选框
+        cbx.onchange = function () {
+            setButton(this);
+        }
+        function disForm() {
+            return valUserName() && valPwdName() && valPPwdName() && valTelName();
+        }
+        // 4、表单校验用户名密码重复密码只要密码一致即可  电话选填，不填返回true  填还要校验
+        // 4.1用户名
+        function valUserName() {
+            var patt = /^\w\w{7,11}$/;
+            var v1 = txt1.value;
+            var flag = patt.test(v1);
+            if (!flag) {
+                //校验未通过
+                txt1Tip.style.display = 'inline-block';
+                return false;
+            }
+            return true;
+        }
+        //密码
+        function valPwdName(){
+            var patt = /^\d\d{5}$/;
+            var v1 = txt2.value;
+            var flag = patt.test(v1);
+            if (!flag) {
+                //校验未通过
+                txt2Tip.style.display = 'inline-block';
+                return false;
+            }
+            return true;
+        }
+        //重复密码
+        function valPPwdName(){
+            if (txt2.value != txt3.value) {
+                //校验未通过
+                txt3Tip.style.display = 'inline-block';
+                return false;
+            }
+            return true;
+        }
+        //手机号
+        function valTelName(){
+            if(txt4.value != ''){
+                var patt = /(^13[0-9]14[5|7]15[0|1|2|3|4|5|6|7|8|9]18[0|1|2|3|4|5|6|7|8|9])\d{8}$/;
+                var v1 = txt4.value;
+                var flag = patt.test(v1);
+                if(!flag){
+                    txt4Tip.style.display = 'inline-block';
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+
+</body>
+
+</html>
