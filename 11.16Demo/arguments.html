@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- arguments 是函数的属性 本身也是一个对象
+       隐式参数  函数的实参
+       伪数组  （类数组）
+        如何将一个伪数组转为真数组  面试题
+
+        length属性
+        callee（）方法
+    -->
+
+    <script>
+        // function show(){
+        //     // 输出实参的个数及对应的值
+        //     console.log(arguments);
+        //     console.log(arguments.length);//3
+        //     console.log(arguments.callee);// 指的是函数本身
+        //     console.log(arguments.callee==show);//true
+
+        //     console.log(arguments[0]);// 通过索引号来取值
+        //     var sum=0;
+        //     for(var i=0;i<arguments.length;i++){
+        //         sum+=arguments[i]
+                  
+        //     }
+        //     console.log(sum);// 实参的和
+
+        //     // arguments.push(100);// 报错   伪数组  没有数组的方法
+            
+        // }
+        // show();
+        // show(10,20,30);// 3个实参还可以使用
+
+
+        // 面试题， 如何把伪数组转为真数组   dom    arguments
+
+        // function show(){
+        //     console.log(arguments);
+        // 方法一：
+        //     var arr=[];
+        //     for(var i=0;i<arguments.length;i++){
+        //         arr[i]=arguments[i]
+        //     }
+        //     console.log(arr,arguments);
+
+        // }
+
+        // show(10,20,20)
+
+
+        function show(){
+            console.log(arguments);
+            // 方法二：
+          var arr= Array.prototype.slice.call(arguments);
+          console.log(arr,arguments);
+
+        }
+
+        show(10,20,20)
+
+
+    </script>
+</body>
+</html>

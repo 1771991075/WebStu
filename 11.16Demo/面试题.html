@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 求数组中w值的总和，单行且易读的方法，可以提供多个写法
+        var arr = [{ w: 1, h: 2 }, [{ w: 2, h: 3 }, { w: 4, h: 5 }], { w: 100, h: 200 }]
+
+        function fn(arr) {
+            var sum = 0;
+            for (var i in arr) {
+                if (arr[i] instanceof Array) {
+                    sum += fn(arr[i]);
+                } else {
+                    sum += arr[i]['w'];
+                }
+            }
+            return sum;
+        }
+        console.log(fn(arr));
+
+
+        var sum = 0
+        for (var i = 0; i < arr.length; i++) {
+            console.log(arr[i]);
+            for (var j in arr[i]) {
+                if (j == 'w') {
+                    sum += arr[i][j];
+                    console.log('sum=' + sum);
+                }else if (arr[i] instanceof Array) {
+                    sum += arr[i][j]['w'];
+                }
+            }
+        }
+
+
+        console.log(sum);
+    </script>
+
+</body>
+</html>

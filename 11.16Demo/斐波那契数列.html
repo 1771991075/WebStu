@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- 斐波那契数列 指的是这样一个数列：1、1、2、3、5、8、13、21、34、……
+        f(n)=f(n-2)+f(n-1) 
+        需求：第n个数对应的数字   n的位置上对应的数字是什么
+    -->
+    <script>
+        function feibonaqi(n){
+            if(n<0){
+                return 'n不能小于0';
+            }else if(n==0){
+                return 0;
+            }else if(n==1||n==2){
+                return 1;
+            }else{
+                return feibonaqi(n-2)+feibonaqi(n-1);
+            }
+        }
+        var num =  feibonaqi(5);
+        console.log(num);  //5
+
+
+        //求前n项的和
+        function getSum (n) {
+            if(n<0){
+                return 'n不能小于0';
+            }else if(n==0){
+                return 0;
+            }else if(n==1){
+                return 1;
+            }else{
+                return getSum(n-1)+feibonaqi(n);
+            }   
+        }
+        var sum = getSum(5);
+        console.log(sum);
+    </script>
+</body>
+</html>

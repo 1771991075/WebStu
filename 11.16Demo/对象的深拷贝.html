@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var obj = {name:'tom',age:18};
+        // var obj1 = obj;
+        // //浅拷贝  引用类型
+        // console.log(obj,obj1);
+        // obj1.name = 'Jack';
+        // console.log(obj,obj1);
+
+        //深拷贝  遍历
+        //Object.assign()   //简单的对象是深拷贝，如果对象复杂，对象中还有对象或数组，还是浅拷贝
+
+        var obj = {name:'tom',age:18,arr:[10,20]};
+        var newobj = Object.assign({},obj);
+        console.log(newobj,obj);
+        newobj.name = 'Jack1';
+        newobj.arr[0] = '100';
+        console.log(newobj,obj);
+
+        // 封装一个函数用递归的方法实现对象深拷贝
+        var data = {
+            code: 1,
+            list: [{
+                name: "詹桑",
+                title: "值",
+                arr: [2, 3, 4],
+                isShow: true,
+                obj: {
+                    name: "123"
+                }
+            }, {
+                name: "詹桑2",
+                title: "值2",
+                arr: [2, 3, 4],
+                obj: {
+                    name: "123"
+                }
+            }]
+        };
+
+        function deepCopy(obj){
+            //出口时一个基本数据类型
+            if(typeof obj !== 'object' ) return obj;
+            // 如果obj 不是基本数据类型   暂时是两种   数组和对象  都需要遍历
+            var newobj =  obj instanceof Array?[]:{};
+            for (var k in obj) {
+                newobj[k] = deepCopy(obj[k]);
+            }
+            return newobj;
+        }
+        var newobj = deepCopy(data);
+        console.log(newobj,data);
+        newobj.list[0].name='gule';
+        console.log(newobj,data);
+
+    </script>
+</body>
+</html>

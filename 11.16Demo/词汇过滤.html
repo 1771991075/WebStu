@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea name="" id="area1" cols="30" rows="10"></textarea>
+    <button id="btn">替换</button>
+    <textarea name="" id="area2" cols="30" rows="10"></textarea>
+    <script>
+        //  replace
+        // var reg = /替换|替换/;
+        var reg = /替换/;
+        var area1 = document.querySelector('#area1');
+        var area2 = document.querySelector('#area2');
+        var btn = document.querySelector('#btn');
+        btn.onclick = function () {
+            var v1 = area1.value;
+            var reg = /替换/g;
+            area2.value = v1.replace(reg,'*');
+        }
+    </script>
+</body>
+</html>

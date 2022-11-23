@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         .btn-disable {
+            width: 100px;
+            height: 40px;
+            background-color: rgba(255, 0, 0, 0.4);
+            color: #fff;
+            border: 0 none;
+            cursor: pointer;
+        }
+
+        .btn-able {
+            width: 100px;
+            height: 40px;
+            background-color: rgba(255, 0, 0, 1);
+            color: #fff;
+            border: 0 none;
+            cursor: pointer;
+        }
+
+        span {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="./success.html" method="GET" onsubmit="return disForm()">
+        <p>
+            <label for="">用户名：</label>
+            <input type="text" name="user" id="txt1">
+            <span id="txt1-tip">*用户名不能为空(8-12)位数字和字母组合</span>
+        </p>
+        <p>
+            <label for="">密&nbsp;&nbsp;码：</label>
+            <input type="password" name="pwd1" id="txt2">
+            <span id="txt2-tip">*密码为6位数字</span>
+        </p>
+        <p>
+            <label for="">重复密码：</label>
+            <input type="password" name="pwd2" id="txt3">
+            <span id="txt3-tip">*两次输入密码要一致</span>
+        </p>
+        <p>
+            <label for="">电话：</label>
+            <input type="text" name="tel" id="txt4">
+            <span id="txt4-tip">请输入手机号</span>
+        </p>
+        <p>
+            <input type="checkbox" id="cbx">同意****协议
+        </p>
+        <input type="submit" value="注册" class="btn-disable" id="btn">
+    </form>
+
+    <script>
+        /* 
+         需求：
+
+         1.用户名不能为空(8-12)位数字和字母组合  ，刚开始不显示，出错，才显示
+         2.密码为6位数字   刚开始不显示，出错，才显示
+         3.重复 密码两次输入密码要一致      密码和重复密码一样才可以
+         4.手机  是选填 ，如果填上，要校验   没有填，不需要校验
+         5.同意****协议   打上对号，  按钮才有效     ，如果没有对号，按钮不起效
+
+         准备正则表达式
+        
+        // */
+        // var patUser=/^[a-zA-Z0-9]{8,12}$/
+        // var patUser=/^\w{8,12}$/   // 包括下划线
+        // var patpwd=/^\d{6}$/
+        // var pattel=/^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
+
+        var txt1 = document.getElementById('txt1');
+        var txt2 = document.getElementById('txt2');
+        var txt3 = document.getElementById('txt3');
+        var txt4 = document.getElementById('txt4');
+        var txt1Tip = document.getElementById('txt1-tip');
+        var txt2Tip = document.getElementById('txt2-tip');
+        var txt3Tip = document.getElementById('txt3-tip');
+        var txt4Tip = document.getElementById('txt4-tip');
+        var cbx = document.getElementById('cbx');
+        var btn = document.getElementById('btn');
+
+        //用户访问页面时生效
+        window.onpageshow = function () {
+            setBtn();
+        }
+        cbx.onchange = function () {
+            setBtn();
+        }
+
+        function setBtn() {
+            if (cbx.checked) {
+                btn.className = 'btn-able';
+                btn.disabled = false;
+            } else {
+                btn.className = 'btn-disable';
+                btn.disabled = true;
+            }
+        }
+
+        function disForm(){
+            return userNameval() && pwdval() && cfpwdval() && telval();
+        }
+
+        function userNameval() {
+            var patUser = /^[a-zA-Z0-9]{8,12}$/;
+            if (!patUser.test(txt1.value)) {
+                txt1Tip.style.display = 'block';
+                return false;
+            }
+            return true;
+        }
+
+        //2. 校验密码
+        function pwdval() {
+            var patpwd = /^\d{6}$/;
+            if (!patpwd.test(txt2.value)) {
+                txt2Tip.style.display = 'block';
+                return false;
+            }
+            return true;
+        }
+
+        //3.重复密码
+        function cfpwdval() {
+            if (txt2.value !== txt3.value) {
+                txt3Tip.style.display = 'block';
+                return false;
+            }
+            return true;
+        }
+
+        //4.手机号码  手机号码选填
+        function telval() {
+            var pattel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
+            if (txt4.value != '') {
+                if (!pattel.test(txt4.value)) {
+                    txt4Tip.style.display = 'block';
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
