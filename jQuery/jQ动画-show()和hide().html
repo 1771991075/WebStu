@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        显示与隐藏
+        show()    没有过渡动画的情况    display:block;
+        hide()                         display:none;
+
+        有参
+        $(selector).show(speed,callback);
+        speed  速度      callback  回调函数
+        200(fast)  400(normal)  600(slow)   自定义速度，时间由自己定    
+
+     -->
+
+    <input type="button" value="显示" id="show">
+    <input type="button" value="隐藏" id="hide">
+    <input type="button" value="切换" id="toggle">
+    <div id="box"></div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function () {
+            $('#show').on('click', function () {
+                // $('#box').show();  //无参
+                // $('#box').css('display','block');
+                // $('#box').show('slow');
+                // $('#box').show(2000);    // 自定义
+
+                //动画执行完毕，再执行回调函数
+                $('#box').show(2000, function () {
+                    console.log($(this));
+                    $(this).css('transform', 'scale(2)');
+                    $(this).css('margin', '100px');
+                });
+            })
+
+            $('#hide').on('click', function () {
+
+                $('#box').hide(2000, function () {
+                    console.log($(this));
+                    $(this).css('transform', 'scale(1)');
+                    $(this).css('display', 'block');
+                });
+
+            });
+
+            $('#toggle').on('click', function () {
+
+                $('#box').toggle(2000, function () {
+                    console.log($(this));
+                    $(this).css('transform', 'scale(1.2)');
+                });
+
+            });
+        })
+
+
+    </script>
+</body>
+
+</html>

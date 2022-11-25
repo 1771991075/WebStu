@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+
+        fadeIn()  fadeOut  fadeToggle  fadeTo   改变不透明
+     -->
+
+    <input type="button" value="滑入" id="fadeIn">
+    <input type="button" value="滑出" id="fadeOut">
+    <input type="button" value="切换" id="fadeToggle">
+    <input type="button" value="放入到哪里" id="fadeTo">
+    <div id="box"></div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function(){
+            $('#fadeIn').on('click',function(){
+                $('#box').fadeIn(2000);
+                $('#box').fadeIn(2000,function(){
+                    $(this).css('marginLeft','200px');
+                });
+            });
+
+            $('#fadeOut').on('click',function(){
+                $('#box').fadeOut(2000);
+                $('#box').fadeOut(2000,function(){
+                    $(this).css({
+                        'marginLeft':0,
+                        'display':'block',
+                    });
+                });
+            });
+
+            $('#fadeTo').on('click',function(){
+                $('#box').fadeTo(2000,0.6);
+                $('#box').fadeTo(2000,0.6,function(){
+                    $(this).css('marginLeft','200px');
+                });
+            });
+        })
+
+    </script>
+</body>
+</html>

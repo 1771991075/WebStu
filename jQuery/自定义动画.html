@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 自定义动画——animate()
+        $(selector).animate({params},speed,easing,callback);
+
+        参数一：必选 定义形成动画的 CSS 属性。
+        参数二：可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒。
+        参数三：可选的 easing代表的是缓动还是匀速 linear匀速  swing缓动（默认）
+        参数四：可选的 callback 参数是动画完成后所执行的函数名称。
+     -->
+     <input type="button" value="从左0到右800" id="lr800">
+     <div id="box"></div>
+     <script src="./js/jquery-3.6.1.js"></script>
+     <script>
+        $(function(){
+            $('#lr800').on('click',function(){
+                $('#box').animate({
+                    left:800,
+                    width:300,
+                    opacity:0.5,
+                //下面第一个参数  可以是fast  也可以设定值
+                //第二个参数 默认是swing  匀速是linear 
+                //第三个是回调函数，执行什么事情
+                },2000,'swing',function(){
+                    alert('动画执行完毕~~~，执回回调函数');
+                    $(this).css('transform','scale(0.6)');
+                    $('#box').animate({
+                        left:0,
+                        width:200,
+                        opacity:1,
+                    },5000,'swing');
+                });
+            });
+        });
+
+     </script>
+</body>
+</html>

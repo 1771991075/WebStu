@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 400px;
+            background: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- stop() 方法用于在动画或效果完成前对它们进行停止 
+        stop() 方法适用于所有 jQuery 效果函数，包括滑入、淡入淡出和自定义动画
+        $(selector).stop(stopAll,goToEnd);
+        stopAll   true 停止活动的动画 后面排队的所有动画 也停止       false(默认)  即仅停止活动的动画，允许任何排入队列的动画向后执行
+        goToEnd   true  立即完成当前动画 (直接到当前活动动画的最后)        false(默认）  不是立即完成当前动画
+    -->
+
+    <input type="button" value="开始动画" id="start">
+    <input type="button" value="停止动画" id="stop">
+    <div id="box">stop参数的含义</div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function(){
+            $('#start').on('click',function(){
+                //三个动画在排队
+                $('#box').slideDown(2000);//排队一
+                $('#box').animate({
+                    fontSize:30,
+                    width:500
+                },1000);//第二个
+                $('#box').slideUp(3000);//第三个
+            });
+            $('#stop').on('click',function(){
+                // $('#box').stop();
+                // $('#box').stop(false,false);
+                $('#box').stop(true,false);
+                $('#box').stop(true,true);
+            });
+        });
+
+    </script>
+</body>
+
+</html>

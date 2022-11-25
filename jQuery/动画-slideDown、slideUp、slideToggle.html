@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+
+        slideDown    滑入
+        slideUp      滑出   
+        slideToggle     切换
+
+     -->
+
+     <input type="button" value="滑入" id="slideDown">
+    <input type="button" value="滑出" id="slideUp">
+    <input type="button" value="切换" id="slideToggle">
+    <div id="box"></div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function () {
+            $('#slideDown').on('click', function () {
+                // $('#box').slideDown();  //无参
+                // $('#box').slideDown('slow');
+                // $('#box').slideDown(2000);    // 自定义
+
+                //动画执行完毕，再执行回调函数
+                $('#box').slideDown(2000, function () {
+                    console.log($(this));
+                    $(this).css('transform', 'scale(2)');
+                    $(this).css('margin', '100px');
+                });
+            })
+
+            $('#slideUp').on('click', function () {
+
+                $('#box').slideUp(2000, function () {
+                    console.log($(this));
+                    $(this).css('transform', 'scale(1)');
+                    $(this).css('display', 'block');
+                });
+
+            });
+
+            $('#slideToggle').on('click', function () {
+
+                $('#box').slideToggle(2000, function () {
+                    console.log($(this));
+                    $(this).css('transform', 'scale(1.2)');
+                });
+
+            });
+        })
+
+
+    </script>
+</body>
+</html>
