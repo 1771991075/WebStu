@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><style>
+        div{
+            width: 200px;
+            height: 200px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <button>单击</button>
+    <!-- js
+        缺点：
+        1.window.onload   不能写多次  后面会覆盖前面的  除非 用w3c 事件兼听  又存兼容问题
+        2.原生js的api名字太长，难记
+        3.原生js中有的时候，代码冗余
+        4.原生js中有些属性或者方法，有浏览器兼容问题  querySelector
+        5.原生js容错率比较低，前面的代码出了问题，后面的代码执行不了。
+     -->
+
+
+    <!-- 
+        jQ的优点:
+        1。是可以写多个入口函数
+        2、jQuery的api名字都容易记忆css（）
+        3、jQuery代码简洁（隐式迭代）  $('div')
+        4、jQuery帮我们解决了浏览器兼容问题
+        5、容错率高，前面的代码出了问题，后面的代码不受影响 
+     -->
+    <!-- <script>
+        var divs = document.querySelectorAll('div');
+        var btn = document.querySelector('button');
+        btn.onclick = function(){
+            for (var i = 0; i< divs.length;i++) {
+                divs[i].style.border = '1px solid #333';
+                divs[i].innerHTML = '我是新增的文本';
+            }
+        }
+    </script> -->
+
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function(){
+            $('button').click(function(){
+                $('div').text('我是新增的文本');
+                $('div').css('border','1px solid red');
+            });
+        });
+
+
+        $(document).ready(function(){
+            console.log('我是入口函数');
+        })
+    </script>
+</body>
+</html>

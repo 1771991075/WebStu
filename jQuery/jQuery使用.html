@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        // 入口函数
+         $(function(){
+            // 操作元素
+            $('.box').width(100);
+            // 链式编程 ，必须是jQ对象
+             console.log( $('.box').width(100));//jQuery.fn.init [div.box, prevObject: jQuery.fn.init(1)]
+             $('.box').height(100).css('backgroundColor','red').text('hello');
+            
+         });
+    </script>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

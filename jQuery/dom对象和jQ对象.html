@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         div {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="one"></div>
+    <div></div>
+    <div></div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        //dom
+        $(function(){
+            var one = document.getElementById('one');
+            one.style.backgroundColor = 'red';
+        })
+        //jQ
+        window.onload = function(){
+            var one = $('#one');
+            one.css('backgroundColor','red');
+        }
+        //dom对象转换成jQ
+        var one = document.getElementById('one');
+        var $one = $(one);
+
+        //jQ转换成dom
+        var $one = $('#one');
+        console.log($one);
+        var one = $one[0]; //通过索引号来转化
+        console.log(one);
+        console.log($one.get(0));//通过get方法结合索引号来转化
+    </script>
+</body>
+</html>

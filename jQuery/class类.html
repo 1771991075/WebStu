@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #333;
+        }
+        .bgc{
+            background: red;
+        }
+        .fontsize{
+            font-size: 30px;
+        }
+        .width500{
+            width: 500px !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+
+        dom  node.classList.add()    node.classList.remove()   node.classList.toggle()
+
+        jQuery
+            class类
+            addClass() - 向被选元素添加一个或多个类
+            removeClass()  - 从备选元素删除一个或多个类
+            toggleClass()  - 对被选元素进行添加/删除类的切换操作
+            hasClass() - 判断一个元素有没有某个类
+     -->
+    <input type="button" value="添加类" id="addClass">
+    <input type="button" value="移除类" id="removeClass">
+    <input type="button" value="切换类" id="toggleClass">
+    <input type="button" value="判断类" id="hasClass">
+    <div id="box" class="bgc">div1</div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+
+        $(function(){
+            $('#addClass').on('click',function(){
+                // $('#box').addClass('fontsize');
+                $('#box').addClass('fontsize width500');
+                // $('#box')[0].className = 'bgc fontsize width500';
+                // $('#box')[0].classList.add('fontsize');
+            });
+
+            $('#removeClass').on('click',function(){
+                // $('#box').removeClass('fontsize');
+                $('#box').removeClass('fontsize width500');
+            });
+
+            $('#toggleClass').on('click',function(){
+                // $('#box').toggleClass('fontsize');
+                $('#box').toggleClass('fontsize width500');
+            });
+
+            $('#hasClass').on('click',function(){
+                // $('#box').hasClass('fontsize');
+                var flag = $('#box').hasClass('fontsize width500');
+                console.log(flag);
+            });
+        })
+    </script>
+</body>
+</html>

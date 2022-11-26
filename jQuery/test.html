@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 70px;
+            height: 70px;
+            background: url(./images/role-sprite.png) no-repeat -320px -88px;
+        }
+        .bg{
+            background: url(./images/role-sprite.png) no-repeat -159px -3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        var bg = 'url(./images/role-sprite.png) no-repeat -159px -3px;';
+        $(function(){
+            $('.box').on('mouseenter',function(){
+                $(this).addClass('bg');
+            })
+        })
+    </script>
+</body>
+</html>

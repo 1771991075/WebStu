@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box"></div>
+
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+     //1. $ 是一个函数  ---jQuery         $()
+
+       //(1)  如果传的是一个匿名函数 ，等于是一个入口函数
+          $(function(){
+              console.log('入口函数');
+          });
+
+        //(2)传是一个字符串   可能是选择器       也可能是html标记加内容
+         
+           $('div');// 选择器  标记选择器
+           $('.box'); //  类选择器
+
+        var p= $('<p>我是一个段段</p>');
+        console.log(p);// 创建一个p标签  暂存在内存中
+        // 追加
+         $('.box').append(p);
+
+        // (3)参数部分如果是dom  ---js对象    可以把dom对象转为jQ
+
+        var body=  document.body;
+        console.log(body);//  dom对象 
+
+        console.log($(body));// dom 转为jQ对象
+
+    </script>
+</body>
+</html>
