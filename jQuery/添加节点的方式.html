@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- 
+          append() - 在被选元素的结尾插入内容 
+          appendTo() 方法在被选元素的结尾插入 HTML 元素
+          prepend() - 在被选元素的开头插入内容
+          after() - 在被选元素之后插入内容
+          before() - 在被选元素之前插入内容
+    -->
+    <input type="button" value="append" id="btnAppend">
+
+    <input type="button" value="prepend" id="btnPrepend">
+    <input type="button" value="after" id="btnAfter">
+    <input type="button" value="before" id="btnBefore">
+
+    <input type="button" value="appendTo" id="btnAppendTo">
+    <ul id="ul1">
+        <li>我是第1个li</li>
+        <li id="li12">我是第2个li</li>
+        <li>我是第3个li</li>
+    </ul>
+    <ul id="ul2">
+        <li>我是ul2中的第1个li</li>
+        <li>我是ul2中第2个li</li>
+        <li id="li32">我是ul2中第3个li</li>
+    </ul>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function(){
+            $('#btnPrepend').on('click',function(){
+
+                //创建一个新元素
+                var newli = $('<li>这是一个新的li</li>');
+                // $('#ul1').append(newli);
+                $('#ul1').prepend(newli);
+
+                //把页面中存在新元素  剪掉
+                var li2 = $('#li12');
+                $('#ul1').prepend(li2);
+
+            });
+        });
+        
+
+    </script>
+</body>
+</html>

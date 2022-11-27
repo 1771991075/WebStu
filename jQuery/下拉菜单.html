@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #menu {
+            width: 1200px;
+            height: 50px;
+            background-color: aqua;
+            margin: 0 auto;
+        }
+
+        #menu>ul>li {
+            width: 120px;
+            height: 50px;
+            line-height: 50px;
+            float: left;
+            text-align: center;
+            position: relative;
+
+        }
+
+        #menu>ul>li>ul {
+            position: absolute;
+            left: 0;
+            top: 50px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="menu">
+        <ul>
+            <li><a href="javascript:;">一级菜单1</a>
+                <ul>
+                    <li>二级菜单1</li>
+                    <li>二级菜单1</li>
+                    <li>二级菜单1</li>
+                </ul>
+            </li>
+            <li><a href="javascript:;">一级菜单2</a>
+                <ul>
+                    <li>二级菜单2</li>
+                    <li>二级菜单2</li>
+                    <li>二级菜单2</li>
+
+                </ul>
+
+            </li>
+        </ul>
+    </div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function () {
+
+            //  mouseenter  mouseleave  没有冒泡   建议用它
+
+            // mouseover   mouseout  有冒泡  事件委托也是利用了冒泡的原理
+            $('#menu>ul>li').on('mouseover', function () {
+                // 清除排队中的动画，开启新动画
+                $(this).children('ul').stop(true, false).slideDown(1000);
+            });
+
+            $('#menu>ul>li').on('mouseout', function () {
+                $(this).find('ul').stop(true, false).slideUp(1000);
+            });
+        });
+
+    </script>
+</body>
+
+</html>

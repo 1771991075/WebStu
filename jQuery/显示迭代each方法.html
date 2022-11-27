@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        #ulList li {
+            width: 50px;
+            height: 50px;
+            background-color: brown;
+            margin: 10px;
+            float: left;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="ulList">
+        <li>透明度递增</li>
+        <li>透明度递增</li>
+        <li>透明度递增</li>
+        <li>透明度递增</li>
+        <li>透明度递增</li>
+    </ul>
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <script>
+        // $('#ulList>li')  隐式迭代  遍历li的作用   设置效果都一样
+
+        // 需求：找到所有的li标签，分别设置透明度是递增
+        // $元素.each(function(index,ele){})
+        // $.each(arr，function(index,ele){})
+
+        var $lis = $('#ulList>li');
+        // $lis.each(function(index,ele){
+        //     console.log(index);//索引号
+        //     console.log(ele);// dom 元素
+        //     $(ele).css('opacity',(index+5)/10)
+        // });
+
+        $.each($lis, function (index, ele) {
+            console.log(index);//索引号
+            console.log(ele);// dom 元素
+            $(ele).css('opacity', (index + 5) / 10)
+        })
+    </script>
+</body>
+
+</html>

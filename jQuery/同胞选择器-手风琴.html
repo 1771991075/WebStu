@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        .parentWrap {
+            width: 200px;
+        }
+
+        .menuGroup h2 {
+            height: 40px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .menuGroup div {
+            padding: 20px;
+            background-color: #f6f6f6;
+            display: none
+        }
+    </style>
+</head>
+<body>
+     <!-- 
+        同胞选择器
+        siblings()   返回被选元素的所有同胞元素   除了自身之外所有同胞
+        next()      返回被选元素的下一个同胞元素
+        nextAll()  返回被选元素的所有跟随的同胞元素
+        nextUntil(参数)  返回介于两个给定参数之间的所有跟随的同胞元素
+        prev()     
+        prevAll()
+        prevUntil()
+     -->
+     <ul class="parentWrap">
+        <li class="menuGroup">
+            <h2>标题1</h2>
+            <div style="display: block">我是弹出的div1</div>
+        </li>
+        <li class="menuGroup">
+            <h2>标题2</h2>
+            <div>我是弹出的div2</div>
+        </li>
+        <li class="menuGroup">
+            <h2>标题3</h2>
+            <div>我是弹出的div3</div>
+        </li>
+    </ul>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function(){
+            $('.parentWrap>.menuGroup').on('click',function(){
+                // $(this).children('div').css('display','block');
+                $(this).children('div').show().parent().siblings('li').children('div').hide();
+            })
+        })
+    </script>
+</body>
+</html>

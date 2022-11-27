@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #menu {
+            width: 1200px;
+            height: 50px;
+            background-color: aqua;
+            margin: 0 auto;
+        }
+
+        #menu>ul>li {
+            width: 120px;
+            height: 50px;
+            line-height: 50px;
+            float: left;
+            text-align: center;
+            position: relative;
+
+        }
+
+        #menu>ul>li>ul {
+            position: absolute;
+            left: 0;
+            top: 50px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="menu">
+        <ul>
+            <li><a href="javascript:;">一级菜单1</a>
+                <ul>
+                    <li>二级菜单1</li>
+                </ul>
+            </li>
+            <li><a href="javascript:;">一级菜单2</a>
+                <ul>
+                    <li>二级菜单2</li>
+                </ul>
+
+            </li>
+        </ul>
+    </div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function () {
+
+            // 查找 li 一级菜单   #menu>ul>li
+            // children()返回被选元素的所有直接子元素     $('#menu>ul').children()
+            // $('#menu>ul').children('li')
+            // find()  返回被选元素的后代元素，一路向下直到最后一个后代
+            //  $('#menu>ul').find('li')  一级和二级菜单都有
+
+            $('#menu>ul>li').on('mouseenter', function () {
+                $(this).children('ul').css('display', 'block');
+            });
+
+            $('#menu>ul>li').on('mouseleave', function () {
+                $(this).find('ul').css('display', 'none');
+            });
+        });
+    </script>
+</body>
+
+</html>
