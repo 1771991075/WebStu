@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        dom 设置 获取
+            node.属性名=属性值    node[属性名]=属性值     node.setAttribute(属性名，属性值) 没有特例 自定义
+            node.属性名        node[属性名]  变量       node.getAttribute(属性名）
+
+        class  ---className                                class---class
+                                                           data-*
+                                                           .dataset
+
+        表单     cbx.checked=true    cbx.checked=false       disabled
+
+        jQ  
+         attr() 设置属性  attr(属性名，属性值)         获取属性    attr(属性名)  
+         removeAttr() 移除属性
+
+         prop属性操作-布尔类型属性    disabled  checked
+         
+     -->
+    <input type="button" value="获取属性" id="btn1">
+    <input type="button" value="设置属性" id="btn2">
+    <input type="button" value="移除属性" id="btn3">
+    <img src="../img/zq-role1.png" alt="我是修奈" title="我是提示文本" data-name="xn">
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function(){
+            //获取图片属性
+            $('#btn1').on('click',function(){
+                var src = $('img').attr('src');
+                var uname = $('img').attr('data-name');
+                console.log(src);
+                console.log(uname);
+            });
+            //设置属性
+            $('#btn2').on('click',function(){
+                $('img').attr('data-name','kls');//修改
+                $('img').attr('index',0);//自定义属性
+
+                //多个属性
+                $('img').attr({
+                    'bb':'哈哈',
+                    'cc':'nice'
+                });
+            });
+            //移除属性
+            $('#btn3').on('click',function(){
+                $('img').removeAttr('data-name');//移除
+                $('img').removeAttr('index');//自定义移除
+            });
+        });
+
+    </script>
+</body>
+
+</html>

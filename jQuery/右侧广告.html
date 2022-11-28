@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 500px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            overflow: hidden;
+        }
+
+        #headPart {
+            width: 100%;
+            height: 100px;
+            background-color: #666;
+            color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .close {
+            float: right;
+            cursor: pointer;
+
+        }
+
+        #bottomPart {
+            width: 100%;
+            height: 300px;
+            background-color: #f6f6f6;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="headPart">
+            <span class="close">&times;</span>
+        </div>
+        <div id="bottomPart">
+            下面的内容
+        </div>
+    </div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function () {
+            $('.close').on('click', function () {
+                $('#bottomPart').animate({
+                    height:0,
+                },2000,'linear',function(){
+                    $('#box').animate({
+                        width:0
+                    },2000,'linear',function(){
+
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

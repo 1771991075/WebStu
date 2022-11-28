@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="" alt="" id="big_img">
+    <p id="desc"></p>
+    <ul>
+        <li>
+            <a href="../img/mdt1.jpg" title="纳兹"><img src="../img/mdt1.jpg" alt=""></a>
+        </li>
+    </ul>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+
+        $(function(){
+            $('ul>li>a').on('click',function(){
+                var $src = $(this).attr('href');
+                $('#big_img').attr('src',$src);
+                //阻止默认动作
+                //1.   
+                // return false;
+                //2.
+                // e.preventDefault();
+                $('#desc').html($(this).attr('title'));
+                return false;
+                // e.preventDefault();
+            });
+        });
+
+    </script>
+</body>
+</html>

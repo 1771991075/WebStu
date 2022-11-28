@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 在jQ1.6之后对于checked selected disabled这类boolean类型的属性来说，
+        不能用attr方法,只能用prop()方法
+
+        dom   cbx.checked=true; cbx.checked=false;
+     -->
+    <input type="button" value="按钮" id="btn1">
+    <input type="checkbox" id="ckb1">学习
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        var flag = 1;
+        $('#btn1').on('click', function () {
+            if (flag) {
+                $('#ckb1').prop('checked', true);
+                flag = 0;
+            } else {
+                $('#ckb1').prop('checked', false);
+                flag = 1;
+            }
+
+            console.log($('#ckb1').prop('checked'));
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #father {
+            width: 500px;
+            height: 500px;
+            background-color: salmon;
+            position: relative;
+            /*参照物*/
+            margin: 20px;
+        }
+
+        #son {
+            width: 100px;
+            height: 100px;
+            border: 2px solid red;
+            background-color: sienna;
+            padding: 30px;
+            position: absolute;
+            /**/
+            left: 50px;
+            top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- dom 
+          offsetTop   offsetLeft      left   top
+
+        jQ
+        position()  定位 有关 位置  返回元素的位置（相对于父元素）
+        offset()    偏移   设置或返回被选元素的偏移坐标（相对于文档） {left:值,top:值}
+     -->
+    <div id="father">
+        <div id="son"></div>
+    </div>
+    <button id="btn">按钮</button>
+
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <script>
+        
+        $('#btn').on('click', function () {
+            // 1.position
+            //  var p= $('#son').position();
+            //  console.log(p);     //{top: 50, left: 50}
+            //  console.log(p.top,p.left,p['top'],p['left']);   获取值
+
+            //2.offset()
+            var o = $('#son').offset();
+            console.log(o);     //  {top: 70, left: 70}   //偏移量距离页面左上角的位置
+
+            console.log(o.top, o.left);
+            $('#son').offset({ top: 200, left: 100 });   // 设置
+        });
+
+    </script>
+</body>
+
+</html>
