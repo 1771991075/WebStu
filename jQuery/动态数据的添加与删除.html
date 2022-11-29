@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #222;
+            border-collapse: collapse;
+        }
+
+        #j_mask {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            display: none;
+        }
+
+        #j_formAdd {
+            width: 400px;
+            height: 300px;
+            background-color: #fff;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-left: -150px;
+            margin-top: -150px;
+            z-index: 20;
+            padding: 20px;
+            display: none;
+        }
+
+        #close {
+            float: right;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn-add">添加数据</button>
+    <table>
+        <thead>
+            <tr>
+                <th>课程名称</th>
+                <th>所属学院</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="j_tb">
+
+        </tbody>
+    </table>
+    <div id="j_formAdd">
+        <h2>添加数据<span id="close">&times;</span></h2>
+        <p>课程名称：<input type="text" id="j_txtLesson"></p>
+        <p>所属学院：<input type="text" id="j_txtBelSch"></p>
+        <button id="j_btnAddData">添加</button>
+    </div>
+    <div id="j_mask"></div>
+    <script>
+        // 需求1：点击添加数据按钮，显示添加面板和遮罩层
+        // 需求2：点击添加面板的关闭按钮，隐藏添加面板和遮罩层
+        // 需求3：点击添加面板里的添加按钮，会把输入的内容生成一个tr,
+        //     这个tr添加到tbody中
+        // 需求4：点击delete这些a标签，删除对应的tr
+
+
+    </script>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+       
+        $(function(){
+             //打开遮罩层
+            $('#btn-add').on('click',function(){
+                $('#j_formAdd').show();
+                $('#j_mask').show();
+            })
+            //关闭遮罩层
+            $('#close').on('click',function(){
+                $('#j_formAdd').hide();
+                $('#j_mask').hide();
+            })
+            //获取数据。添加
+            $('#j_btnAddData').on('click',function(){
+                var $v1 = $('#j_txtLesson').val();
+                var $v2 = $('#j_txtBelSch').val();
+                //创建行
+                var $tr = $('<tr><td>'+$v1+'</td><td>'+$v2+'</td><td><a href="javascript:;" class="del">删除</a></td></tr>');
+                //删除事件
+                // $tr.find('.del').on('click',function(){
+                //     $(this).parent().parent().remove();
+                // });
+                $('#j_tb').append($tr);
+                //清空输入框中的值
+                $('#j_txtLesson').val('');
+                $('#j_txtBelSch').val('');
+                $('#j_formAdd').hide();
+                $('#j_mask').hide();
+            });
+            //事件委托  
+            $('#j_tb').on('click','.del',function(){
+                console.log($(this));  //.del
+                $(this).parent().parent().remove();
+            });
+        });
+
+    </script>
+</body>
+</html>

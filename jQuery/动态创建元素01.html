@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        dom  创建元素
+        document.write()    innerHTML 属性   document.createElement()   node.appendChild()
+        node.insertBefore()
+
+        jQ  html()   $()
+     -->
+    <input type="button" value="html()" id="btnHtml">
+    <input type="button" value="$()" id="btn1">
+    <div id="box">
+        <span>我是span</span>
+        <p>我是段落</p>
+    </div>
+
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function () {
+
+            $('#btnHtml').on('click', function () {
+                // 1.1html()  获取
+                console.log($('#box').html());
+                //2.html(参数)   设置（有参）    会覆盖   解析标记    innerHTML
+                $('#box').html('我是新设置的文本');
+                $('#box').html('我是新设置的文本<h2>我是标题</h2>');
+            });
+            //2.$()  创建新元素
+            $('#btn1').on('click', function () {
+                var $link = $('<a href="#">我是创建的超链接</a>');
+                console.log($link);
+                //  追加元素
+                // $('#box').append($link);
+                $link.appendTo($('#box'))
+
+            });
+
+        });
+
+
+    </script>
+</body>
+
+</html>

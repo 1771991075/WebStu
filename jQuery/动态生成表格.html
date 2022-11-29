@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #222;
+            border-collapse: collapse;
+            padding: 10px 0;
+
+        }
+    </style>
+</head>
+<body>
+    <button id="getData">生成表格</button>
+    <table>
+        <thead>
+            <tr>
+                <th>标题</th>
+                <th>地址</th>
+                <th>类型说明</th>
+            </tr>
+        </thead>
+        <tbody id="j_Data">
+            <!-- 添加行 和列及内容 -->
+        </tbody>
+    </table>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script src="./js/data.js"></script>
+    <script>
+        // $(function(){
+        //     $('#getData').on('click',function(){
+        //         // 1.html
+        //         var str = '';
+        //         for (var i in data) {
+        //             str += '<tr>';
+        //             for (var key in data[i]) {
+        //                 str += '<td>';
+        //                 str += data[i][key];
+        //                 str += '</td>';
+        //             }
+        //             str += '</tr>';
+        //         }
+        //         $('#j_Data').html(str);
+        //     });
+        // });
+
+        // $(function(){
+        //     $('#getData').on('click',function(){
+        //       
+        //         var arr = [];
+        //         for (var i in data) {
+        //             arr.push('<tr>');
+        //             for (var key in data[i]) {
+        //                 arr.push( '<td>' + data[i][key] + '</td>');
+        //             }
+        //             arr.push('</tr>');
+        //         }
+        //         $('#j_Data').html(arr.join(''));//把数组连成字符串，再添加到html
+        //     });
+        // });
+
+        $(function(){
+            $('#getData').on('click',function(){
+                // 1.$()
+                var arr = [];
+                for (var i in data) {
+                    var tr = $('<tr><td>'+ data[i].name +'</td><td>'+ data[i].url +'</td><td>'+ data[i].type +'</td></tr>');
+                    $('#j_Data').append(tr);
+                };
+            });
+        });
+
+    </script>
+</body>
+</html>
