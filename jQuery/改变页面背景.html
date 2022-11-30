@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>关灯</button>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function(){
+            var flag = 1;
+            $('button').click(function(){
+                if(flag){
+                    $('body').css('backgroundColor','#000');
+                    $('button').text('开灯');
+                    flag = 0;
+                }else{
+                    $('body').css('backgroundColor','white');
+                    $('button').text('关灯');
+                    flag = 1;
+                }
+            })
+        })
+    </script>
+</body>
+</html>

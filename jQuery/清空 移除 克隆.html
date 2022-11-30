@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+         empty()清空    从被选元素中删除子元素
+         remove() 移除  删除被选元素（及其子元素）
+         clone(true|false)    true 事件一块克隆  并且子元素也会一块克隆
+                              false事件不克隆  但子元素也会一块克隆
+     -->
+    <input type="button" value="按钮" id="btn1">
+    <ul id="ul1">
+        <li>我是第1个li</li>
+        <li id="li12">我是第2个li</li>
+        <li>我是第3个li</li>
+    </ul>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $('#btn1').on('click', function () {
+
+            // $('#ul1').empty();
+            // $('#ul1').remove();
+
+            // 站在 li12的位置 移除ul
+            // $('#li12').parent().remove();
+
+            // clone
+            //  var $ul1=  $('#ul1').clone(true);// 在内存中
+            var $ul1 = $('#ul1').clone(false);// 在内存中
+            $('body').append($ul1)
+            
+        });
+
+    </script>
+</body>
+
+</html>

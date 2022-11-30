@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        text()
+        有参，是设置文本
+        无参，是获取文本
+
+     -->
+    <button id="getBtn">获取</button>
+    <button id="setBtn">设置</button>
+    <div id="div1">
+        <p>我是一个p标签
+            <span>span</span>
+        </p>
+    </div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function () {
+            $('#getBtn').click(function () {
+                //1.获取文本
+                console.log($('#div1').text());
+            });
+            // 加事件的另一种写法，以后侧重这种写法
+            $('#setBtn').on('click', function () {
+                $('#div1').text('我是新的文本');//会覆盖原来的html的内容
+                $('#div1').text('我是新的文本<h2>我是标题</h2>');// 无法解析标记  ---相当 innerText
+            });
+        });
+    </script>
+</body>
+
+</html>

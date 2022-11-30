@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: brown;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">按钮</button>
+    <div id="one"></div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        //简单事件
+        $('#btn').click(function () {
+            console.log('简单事件，不支持同时注册，不支持动态注册');
+        });
+        $('#btn').mouseenter(function () {
+            console.log('简单事件，不支持同时注册，不支持动态注册');
+        });
+        //2.bind方式注册事件 支持同时注册， 但不支持动态注册
+        //后添加的元素没有这些事件————动态注册
+        $('#btn').bind({
+            mouseenter: function () {
+                console.log('鼠标移入事件');
+            },
+            click: function () {
+                console.log('鼠标单击事件');
+            },
+        });
+        //3. delegate方式注册委托事件 支持同时注册， 也支持动态注册
+        //原理：事件冒泡
+        $('body').delegate('div', {
+            mouseenter: function () {
+                console.log('鼠标移入事件');
+            },
+            click: function () {
+                console.log("鼠标单击事件");
+            }
+        })
+        // 以上的三种都是事件发展历史，用的少
+        // 现在 都是on     jQuery用on统一了所有事件的注册方式
+        // on简单事件 ，不支持动态注册  可以链接编程 ， 也可以同时注册
+        $('div').on('mouseenter', function () {
+            console.log('enter');
+        }).on('click', function () {
+            console.log('click');
+        }).on('mouseleave', function () {
+            console.log('leave');
+        });
+        // 同时注册，不支持动态注册
+        $('div').on({
+            mouseenter: function () {
+                console.log('enter');
+            },
+            click: function () {
+                console.log('click');
+            }
+        });
+        //动态添加     上面操作不支持动态注册
+        $('#btn').on('click',function(){
+            var $div = $('<div>我是一个div</div>');
+            $('body').append($div);
+        });
+        //  支持动态注册  必须是事件委托
+        $('body').on('mouseenter', 'div', function () {
+            console.log('enter');
+        }
+        ).on('click','div',function(){
+            console.log('click');
+        })
+    </script>
+</body>
+
+</html>

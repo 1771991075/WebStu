@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+
+        css
+        标记选择 p
+        类选择器  .one
+        id选择器  #one
+        并集选择器  p,div,#y
+        交集选择器  (标签指定选择器)  p.one   p#on
+
+        层次选择器  
+            后代选择器   div  p
+
+            子选择器     div>p
+
+            过滤选择器   :odd 奇数     :even  偶数    :nth-child()    :eq(index)  等于    :gt(index)  小于 :lt(index)  大于
+
+     -->
+     <ul>
+        <li class="on">AAA</li>
+        <li class="two">BBBB</li>
+        <li>CCCC</li>
+        <li id="four">DDDD</li>
+        <li>EEEE</li>
+    </ul>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function(){
+            $('#four').css('color','red');
+            $('#four,.two').css('color','red');
+            $('li.on').css('fontSize',50);
+            $('li:odd').css('backgroundColor','blue');
+            $('li:even').css('backgroundColor','orange');
+            $('li:eq(1)').css('color','#ff6699');
+        })
+
+    </script>
+</body>
+</html>

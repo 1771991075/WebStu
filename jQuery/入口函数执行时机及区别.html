@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <!-- 
+
+        原生js入口  窗口的加载事件   脚本模型
+        onload
+        onDOMContentLoaded
+
+        jQ  入口      
+
+
+        区别：
+        1.window.onload入口函数不能写多个的，jQuery入口函数是可以写多个的
+
+
+     -->
+     <div>div</div>
+     <script src="./js/jquery-3.6.1.js"></script>
+     <script>
+        //js
+        window.onload = function(){
+            console.log('hello');
+        }
+
+        //jQery
+        $(function(){
+            console.log('nice');
+        })
+
+        $(document).ready(function(){
+            console.log('hello world');
+        })
+
+        $('div').text('我是新增文本');
+     </script>
+</body>
+</html>

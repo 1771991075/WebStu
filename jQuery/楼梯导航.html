@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'microsoft yahei';
+        }
+
+        #loutinav {
+            width: 35px;
+            position: fixed;
+            top: 100px;
+            left: 50px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+
+        #loutinav ul li {
+            width: 35px;
+            height: 32px;
+            border-bottom: 1px dotted #DDDDDD;
+            list-style: none;
+            font-size: 12px;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            padding: 10px 0;
+            background: #918888;
+            color: #fff;
+        }
+
+        #loutinav ul li span {
+            width: 35px;
+            height: 32px;
+            padding: 10px 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #loutinav ul li.last {
+            background: #5e4a4a;
+            color: #fff;
+            border-bottom: 1px solid #ddd;
+            line-height: 35px;
+        }
+
+        #loutinav ul li.active span {
+            background: #c00;
+            color: #fff;
+            display: block;
+        }
+
+        #loutinav ul li:hover span {
+            background: #c00;
+            color: #fff;
+            display: block;
+        }
+
+        #header {
+            width: 1000px;
+            height: 1000px;
+            background: #cc6633;
+            margin: 0 auto;
+            font-size: 50px;
+            line-height: 1000px;
+            text-align: center;
+            color: #000;
+        }
+
+        #main {
+            width: 1000px;
+            background: #66ff66;
+            margin: 0 auto;
+        }
+
+        #main .louti {
+            height: 600px;
+            width: 1000px;
+            font-size: 50px;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+            line-height: 600px;
+        }
+
+        #footer {
+            width: 1000px;
+            height: 400px;
+            background: red;
+            margin: 0 auto;
+            font-size: 50px;
+            line-height: 400px;
+            text-align: center;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loutinav">
+        <ul>
+            <li class="active"><span>享品质</span></li>
+            <li><span>服饰美妆</span></li>
+            <li><span>电脑数码</span></li>
+            <li><span>3C运动</span> </li>
+            <li><span>爱吃</span></li>
+            <li><span>母婴居家</span></li>
+            <li><span>图书汽车</span></li>
+            <li><span>虚拟</span></li>
+            <li><span>还没逛够</span></li>
+            <li class="last">顶部</li>
+        </ul>
+
+    </div>
+    <!--楼层内容开始-->
+    <div id="header">
+        向下滚动鼠标查看效果
+    </div>
+    <div id="main">
+        <div class="louti" style="background-color: #cc0033;">
+            享品质
+        </div>
+        <div class="louti" style="background-color: #ccff33;">
+            服饰美妆
+        </div>
+        <div class="louti" style="background-color: #3385cc;">
+            电脑数码
+        </div>
+        <div class="louti" style="background-color: #006633;">
+            3C运动
+        </div>
+        <div class="louti" style="background-color: #ed9805;">
+            爱吃
+        </div>
+        <div class="louti" style="background-color: #ff6600;">
+            母婴居家
+        </div>
+        <div class="louti" style="background-color: #ffff00;">
+            图书汽车
+        </div>
+        <div class="louti" style="background-color: #3333ff;">
+            虚拟
+        </div>
+        <div class="louti" style="background-color: #ffae00;">
+            还没逛够
+        </div>
+    </div>
+    <div id="footer">
+        网站底部
+    </div>
+    <!--楼层内容结束-->
+
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+
+        $(function () {
+            //滚动出现导航
+            var toolTop = $('#main').offset().top - 200;
+            // console.log(toolTop);
+            preload();
+            function preload() {
+                var pageTop = $(window).scrollTop();
+                //改变透明度
+                if (pageTop > toolTop) {
+                    $('#loutinav').fadeIn();
+                } else {
+                    $('#loutinav').fadeOut();
+                };
+            };
+            var flag = true; //节流阀
+            //滚动事件
+            $(window).on('scroll', function () {
+                preload();
+                if (flag) {
+                    //卷进去的距离
+                    var pageTop = $(window).scrollTop();
+                    //遍历
+                    $('.louti').each(function (index, item) {
+                        //每个楼层的偏移量
+                        var itemtop = $(item).offset().top;
+                        // console.log(itemtop);
+                        if (pageTop >= itemtop) {
+                            $('#loutinav>ul>li').eq(index).addClass('active').siblings('li').removeClass('active');
+                        };
+                    });
+                };
+            });
+            //单击导航栏中的项，滚动到指定位置
+            $('#loutinav>ul>li').not('.last').on('click', function () {
+                flag = false;
+                //单击某块导航，获取对应的索引
+                var idx = $(this).index();
+                //计算需要滚动的高度
+                var current = $('#main .louti').eq(idx).offset().top;
+                //滚动到指定高度
+                $('html,body').animate({
+                    scrollTop: current,
+                }, 1000, function () {
+                    flag = true;
+                });
+                //导航栏中点击的项添加类，其他的移除类
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+            //返回顶部
+            $('.last').on('click', function () {
+                if (flag) {
+                    flag = false;
+                    $('html,body').animate({
+                        scrollTop: 0,
+                    }, function () {
+                        flag = true;
+                    });
+                };
+            });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1 {
+            height: 200px;
+            background-color: peru;
+            border: 2px solid orange;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        css()   设置或获取样式
+
+        1.获取
+        css('属性名')
+
+        2.设置
+        css('属性名'，属性值)
+        如果是多个属性
+        css({
+            '属性名':'属性值',
+            '属性名':'属性值',
+            '属性名':'属性值',
+        })
+
+     -->
+
+    <input type="button" value="获取" id="getBtn">
+    <input type="button" value="设置" id="setBtn">
+    <div id="div1" style="width: 200px"></div>
+    <div></div>
+    <div></div>
+    <script src="./js/jquery-3.6.1.js"></script>
+
+    <script>
+        $(function () {
+            //获取样式
+            $('#getBtn').on('click', function () {
+                //行内样式和外部的样式一样获取方法
+                // dom  node.style.样式名   行内
+                // window.getComputedStyle(node,null).属性名   行内和外部样式
+
+                var w = $('#div1').css('width');
+                console.log(w);
+                console.log($('#div1').css('height'));
+
+                //驼峰写法  -写法都可以
+                console.log($('#div1').css('backgroundColor'));
+                console.log($('#div1').css('background-color'));
+
+                // 特殊   ie 边框需一个详细的属性  兼容性
+                console.log($('#div1').css('border'));
+                console.log($('#div1').css('border-top-width'));
+            });
+            //设置样式
+            $('#setBtn').on('click', function () {
+                $('#div1').css('width', '500px');
+                $('div').css('width', '500px').css('height', '500px').css('background-color', 'red');
+                $('div').css('width', 300);// 如果是数字 ，可以不带单位，按数字类型
+                // 多属性
+                $('div').css({
+                    "width": "200px",
+                    height: 300,
+                    'background-color': 'red', // 一定要加引号
+                    backgroundColor: 'blue'   // 属性名可以不加引号
+
+                });
+            });
+        })
+
+
+    </script>
+</body>
+
+</html>

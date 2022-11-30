@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .one {
+            width: 200px;
+            background-color: saddlebrown;
+            padding: 20px;
+            border: 2px solid rosybrown;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        dom
+          width     offsetWidth    clientWidth
+          页面  window.innerWidth     documet.documentElement.clientWdith
+
+        jQ
+        宽度和高度
+        1.width()    height()  元素 css('width','100px')
+        2.innerWidth()   innerHeight() 返回元素的高度（包含 padding，不包含 border）
+        3.outerWidth()  返回元素的宽度（包含 padding 和 border） 
+
+        页面  $(window).width()
+     -->
+ 
+     <div id="one" class="one" style="height: 200px;"></div>
+     <input type="button" value="按钮" id="btn">
+      
+     <script src="./js/jquery-3.6.1.js"></script>
+     <script>
+        $('#btn').on('click',function(){
+            //1.width （）   取值   设置   行内和外部
+            console.log($('#one').width(),$('#one').height());//200 200
+            // $('#one').width(500).height(100);
+
+            //2.innerWidth()   包含内边距
+            console.log($('#one').innerWidth(),$('#one').innerHeight());//240 240
+            // $('#one').innerWidth(1000)
+             //3.outerWidth()   包含内边距 和  边框
+             console.log($('#one').outerWidth(),$('#one').outerHeight());//244 244
+
+             //4.页面
+             console.log($(window).width());//1600
+
+        });
+     </script>
+</body>
+</html>

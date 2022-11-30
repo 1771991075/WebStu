@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol,
+        li {
+            list-style: none;
+        }
+
+        .focus {
+            width: 500px;
+            height: 300px;
+            background-color: rgb(249, 249, 249);
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .focus .pic_box {
+            /* 后续需要通过js动态来计算 */
+            width: 2500px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .focus .pic_box li {
+            width: 500px;
+            height: 300px;
+            float: left;
+            text-align: center;
+            font-size: 50px;
+            line-height: 300px;
+            background-color: rgba(255, 0, 0, 1)
+        }
+
+        .focus .pic_box li:nth-child(1) {
+            background-color: rgba(255, 0, 0, 1);
+        }
+
+        .focus .pic_box li:nth-child(2) {
+            background-color: rgba(0, 255, 0, 1);
+        }
+
+        .focus .pic_box li:nth-child(3) {
+            background-color: rgba(0, 0, 255, 1);
+        }
+
+        .focus .pic_box li:nth-child(4) {
+            background-color: rgba(255, 255, 0, 1);
+        }
+
+        .focus .pic_box li:nth-child(5) {
+            background-color: rgba(0, 255, 255, 1);
+        }
+
+
+        .focus .circle {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+
+        }
+
+        .focus .circle li {
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            margin: 0 5px;
+            float: left;
+            border-radius: 50%;
+        }
+
+        .focus .circle li.on {
+            background-color: black;
+        }
+
+        .focus .arrow {
+            width: 30px;
+            height: 40px;
+            display: block;
+            border-radius: 0 30px 30px 0;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+
+
+        }
+
+        .focus .prev {
+            left: 0;
+            cursor: pointer;
+
+        }
+
+        .focus .next {
+            right: 0;
+            border-radius: 30px 0 0 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 焦点图片  轮播 -->
+    <div class="focus">
+        <!-- 图片区 -->
+        <ul class="pic_box">
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <!-- 指示器 -->
+        <ol class="circle">
+            <!-- <li class="on"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li> -->
+        </ol>
+        <!-- 方向键 左右的箭头  &lt;  &gt; -->
+        <span class="arrow prev">
+            < </span>
+                <span class="arrow next">></span>
+
+    </div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function () {
+            var timer;
+            //1.鼠标经过和离开轮播区，显示与隐藏 左右箭头
+            $('.focus').on('mouseenter', function () {
+                $('.prev,.next').show();
+                clearInterval(timer);
+            }).on('mouseleave', function () {
+                $('.prev,.next').hide();
+                timer = setInterval(function () {
+                    $('.next').click()
+                }, 3000);
+            });
+            //2.动态生成小圆点   隐式迭代
+            var idx = 0;
+            var liW = $('.focus').width();
+            var cir = 0;
+            $('.pic_box>li').each(function (index, item) {
+                var $li = $('<li></li>');
+                $('.circle').append($li);
+                //给li 增加事件
+                $li.on('click', function () {
+                    //排他思想
+                    $(this).addClass('on').siblings('li').removeClass('on');
+                    //图片区向左移动一张图片的距离
+                    idx = $(this).index();
+                    //同步原点
+                    cir = idx;
+                    $('.pic_box').animate({
+                        left: -liW * idx,
+                    }, 500);
+                });
+            });
+            //默认第一个li加on类
+            $('.circle').find('li').eq(0).addClass('on');
+            //克隆第一张图片，放在图片区的最后面，重新计算图片区的宽度
+            var $first = $('.pic_box>li').eq(0).clone(true);
+            $('.pic_box').append($first);
+            $('.pic_box').width($('.pic_box>li').length * liW);
+            //右箭头
+            $('.next').on('click', function () {
+                if (idx == $('.pic_box>li').length - 1) {
+                    idx = 0;
+                    $('.pic_box').css('left', 0)
+                }
+                idx++;
+
+                $('.pic_box').stop().animate({ left: -liW * idx }, 500);
+
+                //5.1
+                cir++;
+                if (cir == $('.circle>li').length) {
+                    cir = 0;
+                }
+                run(cir);
+            });
+
+            //左箭头
+            $('.prev').on('click', function () {
+                if (idx == 0) {
+                    idx = $('.pic_box>li').length - 1;
+                    $('.pic_box').css('left', -idx * liW)
+                }
+                idx--;
+
+                $('.pic_box').stop().animate({ left: -liW * idx }, 500);
+
+                //5.2
+                cir--;
+                if (cir == -1) {
+                    cir = $('.circle>li').length - 1;
+                }
+                run(cir);
+            });
+            //单击左右按钮，小圆点同步移动
+            function run(cir) {
+                $('.circle>li').eq(cir).addClass('on').siblings().removeClass('on');
+            };
+            //自动轮播
+            timer = setInterval(function () {
+                $('.next').click()
+            }, 3000);
+        });
+
+    </script>
+</body>
+
+</html>

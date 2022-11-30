@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #left,
+        #center,
+        #right {
+            float: left;
+        }
+
+        #center li {
+            display: none
+        }
+
+        #left li,
+        #right li {
+            width: 150px;
+            height: 55px;
+            background-color: #222;
+            color: #fff;
+            cursor: pointer;
+            line-height: 55px;
+            cursor: pointer;
+            border-bottom: 1px solid #444;
+            padding-left: 20px;
+            box-sizing: border-box;
+        }
+
+        #center li img {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul id="left">
+            <li>图片1</li>
+            <li>图片2</li>
+            <li>图片3</li>
+        </ul>
+        <ul id="center">
+            <li style="display: block"><img src="../img/mdt1.jpg" alt=""></li>
+            <li><img src="../img/mdt2.jpg" alt=""></li>
+            <li><img src="../img/mdt3.jpg" alt=""></li>
+            <li><img src="../img/mdt4.jpg" alt=""></li>
+            <li><img src="../img/zq-jjl-role1.png" alt=""></li>
+            <li><img src="../img/zq-role1.png" alt=""></li>
+        </ul>
+        <ul id="right">
+            <li>图片4</li>
+            <li>图片5</li>
+            <li>图片6</li>
+        </ul>
+    </div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+
+            // 需求1：给左边的li标签们设置鼠标移入事件，让中间对应索引对应的li
+            //       显示，其他的li隐藏
+            // 需求2：给右边的li标签们设置鼠标移事件，让中间对应索引对应的li
+            //       显示，其他的li隐藏
+            //  siblings()    index()  
+            
+            $(function(){
+                $('#left>li').on('mouseenter',function(){
+                    var index = $(this).index();
+                    console.log(index);
+                    // $('#center>li.eq('+ index +')').show().siblings('li').hide();
+                    $('#center>li').eq(index).show().siblings('li').hide();
+                })
+
+                $('#right>li').on('mouseenter',function(){
+                    var index = $(this).index()+$('#left>li').length;
+                    console.log(index);
+                    $('#center>li').eq(index).show().siblings('li').hide();
+                })
+            })
+    </script>
+</body>
+</html>

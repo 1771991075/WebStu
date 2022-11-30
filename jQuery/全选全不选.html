@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            ;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #333;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        thead {
+            background-color: tomato;
+        }
+
+        th {
+            height: 50px;
+        }
+
+        td {
+            height: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+              <tr>
+                <th><input type="checkbox" id="j_cbAll"></th>
+                   <th>商品名称</th>
+                <th>商品价格</th>
+                 
+            </tr>
+              </thead>
+        <tbody id="j_tb">
+            <tr>
+                  <td><input type="checkbox"></td>
+                  <td>商品名称</td>
+                  <td>$50</td>
+                 </tr>
+            <tr>
+                 <td><input type="checkbox"></td>
+                <td>商品名称</td>
+                <td>$100</td>
+            </tr>
+             
+        </tbody>
+    </table>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function(){
+            //全选
+            $('#j_cbAll').on('change',function(){
+                var $flag = $(this).prop('checked');
+                $('#j_tb').find('input').prop('checked',$flag);
+            });
+            //复选框中全选上面的全选按钮也打对
+            $('#j_tb').find('input').on('click',function(){
+                var len = $('#j_tb').find('input').length;
+                var len1 = $('#j_tb').find('input:checked').length;
+                console.log(len,len1);
+                if(len == len1){
+                    $('#j_cbAll').prop('checked',true);
+                }else{
+                    $('#j_cbAll').prop('checked',false);
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

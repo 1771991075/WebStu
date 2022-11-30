@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: brown;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn1">注册事件on</button>
+    <button id="btn2">解绑事件off</button>
+    <button id="btn3">事件触发trigger</button>
+    <div id="one"></div>
+
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        //   事件解绑   （事件移除） dom
+        /* 
+          btn.onclick=null
+          btn.removeEventListenter('click',函数名称)
+        
+        */
+        //    jQ
+        // 事件解绑  unbind方式（不用） undelegate(不用)    off方式（推荐）
+        $('#btn1').on('click', function () {
+            $('div').on('mouseenter', function () {
+                console.log('enter');
+            }).on('click', function () {
+                console.log('click');
+            });
+        });
+        $('#btn2').on('click', function () {
+            $('div').off('click');
+            $('div').off();     // 全部解绑
+        });
+
+        // 事件触发
+        $('div').on('mouseenter', function () {
+            console.log('enter');
+        }).on('click', function () {
+            console.log('click');
+        });
+
+        // 单击一个按钮，程序执行到合适时机，自动触发div的事件
+        var i = 0
+        $('#btn3').on('click', function () {
+            console.log('dddd');
+            //  i++;
+            //  if(i==3){
+            //      //条件满足，触发div的单击事件
+            //     // 事件触发，感觉就是用代码的方式触发事件
+            //     $('div').mouseenter();
+            //     $('div').click();
+            //  };
+
+            $('div').trigger('click');
+
+        })
+
+    </script>
+</body>
+
+</html>
