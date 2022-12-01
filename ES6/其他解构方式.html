@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1.字符串解构
+        2. 交换a,b的值，不需第三方
+        3.函数 返回值
+        
+     -->
+    <script>
+    //  1.字符串解构
+    let str='hello';
+    let [a,b,c,d,e]=str;
+    console.log(a,b,c,d,e);
+
+    //2. 交换 a,b的值
+        let a1=10,b1=20;
+    [b1,a1] =[a1,b1]
+    console.log('b1='+b1,'a1='+a1);//b1=10 a1=20
+
+    //3.函数 返回值
+    function show(){
+        return [10,20,30]
+    }
+    //    let arr= show()
+    //    let [a2,b2,c3]=arr;
+    let [a2,b2,c2]=show()
+    console.log(a2,b2,c2);
+
+     //4.解构默认值
+    // //  一般默认默认值位置要靠后（潜规则），否则会出现NaN
+    // let [a3,b3,c3=0]=[20,30];
+    
+    // console.log(a3,b3,c3);//20 30 0
+
+    let [a3,b3=0,c3]=[20,30];
+    console.log(a3,b3,c3);//20 30 undefined
+    console.log(a3+b3+c3);//NaN
+
+    //5.参数解构
+    // 数组中的元素求和
+     function show1(arr){
+        var sum=0;
+        arr.forEach(function(item,index){
+            // console.log(item,index);
+            sum+=item;
+
+        });
+        console.log(sum);
+
+     }
+     show1([10,20,30])
+
+    // 解构
+     function show1([a4,b4,c4]){
+        var sum=a4+b4+c4;
+      
+        console.log(sum);
+
+     }
+     show1([10,20,30])
+
+    //  总结
+    /* 1.解构赋值就是把数据结构分解，然后给变量进行赋值 
+       2.如果结构不匹配，变量跟数值个数不匹配的时候，变量的值为undefined
+       3.数组解构用中括号包裹，多个变量用逗号隔开，
+       对象解构用花括号包裹，多个变量用逗号隔开  ，还可以出现别名   ：
+       4.利用解构赋值能够让我们方便的去取对象中的属性跟方法
+    */
+    // 注意：频繁使用对象方法、数组元素，就可以使用解构赋值形式
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- const
+        声明常量，常量就是值（内存地址）不能变化的量 
+       1. 声明必须赋初始值
+       2. 值不允许修改 --但是数组中的元素变化不出错
+       3.标识符一般为大写
+       4.不允许重复声明
+       5. 块儿级作用域
+        应用场景：声明对象类型使用 const，非对象类型声明选择 let
+    -->
+    <script>
+        // 1. 声明必须赋初始值
+        // let a;
+        // a=10;
+        const b = 20;
+        console.log(b);
+        // 2. 值不允许修改 --但是数组中的元素变化不出错
+        // b=100;//Uncaught TypeError: Assignment to constant variable.  error
+        // console.log(b);// 输出不了
+
+        const arr = [10, 20, 30];
+
+        // arr=[100,200,300];//03const关键字.html:27 Uncaught TypeError: Assignment to constant variable.
+        // console.log(arr);
+        // 改变数组中的元素 不出错
+        arr[0] = 100;
+        console.log(arr);//[100, 20, 30]
+
+        //3.标识符一般为大写    不允许重复声明   块儿级作用域
+        const PI = 3.14;
+        //    const PI;
+        if (true) {
+            const StuName = 'Tom'
+        }
+        //    console.log(StuName);//error
+
+        // 应用场景：声明对象类型使用 const，非对象类型声明选择 let
+
+        // let、const、var 的区别
+        /* 三个方面来对比
+          （1）作用域
+          （2）变量提升
+         （3）值是否可以修改
+         使用 var 声明的变量，其作用域为该语句所在的函数内，且存在变量提升现象，值可以修改
+         使用 let 声明的变量，其作用域为该语句所在的代码块内，不存在变量提升   值可以修改
+        使用 const 声明的是常量，不存在变量提升 其作用域为该语句所在的代码块内 
+        在后面出现的代码中不能再修改该常量的值
+    
+        */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        .tab_box {
+            width: 500px;
+            height: 500px;
+            background-color: #f6f6f6;
+            margin: 0 auto;
+        }
+
+        ul {
+            width: 500px;
+            height: 60px;
+            background-color: aqua;
+            margin: 10px auto;
+        }
+
+        ul li {
+            width: 25%;
+            text-align: center;
+            height: 100%;
+            line-height: 60px;
+            font-size: 20px;
+            cursor: pointer;
+            float: left;
+        }
+
+        ul li.active {
+            font-weight: 800;
+            color: brown;
+            background-color: #f6f6f6;
+        }
+
+        .tab_con {
+            width: 500px;
+            height: 420px;
+
+        }
+
+        .tab_con .undis {
+            display: none;
+        }
+
+        .tab_con .dis {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab_box">
+        <ul class="tab_tit">
+            <li class="item active">音频</li>
+            <li class="item">视频</li>
+            <li class="item">图片</li>
+        </ul>
+        <div class="tab_con">
+            <div class="undis dis">音频内容</div>
+            <div class="undis">视频内容</div>
+            <div class="undis">图片内容</div>
+        </div>
+    </div>
+    <script>
+        var lis = document.querySelectorAll('.tab_tit>li');
+        var divs = document.querySelectorAll('.tab_con>.undis');
+
+        for(let i = 0; i< lis.length; i++){
+            lis[i].onclick = function(){
+                console.log(i);//对应的索引号
+                for(let i = 0; i< lis.length; i++){
+                    lis[i].classList.remove('active');
+                    divs[i].classList.remove('dis');
+                }
+                //当前项
+                lis[i].classList.add('active');
+                divs[i].classList.add('dis');
+            }
+        }
+
+    </script>
+</body>
+</html>

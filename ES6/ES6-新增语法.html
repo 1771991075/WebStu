@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        let 声明变量
+        1.let故拿剪子就是用来声明变量，不允许重复声明
+        2 使用let关键字声明的变量具有块级作用域
+        {}  if{}  while{}    for{}  局部
+        3.使用let关键字声明的变量没有变量提升
+        4.使用let声明的变量，会绑定在这个块级作用域，不受外界的影响
+        5.不影响作用域链
+        6.防止循环变量变成全局
+     -->
+    <script>
+
+        //1 
+        //1.let故拿剪子就是用来声明变量，不允许重复声明
+        var a = 10;
+        var a = 20;
+        console.log(a);
+        // let a = 10;
+        // let a;  //error
+        console.log(a);
+
+
+        // 2 使用let关键字声明的变量具有块级作用域
+        // if(true){
+        //     var b = 10;//全局变量
+        //     console.log(b);
+        // };
+        // console.log(b);
+        // if(true){
+        //     let c = 100;//局部变量
+        //     console.log(c);
+        // };
+        // console.log(c);
+
+        //3.使用let关键字声明的变量没有变量提升
+        // console.log(d);//undefined
+        // var d = 200;
+        // var d;
+
+        // console.log(d1);//报错
+        // let d1 = 300;
+
+        // 4.使用let声明的变量，会绑定在这个块级作用域，不受外界的影响
+        //暂时性死区
+        // var temp = 123;
+        // if(true){
+        //     temp = 456;
+        //     // var temp;
+        //     let temp;//Cannot access 'temp' before initialization
+        // };
+        // console.log(temp);
+
+        //5.不影响作用域链
+        function show() {
+            var a = 10;
+            function fn() {
+                console.log(a);
+            };
+            fn();
+        };
+        show();
+
+        function show() {
+            let a = 10;
+            function fn() {
+                console.log(a);
+            };
+            fn();
+        };
+        show();
+
+        //6.防止循环变量变成全局
+        // var arr = [];
+        // for (var i = 0; i < 2; i++) {
+        //     arr[i] = function () {
+        //         console.log(i);
+        //     }
+        // };
+        // console.log(arr[0], arr[1]);//匿名函数
+        // arr[0]();//2
+        // arr[1]();//2
+
+        // //解决办法
+        // for (var i = 0; i < 3; i++) {
+        //     (function (i) {
+        //         arr[i] = function () {
+        //             console.log(i);
+        //         }
+        //     })(i);
+
+        // };
+        // console.log(arr[0], arr[1]);//匿名函数
+        // arr[0]();//0
+        // arr[1]();//1
+
+
+        //解决办法
+        var  arr = [];
+        for (let i = 0; i < 2; i++) {
+            arr[i] = function () {
+                console.log(i);
+            }
+        };
+        console.log(arr[0], arr[1]);//匿名函数
+        arr[0]();//0
+        arr[1]();//1
+
+        {
+            let i = 0;
+            function fn() {
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+
+</html>
