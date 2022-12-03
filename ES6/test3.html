@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        audio {
+            width: 800px;
+            height: 400px;
+        }
+
+        ul {
+            width: 800px;
+            height: 400px;
+            border: 1px solid #000;
+            display: flex;
+            background-image: url(../img/keys.png);
+            background-size: 100% 100%;
+            margin: 30px auto;
+        }
+
+        li {
+            flex: 1;
+            cursor: pointer;
+        }
+        .active1{
+            background-color: #999;
+            opacity: 0.2;
+        }
+
+        .active {
+            background-image: linear-gradient(rgba(0, 0, 0, 0), 60%, #333 160%);
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <audio src="../钢琴9键-mp3/d1.mp3">
+
+    </audio>
+    <script src="../js/jquery-3.6.1.js"></script>
+    <script>
+        $(function () {
+            $('li').on('mousedown', function () {
+                var idx = $(this).index()+1;
+                var src1 = '../钢琴9键-mp3/d'+idx +'.mp3';
+                $('audio').attr('src',src1);
+                playVid();
+                $('li').eq(idx-1).addClass('active1');
+            });
+            $('li').on('mouseup', function () {
+                var idx = $(this).index();
+                $('li').eq(idx).removeClass('active1');
+                pauseVid();
+            });
+        });
+
+        var mp3 = document.querySelector('audio'); 
+        function playVid() {
+            mp3.play();
+        }
+    </script>
+</body>
+
+</html>

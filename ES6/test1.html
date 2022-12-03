@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 227px;
+            height: 372px;
+            margin: 100px auto;
+            border: 1px solid rgb(183, 183, 183);
+        }
+        .box:hover{
+            border: 5px solid #888;
+        }
+        .box .pic{
+            width: 225px;
+            height: 225px;
+            padding: 5px 5px 0 5px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .box .pic img{
+            width: 215px;
+            height: 215px;
+        }
+        .box .content{
+            width: 220px;
+            height: 135px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .box .content ul{
+            width: 200px;
+            height: 30px;
+        }
+        .box .content ul li{
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            float: left;
+            border: 1px solid rgb(239, 238, 238);
+        }
+        .box .content ul li img{
+            width: 30px;
+        }
+        .box .content p{
+            width: 200px;
+            height: 20px;
+            margin: 8px 0 8px 0;
+        }
+        .box .content p .span1{
+            font-weight: bold;
+            float: left;
+        }
+        .box .content p .span2{
+            float: right;
+        }
+        .box .content .shopname{
+            width: 200px;
+            height: 35px;
+            padding: 2px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .box .content .shopname a{
+            font-size: 12px;
+            text-decoration: none;
+            float: left;
+            color: #222;
+        }
+        .box .content .shopname a:hover{
+            text-decoration: underline;
+            color: #555;
+        }
+        .box .content .btm{
+            width: 200px;
+            height: 40px;
+            margin-top: 7px;
+        }
+        .box .content .btm .a1{
+            color: #888;
+            font-size: 12px;
+        }
+        .box .content .btm .a1:hover{
+            color: #555;
+        }
+        .box .content .btm .a2{
+            width: 80px;
+            height: 26px;
+            display: block;
+            color: aliceblue;
+            text-decoration: none;
+            background: #333;
+            font-size: 12px;
+            text-align: center;
+            line-height: 26px;
+            float: right;
+        }
+        .box .content .btm .a2:hover{
+            background: #555;
+        }
+        .active{
+            display: none;
+        }
+        .on{
+            border: 1px solid #555 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="pic">
+            <a href="javascript:;" class="bigpic">
+                <img src="../img/11.jpg" alt="">
+                <img src="../img/22.jpg" alt="">
+                <img src="../img/33.jpg" alt="">
+                <img src="../img/44.jpg" alt="">
+                <img src="../img/55.jpg" alt="">
+            </a>
+        </div>
+        <div class="content">
+            <ul>
+                <li><img src="../img/min11.jpg" alt=""></li>
+                <li><img src="../img/min22.jpg" alt=""></li>
+                <li><img src="../img/min33.jpg" alt=""></li>
+                <li><img src="../img/min44.jpg" alt=""></li>
+                <li><img src="../img/min55.jpg" alt=""></li>
+            </ul>
+            <p><span class="span1">￥1040.00</span><span class="span2" title="很满意"><img src="../img/star-on.png" alt=""><img src="../img/star-on.png" alt=""><img src="../img/star-on.png" alt=""><img src="../img/star-on.png" alt=""><img src="../img/star-on.png" alt=""></span></p>
+            <div class="shopname">
+                <a href="">
+                    黄金戒指3D硬金生肖猴萌公主GJ00123 14 约1.6克-约1.7克 按照实际发货商品的克重计算，多退少补
+                </a>
+            </div>
+            <div class="btm">
+                <a href="" class="a1">皇中皇旗舰店</a>
+                <a href="" class="a2">加入购物车</a>
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery-3.6.1.js"></script>
+    <script>
+        $(function(){
+            $('.content>ul>li').on('mouseenter',function(){
+                var idx = $(this).index();
+                $('.bigpic>img').eq(idx).removeClass('active').siblings().addClass('active');
+                $(this).addClass('on').siblings().removeClass('on');
+            });
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 227px;
+            height: 372px;
+            margin: 100px auto;
+            border: 1px solid rgb(183, 183, 183);
+        }
+        .box .pic{
+            width: 225px;
+            height: 225px;
+            padding: 5px 5px 0 5px;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+        }
+        .box .pic img{
+            width: 215px;
+            height: 215px;
+        }
+        .box .content{
+            width: 220px;
+            height: 135px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .box .content ul{
+            width: 200px;
+            height: 30px;
+        }
+        .box .content ul li{
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            float: left;
+            border: 1px solid rgb(239, 238, 238);
+        }
+        .box .content ul li img{
+            width: 30px;
+        }
+        .active{
+            display: none;
+        }
+        .on{
+            border: 1px solid #555 !important;
+        }
+        .a1{
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            font-weight: bold;
+            color: #777;
+            font-size: 20px;
+        }
+        .a2{
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            text-decoration: none;
+            font-weight: bold;
+            color: #777;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="pic">
+            <a href="javascript:;" class="bigpic">
+                <img src="../img/11.jpg" alt="">
+                <img src="../img/22.jpg" alt="">
+                <img src="../img/33.jpg" alt="">
+                <img src="../img/44.jpg" alt="">
+                <img src="../img/55.jpg" alt="">
+            </a>
+            <a href="javascript:;" class="a1"><</a>
+            <a href="javascript:;" class="a2">></a>
+        </div>
+        <div class="content">
+            <ul>
+                <li class="on"><img src="../img/min11.jpg" alt=""></li>
+                <li><img src="../img/min22.jpg" alt=""></li>
+                <li><img src="../img/min33.jpg" alt=""></li>
+                <li><img src="../img/min44.jpg" alt=""></li>
+                <li><img src="../img/min55.jpg" alt=""></li>
+            </ul>
+        </div>
+    </div>
+    <script src="../js/jquery-3.6.1.js"></script>
+    <script>
+        $(function(){
+            var idx = 0;
+            $('.content>ul>li').on('mouseenter',function(){
+                idx = $(this).index();
+                $('.bigpic>img').eq(idx).removeClass('active').siblings().addClass('active');
+                $(this).addClass('on').siblings().removeClass('on');
+            });
+            $('.a1').on('click',function(){
+                idx -= 1; 
+                if(idx == -1){
+                    idx = 4;
+                }
+                $('.bigpic>img').eq(idx).removeClass('active').siblings().addClass('active');
+                $('.content>ul>li').eq(idx).addClass('on').siblings().removeClass('on');
+            });
+            $('.a2').on('click',function(){
+                idx += 1; 
+                if(idx == 5){
+                    idx = 0;
+                }
+                $('.bigpic>img').eq(idx).removeClass('active').siblings().addClass('active');
+                $('.content>ul>li').eq(idx).addClass('on').siblings().removeClass('on');
+            });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+
+        1.ES6中类没有变量提升。所以必须先定义类，才能通过类实例化对象
+
+
+
+
+     -->
+     <button>点击调用sing方法</button>
+    <script>
+        //1.ES6中类没有变量提升。所以必须先定义类，才能通过类实例化对象
+        // class Star{
+        //     constructor(uname,age){
+        //         this.uname = uname;
+        //         this.age = age;
+        //     }
+        //     sing(){
+        //         console.log(this.uname);
+        //     }
+        // }
+
+        // var s1 = new Star('周琛',25);
+
+
+        //2.类里的共用属性和方法一定要加this
+        var that;   //全局变量
+        var _that;  //全局变量
+        class Star{
+            constructor(uname,age){
+                //1.构造器中this指向的谁
+                that = this;
+                this.uname = uname;
+                this.age = age;
+                this.sing();//这里调用方法一定要加this
+                this.btn = document.querySelector('button');
+                // this指向谁  
+                this.btn.onclick = this.sing; //  sing不能加括号  不加this也是错的
+            }
+            sing(){
+                console.log(this.uname);//undefined
+                //把this换成that
+                console.log(that.uname);//周琛
+                // this 指向button
+                console.log(this);
+            }
+            dance(){
+                console.log(this.uname + 'is dance');
+                //方法中的this指向的是谁  谁调用了这个方法，this指向谁
+                _that = this;
+            }
+        }
+
+        var s1 = new Star('周琛',25);
+        console.log(that === s1);   //true
+        console.log(_that === s1);  //false
+        s1.dance(); //谁调用了这个方法，this指向谁
+    </script>
+</body>
+</html>
