@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+
+        // var box = document.querySelector('.box');
+        // box.addEventListener('click', function () {
+        //     //定时器的this指向window
+        //     setTimeout(function () {
+        //         box.style.backgroundColor = 'orange';
+        //     }, 2000);
+        // });
+
+        // 2.  that
+        // var box = document.querySelector('.box');
+        // box.addEventListener('click', function () {
+        //     var that = this;//  this指向box
+        //     //定时器的this指向window
+        //     setTimeout(function () {
+        //         that.style.backgroundColor = 'orange';
+        //     }, 2000);
+        // });
+        //  3. bind
+        // var box = document.querySelector('.box');
+        // box.addEventListener('click', function () {
+        //     var that = this;//  this指向box
+        //     //定时器的this指向window
+        //     setTimeout(function () {
+        //         this.style.backgroundColor = 'orange';
+        //     }.bind(this), 2000);
+        // });
+        //  4. 箭头函数
+        var box = document.querySelector('.box');
+        box.addEventListener('click', function () {
+            setTimeout( () => {
+                this.style.backgroundColor = 'orange';
+            }, 2000);
+        });
+         // 总结：
+        /* 箭头函数适合与this无关的问题，数组的方法回调
+        箭头函数不适合与this有关的问题，事件回调，对象的方法 
+        */
+
+        //需求2 从数组中返回偶数的元素   filter 筛选   过滤
+        const arr=[1,6,9,10,100,25];
+        //  var arr0=  arr.filter(function(item,index){
+        //          return  item%2==0
+
+        //    });
+        //    console.log(arr0);
+
+
+        var arr0=  arr.filter(item=>item%2==0);
+        console.log(arr0);
+    </script>
+</body>
+
+</html>

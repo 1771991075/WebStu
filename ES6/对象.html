@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // es5
+        // 对象  字面量   具体的对象
+        var obj1 = {
+            name: 'Tom',
+            age: 18,
+            say: function () {
+                console.log(this.name + 'is saying');
+            }
+        }
+        console.log(obj1);//{name: 'Tom', age: 18, say: ƒ}
+
+        //构造函数  es5没有类的概念， 需要用函数来模拟类
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+            this.say = function () {
+                console.log(this.name + 'is saying');
+            }
+        }
+        var p1 = new Person('Jack', 18);//true
+        console.log(p1 instanceof Person);
+        console.log(p1);
+
+        //es6  引入类的概念  class
+        //  - 在 ES6 中新增加了类的概念，可以使用 class 关键字声明一个类，之后以这个类来实例化对象
+
+        // 1. class 声明类
+        //2. constructor 定义构造函数初始化
+
+        class Student {
+            // 类的共有属性放到 constructor 里面
+            constructor(name, age, gender) {
+                this.name = name;
+                this.age = age;
+                this.gender = gender;
+
+            }
+            //------------------------------------------->注意,方法与方法之间不需要添加逗号
+            test(time) {
+                console.log(`我们计划在${time}进行周测`);
+
+            }
+            walk(time) {
+                console.log(`我们计划在${time}进行散步`);
+
+            }
+        }
+        var s1 = new Student('志伟', 18, '男');
+        console.log(s1);
+        console.log(s1 instanceof Student);//true
+
+        console.log(s1.name, s1.age);
+        s1.test('16:00')
+
+
+    </script>
+</body>
+
+</html>

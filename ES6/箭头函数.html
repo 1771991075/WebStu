@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 创建函数一般用const
+        // const fn = function(){
+
+        // }
+        // const fn = () => { 函数体; };//  =>：必须要的符号，指向哪一个代码块；{}：函数体
+        //代表把一个匿名函数赋值给变量fn ，fn就代表这个函数
+
+        //1.如果只有一个形参，小括号可以省略
+        // function show(a){
+        //     return a;
+        // }
+        //可以改为下面的写法
+        // const show = function(a){
+        //     return a;
+        // }
+        ///改为箭头函数
+        // const show = (a) =>{return a};
+        // const show = a => {return a};
+        // show(10);
+        // console.log(show(10));
+
+        //2.函数体中只有一句代码，且代码的执行结果就是返回值，可以省略大括号 return也可以省略
+        const show = a => a;
+        console.log(show(20));
+
+        //3.如果形参多于一个，或没有形参，小括号不能省略
+        // 如果函数体中的代码，两句及两句以上的话也不能省略
+        // const fn2 = function(num1,num2){
+        //     var sum = num1+num2;
+        //     return sum;
+        // }
+
+        const fn2 = (num1, num2) =>
+            // var sum = num1+num2;
+            num1 + num2;
+        fn2(10, 20);
+        console.log(fn2(10, 20));
+
+    </script>
+</body>
+
+</html>

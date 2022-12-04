@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 箭头函数不能绑定this关键字，箭头函数中没有自己的this
+
+       箭头函数中的this----  指向的是函数定义位置的上下文this
+       箭头函数this指向声明时所在作用域下this的值
+    -->
+
+    <script>
+        // function show(){
+        //     console.log(this);//this指向window
+        //     const fn = () =>{
+        //         console.log(this);
+        //     };
+        //     fn();
+        // }
+        // show();
+        // window.show();
+
+        // var obj ={
+        //     name:'Tom',
+        // }
+        // function show(){
+        //     console.log(this);//this指向window
+        //     return fn = () =>{
+        //         console.log(this);
+        //     };
+        // }
+        // show()();
+        // window.show()();
+
+        //改变this指向的问题  函数的内置方法 call  apply  bind
+        var obj ={
+            name:'Tom',
+        }
+        function show(){
+            console.log(this);//
+            return fn = () =>{
+                console.log(this);//
+            };
+        }
+        // show()();
+        // window.show()();
+        show.call();//等同于函数调用  如果传参的话，第一个函数是必传的对象，改变this指向
+        // const fn = show.call(obj);
+        // fn();
+    </script>
+</body>
+</html>

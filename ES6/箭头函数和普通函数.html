@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!--  箭头函数中this是静态的，
+        this始终指向函数声明时所在的作用域下的this的值，
+        无论call如何改变都指向window 
+    -->
+    <script>
+        window.name='北游';
+        const school={
+             name:'beiyuou'
+        }
+
+        //1.普通函数
+         function show(){
+            console.log(this.name);
+         }
+         show();// this---window   '北游'
+         show.call(school) //this---obj   //beiyuou
+
+         //2. 箭头函数
+         const show1=()=>{ console.log(this.name);}
+          show1()//this---window   '北游'
+          show1.call(school);////this---window   '北游'
+    </script>
+</body>
+</html>

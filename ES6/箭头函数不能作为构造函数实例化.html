@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  箭头函数不能作为构造函数实例化 -->
+    <script>
+        //     function Person(name,age){
+        //         this.name=name;
+        //         this.age=age;
+
+        //     }
+        //   var p1=  new  Person('Tom',18)
+
+        //1.箭头函数不能作为构造函数实例化   不能通过new 来调用函数
+
+        // const Person = (name, age) => {
+        //     this.name = name;
+        //     this.age = age;
+
+        // }
+        // let p1 = new Person('Tom', 18);//Uncaught TypeError: Person is not a constructor
+        // console.log(p1);
+
+        //2.不能使用 arguments属性   arguments也是一个对象 ，函数的实参，伪数组
+        // let fn=function(){
+        //     console.log(arguments);//Uncaught ReferenceError: arguments is not defined
+        // }
+        // fn(10,20,30)
+
+        // let fn=()=>{
+        //     console.log(arguments);//Uncaught ReferenceError: arguments is not defined
+        // }
+        // fn(10,20,30)
+
+    </script>
+</body>
+</html>
