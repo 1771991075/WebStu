@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+
+        1.继承中，如果子类中有自己的方法，那会先调用自己的方法，如果没有，则会去父类中查找有没有
+        这个方法如果有,调用父类的方法。（就近原则）
+        2.如果子类想继承父类的方法，还想扩展自己的方法，利用super调用父类的构造函数，super必须
+        在子类的this之前调用
+
+
+     -->
+     <script>
+
+        // class Father{
+        //     // 构造器不写，也会自动生成
+        //     say(){
+        //         console.log('我是父类');
+        //         return '我是父类';
+        //     }
+        // }
+
+        // class Son extends Father{
+            
+        //     say(){
+        //         console.log('我是子类');
+        //     }
+        // }
+
+        // var s1 = new Son();
+        // s1.say();
+
+        class Father{
+            // 构造器不写，也会自动生成
+            say(){
+                console.log('我是父类');
+                return '我是父类';
+            }
+        }
+
+        class Son extends Father{
+            
+            say(){
+                // console.log('我是子类');
+                //就是想调用子类，找到父类的方法
+                console.log(super.say() + '的儿子');
+            }
+        }
+
+        var s1 = new Son();
+        s1.say();
+
+     </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+    1.模板字符串语法是用 反引号定义,是增强版的字符串     `  ` 反引号      单引号 ''  双引号 ""
+    2.模板字符串中可以解析变量，不需要用 + 号进行拼接， 用${变量}     var a=10    var str='这个数字是'+a+'吗'
+    3.模板字符串中可以换行                             var str='我是谁？\n我是干什么？'
+    4.在模板字符串中可以调用函数，用${函数()} 
+    -->
+    <script>
+        let myName = `Tom`;
+        console.log(myName);
+
+        let str = `Hello,my name is ${myName}`;
+        console.log(str);
+
+        let obj = {
+            name: 'jack',
+            age: 18,
+            sex: '男'
+        }
+        // document.write('<p>我是段落</p>'); 
+        // document.body.innerHTML = '<h2>我是段落</h2>';
+        let html = `
+            <div>
+                <span>${obj.name}</span>
+                <span>${obj.age}</span>
+                <span>${obj.sex}</span>
+            </div>
+        `
+        document.write(html);
+        document.body.innerHTML = html;
+
+        const fn = function(){
+            return '我是fn函数';
+        }
+        let str1 = fn();
+        console.log(str1);
+        let str2 = `我是模板字符串${fn()}`;
+        alert(str2);
+        
+    </script>
+</body>
+
+</html>

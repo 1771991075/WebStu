@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  迭代器 就是用来迭代数据结构
+        /* 
+         数据结构：
+         1. 数组 [1,2,3,4]
+         2. 对象 {}
+         3. map 
+         4. set 
+         ...
+        */
+        let arry = ["孙悟空", "唐僧", "猪八戒", "沙和尚"];
+        console.log(arry)
+        let obj = {
+            name: "四大名著",
+            book: ["西游记", "水浒传", "红楼梦", "三国演义"]
+        }
+        console.log(obj)
+        // for(let i=0;i<arry.length;i++){
+        //     console.log(arry[i])
+        // }
+        // es6 中新增 for in 循环 可以用来迭代对象
+        for (let i in obj) {
+            console.log(i)
+        }
+        // es6中新增 for...of 用来迭代数据
+        for (let value of arry) {
+            console.log(value)
+        }
+        // for...of没有办发直接迭代对象 可以迭代的数据结构有：数组、字符串、map、set
+        // for(let value of obj){
+        //     console.log(value)
+        // }
+        for (let value of 'abcdefg') {
+            console.log(value)
+        }
+        console.log(String.prototype)
+        // 为什么 for of不能迭代对象呢？
+        // 只要能使用for of迭代的数据结构在其原型上都有一个唯一的iteraror属性；
+        let set = new Set([1, 2, 3, 4, 5, 5, 6]);
+        console.log(set)
+        for (let num of set) {
+            console.log(num)
+        }
+
+
+    </script>
+</body>
+
+</html>

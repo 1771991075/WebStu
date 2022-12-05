@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        静态成员是属于函数对象的，不属于实例对象
+
+
+     -->
+    <script>
+        //构造函数
+        function Phone(){
+            //内部  this.属性 = 属性值    this.方法名= 函数
+            
+            
+        }
+        //静态成员  是属于函数对象的（es6中数属性值），不属于实例对象
+
+
+        Phone.name = '手机';
+        Phone.change = function(){
+            console.log('我可以改变');
+        }
+
+        //这个属性属于实例对象
+        Phone.prototype.size = '5.5inch';
+
+        var nokia = new Phone();
+        //1.实例对象能不能调用静态的方法，查看静态的属性，不能
+        console.log(nokia.name);    //undefined
+
+        console.log(Phone.name);
+        Phone.change();
+
+        console.log(bokia.size);
+
+    </script>
+
+    <script>
+        //es6
+        class Phone{
+            //静态属性和方法
+            static name = '手机';
+            static change(){
+                console.log('我可以改变');
+            }
+            //不属于静态方法,属于实例对象
+            playGame(){
+                console.log('我可以打游戏');
+            }
+        }
+
+        var nokia = new Phone();
+        console.log(Phone.name);
+        console.log(nokia.name);  //undefined
+        Phone.change();
+        nokia.change();//报错
+        Phone.playGame();//报错
+        nokia.playGame();
+
+
+    </script>
+</body>
+</html>

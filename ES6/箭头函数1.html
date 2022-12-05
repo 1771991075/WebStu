@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+         1. 函数的声明
+         2. 函数的调用
+         3. 函数参数
+         4. 函数的返回值
+        */
+        let getuser = ()=>{
+            console.log("h哈哈哈")
+        }
+        getuser();
+       
+        let getLike = (msg,like)=>{
+            console.log("嘿嘿嘿",msg,like)
+        }
+        getLike("学习","打游戏")
+        // 当箭头函数参数只有一个时可以省略小括号
+        let lzq = num =>{
+            console.log(num)
+        }
+        lzq(100)
+        let mylike = ()=>{
+            return "学习使我快乐"
+        }
+       console.log(  mylike())
+       // 当箭头函数的只有一个返回值时可以省略大括号 和return
+       let hei = ()=> "嘿嘿嘿";
+       console.log(hei())
+    
+       let over =  a => a;
+        console.log(over(1))
+        /* 
+        箭头函数和普通函数区别：
+        1. 箭头函数只能是匿名函数
+        2. 箭头函数没有this执行
+        3. 箭头函数没有augments普通函数有
+        4. 箭头函数不能作为构造函数使用普通函数可以
+        */
+    
+        // 在es6中新增函数默认值
+        let defaults = (a='啦啦啦啦')=>{
+            console.log(a)
+        }
+        defaults()
+    
+        function aaa(b="bbbb"){
+            console.log(b)
+        }
+        aaa();
+    </script>
+</body>
+</html>

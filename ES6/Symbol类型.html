@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        ES6 引入了一种新的原始数据类型 Symbol，表示独一无二的值。它是
+        JavaScript 语言的第七种数据类型，是一种类似于字符串的数据类型。 
+        Symbol 特点
+        1) Symbol 的值是唯一的，用来解决命名冲突的问题
+        2) Symbol 值不能与其他数据进行运算
+        3) Symbol 定义 的 对象属 性 不能 使 用 for…in 循 环遍 历 ，但 是可 以 使 用
+        Reflect.ownKeys 来获取对象的所有键名
+    -->
+    <script>
+
+        //1.  创建 Symbol         Number     String
+        //    var s1= Symbol();
+        //    console.log(s1,typeof s1);//Symbol() 'symbol'
+
+        //    var n1=Number();
+        //    console.log(n1,typeof n1);//0 'number'
+        //2. 添加标识的Symbol，相当于一个注释，为谁定义
+        //  var s1= Symbol('beiyou')
+        //  var s2= Symbol('beiyou')
+        //  console.log(s1,s2);//Symbol(beiyou) Symbol(beiyou)
+
+        //  console.log(s1===s2);//false
+        //3.Symbol 的值是唯一的    使用Symbol.for定义 ，得到唯一的值
+
+        var s1 = Symbol.for('beiyou');
+        var s2 = Symbol.for('beiyou');
+        console.log(s1 === s2);//true
+
+        //4. Symbol 值不能与其他数据进行运算
+        var s3 = Symbol(1);
+        console.log(s3);
+        console.log(s3 + 100);// Uncaught TypeError: Cannot convert a Symbol value to a number
+
+        //   注: 遇到唯一性的场景时要想到 Symbol
+    </script>
+</body>
+
+</html>

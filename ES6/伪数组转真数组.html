@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 将伪数组转为真正的数组 -->
+    <ul>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+    </ul>
+    <script>
+        let lis = document.querySelectorAll('li');
+        console.log(lis);//NodeList(5) [li, li, li, li, li]
+        // lis.push('ddd');
+        console.log(Array.isArray(lis));//false  伪数组
+
+        //  lis=  [...lis];
+        //  console.log(lis);//[li, li, li, li, li]
+        //  console.log(Array.isArray(lis));//true
+
+
+        //  Array.from()
+        // 将伪数组或可遍历对象转换为真正的数组
+
+        lis = Array.from(lis);
+        console.log(lis);//[li, li, li, li, li]
+        console.log(Array.isArray(lis));//true
+
+
+        //    注意： 对象   增加一个length 属性 才能转为真数组
+        //定义一个集合
+        // let arrayLike = {
+        //     '0': 'a',
+        //     '1': 'b',
+        //     '2': 'c',
+        //      length: 3
+        // }; 
+
+        // let arr1=Array.from(arrayLike);
+        // console.log(arr1);//['a', 'b', 'c']
+
+
+        //  Array.from() 还可以接受第二个参数  回调函数   ,有点map
+        let arrayLike = {
+            "0": 1,
+            "1": 2,
+            "length": 2
+        }
+        let newArr = Array.from(arrayLike, item => item * 2);
+        console.log(newArr);
+    </script>
+</body>
+
+</html>

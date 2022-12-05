@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  展开对象 -->
+    <script>
+        //如果想把对象合在一起，合起来的属性不能重复
+        let obj1 = { name1: '吉祥' }
+        let obj2 = { name2: '坤宇' }
+        let obj3 = { name3: '志伟' }
+        let obj4={...obj1,...obj2,...obj3}
+        console.log(obj4);    //{name1: '吉祥', name2: '坤宇', name3: '志伟'}
+
+    </script>
+</body>
+</html>

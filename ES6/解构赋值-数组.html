@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        解构赋值
+        ES6中允许按照一定模式从数组中提取值，按照对应位置，对变量赋值，对象也可以实现解构
+
+        1、数组解构
+        要求：两边模式相同
+        如果解构不成功，变量的值为undefined
+
+    -->
+     <script>
+        //  1、数组解构
+        // const arr=[1,2,3]
+        // let a=arr[0];
+        // let b=arr[1];
+        // let c=arr[2];
+        // console.log(a,b,c);
+
+        // let [a,b,c]=[1,2,3]
+        // console.log(a,b,c);//1 2 3
+
+        //1.1完全解构
+        const F4 = ['小沈阳', '刘能', '赵四', '宋小宝'];
+        let [xiao, liu, zhao, song] = F4;
+        console.log(xiao, liu, zhao, song);
+
+        // // 1.2.不完成解构
+        // let [a, b, c] = [100, 200]
+        // console.log(a, b, c);//100 200 undefined
+
+        // 1.3不完成解构
+        let [a1, b1] = [100, 200,300]
+        console.log(a1, b1);//100 200 
+        //4.如果模式不同，样式匹配   要求：两边模式相同
+        let a2,b2,c2=[100,200,300]
+        console.log(a2,b2,c2);//undefined undefined (3) [100, 200, 300]
+
+        //  要求：两边模式相同
+        const Arr=[10,[20,30],40]
+        let [a3,[b3,c3],d3]=Arr;
+        console.log(a3,b3,c3,d3);//10 20 30 40
+
+    </script>
+</body>
+</html>

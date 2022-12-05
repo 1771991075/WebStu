@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //父类  错误写法
+        // class Father{
+        //     constructor(x,y){
+        //         this.x = x;
+        //         this.y = y;
+        //     }
+        //     sum(){
+        //         console.log(this.x + this.y);
+        //     }
+        // }
+        // //子类
+        // class Son extends Father{
+        //     constructor(x,y){
+        //         this.x = x;
+        //         this.y = y;
+        //     }
+        // }
+        // var s1 = new Son(10,20);
+        // s1.sum();
+
+
+        class Father{
+            constructor(x,y){
+                this.x = x;
+                this.y = y;
+            }
+            sum(){
+                console.log(this.x + this.y);
+            }
+        }
+        //子类
+        class Son extends Father{
+            constructor(x,y){
+                super(x,y); // 超类  找到父的构造函数 ，在传参
+            }
+        }
+        var s1 = new Son(10,20);
+        s1.sum();
+    </script>
+</body>
+</html>

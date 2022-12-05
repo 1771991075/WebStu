@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script>
+
+        // es5 继承
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+
+        }
+        Person.prototype.say = function () {
+            console.log('saying~~~~1');
+        }
+
+        function Student(name, age, no) {
+            Person.call(this, name, age);
+            this.no = no;
+        }
+        //  Student.prototype=new Person();// 不是特好，也不错，缺点两次调用Person()
+        Student.prototype = Object.create(Person.prototype);
+        Student.prototype.constructor = Student;
+
+        Person.prototype.test = function () {
+            console.log('testing~~~~~2');
+        }
+
+        var s1 = new Student('李坤', 18, '男');
+        console.log(s1.name, s1.age, s1.no);
+        s1.say();
+        s1.test();
+
+
+    </script> -->
+
+    <script>
+
+        // extends  继承父类
+        // super  调用父级构造方法
+        // 父级
+        // class Father{
+
+        // }
+        // 子类继承父类
+        // class Son extends Father{
+
+        // }
+            
+        class Father{
+            constructor(surname){
+                this.surname = surname;
+            }
+            say(){
+                console.log('你的姓是' + this.surname);
+            }
+        }
+        //子类继承父类
+        class Son extends Father{
+
+        }
+        var s1 = new Son('李');
+        console.log(s1.surname);
+        s1.say();
+    </script>
+</body>
+
+</html>

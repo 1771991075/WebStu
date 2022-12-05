@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let arry = [12, 45, 6, 7, 8];
+        // console.log(arry[Symbol.iterator]().next())
+        let obj = {
+            name: "四大名著",
+            book: ["西游记", "水浒传", "红楼梦", "三国演义"],
+            [Symbol.iterator]: function () {
+                let index = 0;
+                let that = this;
+                return {
+                    next() {
+                        if (index < that.book.length) {
+                            let result = {
+                                value: that.book[index],
+                                done: false
+                            };
+                            index++;
+                            return result
+                        } else {
+                            let result = {
+                                value: undefined,
+                                done: true
+                            };
+                            return result
+                        }
+                    }
+                }
+            }
+        }
+
+        for (let value of obj) {
+            console.log(value)
+        }
+        // let name="bbbb"
+        // let user = {
+        //     [name]:"张三",
+        //     age:18
+        // }
+        // console.log(user)
+
+        // 需求：获取对象中book数组的各个属性值
+        // obj.book.forEach(item=>{
+        //     console.log(item)
+        // })
+
+
+    </script>
+</body>
+
+</html>

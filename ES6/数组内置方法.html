@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+       find()   用于找出第一个符合条件的数组成员，如果没有找到返回undefined
+       findIndex()  用于找出第一个符合条件的数组成员的位置，如果没有找到返回-1
+        includes()   判断某个数组是否包含给定的值，返回布尔值
+    
+    -->
+    <script>
+        let arr = [{
+            id: 1,
+            name: '张三'
+        }, {
+            id: 2,
+            name: '李四'
+        }];
+
+        //let target1= arr.find(function(item,index){
+        //      if(item.id===2){
+        //         return true;
+        //      }else{
+        //         return false;
+        //      }
+
+        // })
+
+
+        // let target=    arr.find(function(item,index){
+        //         return  item.id===2
+
+        //     });
+        //     console.log(target);//{id: 2, name: '李四'}
+
+
+        let target = arr.find(item => item.id === 2);
+        console.log(target);//{id: 2, name: '李四'}
+
+
+
+        let index = arr.findIndex(function (item, index) {
+            return item.id === 2
+
+        });
+        console.log(index);//1
+    </script>
+</body>
+
+</html>

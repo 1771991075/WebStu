@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arry = ["孙悟空", "唐僧", "猪八戒", "沙和尚"];
+        // 获取迭代器对象
+        let iterator = arry[Symbol.iterator]()
+        // 在迭代器对象原型属性中有一个next方法 ，next方法就是用来迭代数据的，每调用一次next方法那么数据就会被迭代一次 并返回值
+        console.log(iterator.next())
+        console.log(iterator.next())
+        console.log(iterator.next())
+        console.log(iterator.next())
+        console.log(iterator.next())
+
+    </script>
+</body>
+
+</html>

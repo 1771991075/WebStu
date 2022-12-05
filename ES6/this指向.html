@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        1. 在普通函数中谁调用该函数this就指向谁。
+        2. 在对象中this指向当前对象
+        3. 在构造函数中 this指向的是当前构造出来的实例对象
+        4. 箭头函数没有this指向，箭头函数的this指向指向的是父级非箭头函数的this指向
+        */
+        // console.log(window)
+        function getThis() {
+            console.log(this)
+            // window.alert(12123)
+        }
+        //    window.getThis();
+        getThis();
+        let user = {
+            name: "张三",
+            age: 18,
+            say() {
+                console.log("好好学习天天向上")
+                console.log(this)
+                return {
+                    like: () => {
+                        console.log(this)
+                    }
+                }
+            }
+        }
+        user.say().like();
+
+        function Peopel(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+
+            console.log(this)
+        }
+        let p = new Peopel("张三", 18, "男");
+        console.log(p, "-------")
+
+    </script>
+</body>
+
+</html>

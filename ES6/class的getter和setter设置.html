@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //get   set   属性
+        class Phone {
+            //取值触发
+            get price() {
+                console.log('价格');
+                return '好价格';
+            }
+            //赋值触发
+            set price(value) {
+                console.log('价格属性被修改');
+            }
+        };
+
+        // 实例化一个对象
+        var p1 = new Phone();
+        //   读取一下价格
+        p1.price
+        console.log(p1.price);
+        p1.price = 'free';
+
+        
+    </script>
+</body>
+
+</html>

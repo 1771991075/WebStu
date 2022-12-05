@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 对象的解构要求：
+        变量名与对象的属性名 保持一致，否则是undefined 
+    
+    -->
+    <script>
+        //1.变量名和属性名保持一致
+        let Person = { name: 'Tom', age: 18 };
+        let { name, age } = Person;
+        console.log(name, age);
+        //2.别名
+        let { name: myName, age: myAge } = Person;//// myName myAge 属于别名
+        console.log(myName, myAge);
+
+        //3.不完全解构  顺序问题有没有要求
+        const Song = {
+            name1: '宋丹丹',
+            age1: '不详',
+            xiaopin: function () {
+                console.log('我可以演小品')
+            }
+        }
+        // console.log(Song.name1,Song.age1);
+        // Song.xiaopin()
+        //   let {name1,age1,xiaopin} =Song;
+        //   let {age1,name1,xiaopin} =Song;// 顺序没有要求
+        //   console.log(name1,age1);
+        //   xiaopin();//调用方法
+
+        //   let {xiaopin}=Song;  // 不完全解构
+        //   xiaopin();
+        //如果名字特长，可以定义别名 ，另外顺序可以不一致
+        let {xiaopin:pin,age1}=Song;  // 不完全解构
+        pin();
+        console.log(age1);
+        
+    </script>
+</body>
+</html>

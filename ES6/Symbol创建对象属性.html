@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 1.2 Symbol创建对象属性
+        给对象添加属性和方法，向对象中添加up 和down方法
+        不知道里面有没有这两个方法（不用去查，直接做就可以，很安全，快速） 
+    -->
+    <!-- <script>
+        let game = {
+            name: '',
+            up: function () {
+                console.log('上升');
+            },
+            down: function () {
+                console.log('下降');
+            }
+        }
+
+        //方法一：
+        //1.声明一个对象 
+        let methods={
+            up:Symbol(),
+            down:Symbol()
+
+        }
+        // 2.添加方法
+        game[methods.up]=function(){
+            console.log('up');
+        }
+        game[methods.down]=function(){
+            console.log('down');
+        }
+        console.log(game);//{name: '', up: ƒ, down: ƒ, Symbol(): ƒ, Symbol(): ƒ}
+        //3.调用方法
+        game.up();
+        game.down();
+        game[methods.up]();
+        game[methods.down]();
+
+    </script> -->
+
+    <script>
+        let game = {
+            name: '',
+            up: function () {
+                console.log('上升');
+            },
+            down: function () {
+                console.log('下降');
+            },
+            //方法二1. 添加方法
+            [Symbol.for('up')]: function () {
+                console.log('up');
+            },
+            [Symbol.for('say')]: function () {
+                console.log('我可以说话');
+            }
+        }
+
+        console.log(game);//{name: '', up: ƒ, down: ƒ, Symbol(up): ƒ, Symbol(say): ƒ}
+        //3.调用方法
+
+        game.up();
+        game.down();
+        game[Symbol.for('say')]();
+        game[Symbol.for('up')]()
+
+        //4.还可以有别的方法来调用
+        var arrm = Object.getOwnPropertySymbols(game);
+        console.log(arrm);
+        game[arrm[0]]();
+        game[arrm[1]]();
+
+        //5.别的方法来调用
+        var arrm1 = Reflect.ownKeys(game);
+        console.log(arrm1);// ['name', 'up', 'down', Symbol(up), Symbol(say)]
+        game[arrm1[4]]();
+
+    </script>
+</body>
+
+</html>
