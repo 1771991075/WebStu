@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let p1 = new Promise((reslove,reject)=>{
+            // reslove();
+            reject();
+        })
+        console.log(p1);
+        // .then 用来获取当前promise对象状态 ，有两个参数，两个参数均为回调函数 参数一：表示状态为成功时调用的回调函数，参数二表示状态为失败时调用的回调函数
+        p1.then(()=>{
+            console.log('成功了');
+        },()=>{
+            console.log('失败了');
+        })
+        let num = Math.floor(Math.random()*10);
+        console.log(num);
+        let p2 = new Promise((reslove,reject)=>{
+            if(num>5){
+                reslove(`${num}>5,成功了`)
+            }else{
+                reject(`${num}<=5,失败了`)
+            }
+        })
+        console.log(p2);
+        p2.then((res)=>{
+            // res 参数表示 状态成功的返回值
+            console.log(res,'返回的成功信息');
+        },(err)=>{
+            // err 表示状态失败的返回值
+            console.log(err,'返回的失败信息');
+        })
+    </script>
+</body>
+</html>

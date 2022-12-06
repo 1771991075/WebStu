@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function fun() {
+            return new Promise((reslove, rejcet) => {
+                setTimeout(() => {
+                    console.log(111)
+                    reslove();
+                }, 1000)
+            })
+        }
+        console.log(fun())
+        function fun1() {
+            return new Promise((reslove, reject) => {
+                setTimeout(() => {
+                    console.log(22222)
+                    reslove();
+                }, 2000)
+            })
+        }
+        function fun3() {
+            return new Promise((reslove,reject)=>{
+                setTimeout(()=>{
+                    console.log(3333);
+                    reslove();
+                },3000)
+            })
+        }
+        fun().then(() => {
+            return fun1();
+        }).then(() => {
+            fun3();
+        })
+
+
+    </script>
+</body>
+
+</html>

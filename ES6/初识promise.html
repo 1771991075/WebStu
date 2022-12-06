@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // promise 是es6 提出的一种解决异步编程异步回调地狱的新的解决方案；
+        // Promise 就是一个构造函数
+        // Promise 有三种状态两个过程
+        // 三种状态：等待状态(pending) 成功状态(fulfilled) 失败状态(rejected)
+        // 两个过程：等待=>成功 等待=>失败  只要状态发生改变那么状态就永远是该状态。
+        // 获取promise 对象
+        let p = new Promise((reslove,reject)=>{
+            // reslove 为一个函数 当调用这个函数时promise的状态会从等待到成功
+            // reject 也是一个函数 当调用这个函数时 promise状态会从等待到失败
+            // reslove();
+            reject();
+        });
+        console.log(p)
+        let num = Math.floor(Math.random()*10)
+        console.log(num)
+        let p1 = new Promise((reslove,reject)=>{
+            if(num>5){
+                reslove()
+            }else{
+                reject()
+            }
+        })
+        console.log(p1)
+    </script>
+</body>
+</html>

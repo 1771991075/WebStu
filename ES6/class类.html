@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建对象的方式：1.字面量创建对象 2. 构造函数创建对象 3.class类创建对象（es6）
+        // function People(name,age,sex){
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        // }
+        // // 给对象添加原型属性
+        // People.prototype.id = 110;
+        // People.prototype.say = function(){
+        //     console.log("我爱学习学习使我快乐")
+        // }
+        // let p = new People("张三",18,"男");
+        // console.log(p)
+        // p.say();
+        // 创建类
+        class People {
+            // 定义实例属性
+            // name="张三";
+            sex="男";
+            //构造函数 用来定义实例属性
+            constructor(name,like){
+                // this指向当前构造出来的实例对象
+                console.log(this)
+                this.name = name;
+                this.like = like
+            }
+            // class类默认会将定义的方法挂载到 实例原型属性上
+            say(){
+                console.log("好好学习天天向上")
+            }
+            // 定义类属性 只能通过类名调用不能使用实例调用
+            static username = "嘿嘿嘿";
+            static likePeople(){
+                console.log("喜欢爱学习的人")
+            }
+        }
+        
+        // 类的调用和构造函数调用方法一样都是用 new关键字调用
+        let p = new People("张三","打游戏");
+        let p1 = new People("宋来铺","打游戏")
+        console.log(p)
+        console.log(p1)
+        p.say();
+        // console.log(p.username)
+        console.log(People.username)
+        People.likePeople();
+    </script>
+</body>
+</html>

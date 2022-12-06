@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        class People {
+            like = '学习'
+            constructor(name, age, sex) {
+                this.name = name,
+                    this.age = age,
+                    this.sex = sex
+            }
+            say() {
+                console.log('说话');
+            }
+        }
+        let p = new People('张三', 18, '男');
+        console.log(p);
+        // 类的继承  extends
+        class Teacher extends People {
+            constructor(name, age, sex, job) {
+                // 完成继承 必须调用super函数
+                // 继承的属性
+                super(name, age, sex);
+                //新的熟悉
+                this.job = job;
+            }
+        }
+        let t = new Teacher('李四',20,'男','教师');
+        console.log(t);
+        t.say();
+    </script>
+</body>
+
+</html>

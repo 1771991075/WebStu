@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 生成器函数就是用来解决异步编程问题
+        // 异步编程：setTimeout setInterval ajax请求 文件操作 I/O ... 都有回调函数
+        // 需求：1秒之后输出1111 2 秒之后输出2222 3秒之后哦输出3333 
+        // 异步编程非常容易进入异步回调地狱中
+        // setTimeout(()=>{
+        //     console.log(1111)
+        //     setTimeout(()=>{
+        //         console.log(2222)
+        //         setTimeout(()=>{
+        //             console.log(3333)
+        //             setTimeout(()=>{
+        //                 console.log(4444)
+        //             },40000)
+        //         },3000)
+        //     },2000)
+        // },1000)
+        // 定义生成器函数
+        function * getUser() {
+            console.log("哈哈哈哈哈")
+            // yield 可以将生成器函数中代码分片段执行
+            yield "好好学习";
+            console.log("嘿嘿嘿")
+            yield "天天向上";
+            console.log("啦啦啦啦")
+            yield "学习使我快乐"
+        }
+        // console.log(getUser)
+        // console.log(getUser())
+        let iterator = getUser();
+        //调用生成器函数
+        console.log(iterator.next())
+        console.log(iterator.next())
+        console.log(iterator.next())
+
+
+        let fun = () => {
+            setTimeout(() => {
+                console.log(11111)
+                gen.next();
+            }, 1000)
+        }
+        let fun1 = () => {
+            setTimeout(() => {
+                console.log(2222)
+                gen.next();
+            }, 2000)
+        }
+        let fun2 = () => {
+            setTimeout(() => {
+                console.log(3333)
+            }, 3000)
+        }
+        function* Time() {
+            yield fun();
+            yield fun1();
+            yield fun2();
+        }
+        let gen = Time();
+        gen.next();
+
+    </script>
+</body>
+
+</html>

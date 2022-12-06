@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let p = new Promise((reslove,reject)=>{
+            reject('哈哈哈');
+        })
+
+        let p1 = new Promise((reslove,reject)=>{
+            reslove('哈哈哈2222222');
+        })
+
+        let p2 = new Promise((reslove,reject)=>{
+            reslove('哈哈哈33333333');
+        })
+
+        // Promise 中的类属性 all方法 可以根据多个promise对象来返回状态，若所有的promise对象状态为成功状态则 该primise为成功状态 只要有一个promise对象状态为失败则失败
+        Promise.all([p,p1,p2]).then((res)=>{
+            console.log('成功了',res);
+        }).catch(err=>{
+            console.log('失败了',err);
+        })
+
+        // Promise 类方法 race 当第一个promise对象状态为成功时则当前promise对向为成功 第一个promise状态为失败则当前promise状态为失败
+        Promise.race([p,p1,p2]).then((res)=>{
+            console.log('race成功了',res);
+        }).catch(err=>{
+            console.log('race失败了',err);
+        })
+
+        //  Promise.all([p,p1,p2])   Promise.all([p,p1,p2]) 相当于 new Promise(()=>{});
+        //  直接将promise状态变为成功状态
+        Promise.resolve('成功了').then((res)=>{
+            console.log(res);
+        })
+        // Promise.resolve("成功啦") 相当于 new Promise((reslove,rejcet)=>{reslove('成功啦')})
+
+        // reject直接将promise状态变为失败状态
+        Promise.reject('失败了').catch((err)=>{
+            console.log(err);
+        })
+    </script>
+</body>
+</html>
