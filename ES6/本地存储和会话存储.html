@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="savaData()">本地存储数据</button>
+    <button onclick='getData()'>获取本地存储的数据</button>
+    <button onclick="removeAge()">删除本地存储的age</button>
+    <button onclick="savaObj()">本地存储对象</button>
+    <button onclick="getObj()">获取本地存储的对象</button>
+    <br>
+    <br>
+    <button onclick="sessionSave()">会话存储数据</button>
+    <button onclick="getSession()">获取会话存储的属性</button>
+    <button onclick="removeSession()">删除会话存储</button>
+</body>
+<script>
+    function savaData() {
+        let name = '张三'
+        // 本地存储数据
+        console.log(window)
+        // setItem 存储数据 参数一 属性名  参数二属性值
+        localStorage.setItem("user", "李四")
+        localStorage.setItem("age", 18)
+    }
+
+    function getData() {
+        // 获取本地存储指定属性
+        let username = localStorage.getItem("user");
+        console.log(username)
+        let age = localStorage.getItem("age")
+        console.log(18)
+    }
+    function removeAge() {
+        // 删除本地存储指定的属性
+        localStorage.removeItem("age")
+    }
+
+    let cartList = [
+        {
+            name: "辣条",
+            price: 0.5,
+            num: 100
+        }, {
+            name: "特仑苏",
+            price: 5,
+            num: 10
+        }
+    ]
+
+    function savaObj() {
+        // 若存储时存储不是字符串类型默认会将其转化为字符串类型存储
+        // localStorage.setItem("cart",cartList)
+        //注意：在存储对象时，必须先讲对象转化为字符串在进行存储
+        let list = JSON.stringify(cartList);
+        //  console.log(typeof list)
+        localStorage.setItem("cart", list)
+        let obj = {
+            name: "张三",
+            age: 17
+        }
+        localStorage.setItem("userinfo", JSON.stringify(obj))
+    }
+
+    function getObj() {
+        let list = localStorage.getItem("cart");
+        console.log(JSON.parse(list))
+        // 将字符串在转化为对象
+    }
+
+    // ------------------------
+    function sessionSave() {
+        // 会话存储
+        console.log(window)
+        sessionStorage.setItem("msg", "学习使我快乐")
+    }
+    function getSession() {
+        let msg = sessionStorage.getItem("msg");
+        console.log(msg)
+    }
+
+    function removeSession() {
+        sessionStorage.removeItem("msg")
+    }
+
+
+    /*
+     会话存储和本地存储的区别：
+     1.会话存储当浏览器关闭后就会自动删除
+     2.本地存储只要手动删除或使用代码删除那么就会永远存储在本地，浏览器关闭后也依旧会存在
+    */
+</script>
+
+</html>
