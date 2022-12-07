@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="https://demo26.crmeb.net/uploads/attach/2021/11/15/small_3757ded915c3389d574a25076e58fe3f.jpg" alt="">
+    <script>
+        // Promise 构造函数  创建promise对象
+        // 三个状态 两个过程
+        let p = new Promise((reslove,reject)=>{
+            reslove("哈哈哈");
+            // reject("失败啦")
+        })
+        p.then((res)=>{
+            console.log("成功啦",res)
+        }).catch((err)=>{
+            console.log("catch",err)
+        }).finally(()=>{
+            console.log("都会进入")
+        })
+        console.log(p)
+        // Promise.all([p1,p2,p3])  
+        Promise.resolve("哈哈哈哈").then((res)=>{
+            console.log(res)
+        }) 
+        Promise.reject("失败啦").catch((err)=>{
+            console.log(err)
+        })
+        // 相当于
+        new Promise((reslove)=>{
+            reslove("哈哈哈哈")
+        }).then(res=>{
+            console.log(res)
+        })
+    </script>
+    <script src="../xhr/js/test.js"></script>
+</body>
+</html>

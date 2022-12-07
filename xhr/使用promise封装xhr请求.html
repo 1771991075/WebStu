@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<button onclick="getCate()">点击获取数据</button>
+
+<body>
+    <script>
+
+        function request(method, url) {
+            return new Promise((reslove, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open(method, url);
+                xhr.send();
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        let data = xhr.response;
+                        data = JSON.parse(data);
+                        reslove(data);
+                    }
+                }
+            })
+        }
+        request('get', 'http://demo26.crmeb.net/api/category').then(res => {
+            console.log(res);
+            return request('get', 'http://demo26.crmeb.net/api/pc/get_banner')
+        }).then(res => {
+            console.log(res);
+        })
+
+    </script>
+    <script src="../xhr/json/one.json"></script>
+    <script>
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('get', '../xhr/json/one.json');
+        xhr.send();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                console.log(JSON.parse(xhr.response));
+                let xhr1 = new XMLHttpRequest();
+                xhr1.open('get', '../xhr/json/two.json');
+                xhr1.send();
+                xhr1.onreadystatechange = () => {
+                    if (xhr1.readyState === 4) {
+                        console.log(JSON.parse(xhr1.response));
+                    }
+                }
+            }
+        }
+
+        //封装xhr
+        function request1(method, url) {
+            return new Promise((reslove, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open(method, url);
+                xhr.send();
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        let data = JSON.parse(xhr.response);
+                        reslove(data);
+                    }
+                }
+            })
+        }
+
+        request1('get', '../xhr/json/one.json').then((res) => {
+            console.log(res);
+            return request1('get', '../xhr/json/two.json')
+        }).then((res) => {
+            console.log(res);
+        })
+
+        function getCate() {
+            request1('get', '../xhr/json/one.json').then((res) => {
+                console.log(res);
+                return request1('get', '../xhr/json/two.json')
+            }).then((res) => {
+                console.log(res);
+            })
+        }
+    </script>
+</body>
+
+</html>

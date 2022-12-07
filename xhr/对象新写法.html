@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let name = "张三";
+        let age = 18;
+        // let obj = {
+        //     name:name,
+        //     age:age
+        // }
+        // es6中 定义对象 若 属性名如属性值的变量名相同则可以省略一个属性名
+        let obj = {
+            name,
+            age
+        }
+        console.log(obj);
+
+        let user = {
+            name,
+            age,
+            // say:function(){
+
+            // }
+            say() {
+                console.log("哈哈哈")
+            },
+            like: () => {
+                console.log("喜欢学习")
+            }
+        }
+
+        let people = {
+            names: "张三",
+            sex: "男",
+            ages: 18,
+            list: ["学习", "打游戏"]
+        }
+        // 解构
+        let {names,sex,ages,list:[a,b]} = people;
+        console.log(names,sex,ages,a,b);
+
+        let arry = [1,2,3,4];
+        let [q,w,e,r] = arry;
+        console.log(q,w,e,r);
+        let userList = [
+            {
+                namess:"张三",
+                agess:18
+            }
+        ]
+        let [{namess,agess}] = userList;
+        console.log(namess,agess);
+    </script>
+</body>
+
+</html>

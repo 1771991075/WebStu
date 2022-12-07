@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // function request() {
+        //     return new Promise((reslove, reject) => {
+        //         reslove('成功了')
+        //     })
+        // }
+        // request()  // 成功状态的promise对象
+        // request().then(res => {
+        //     console.log(res)
+        // })
+
+        // async 异步
+        // 定义函数为异步函数 使用关键字async 定义的函数 会自动返回一个成功状态的promise对象，当前函数的返回值则为promise对象成功状态的返回值
+
+        async function request(){
+            return '成功了哈哈哈哈哈哈'
+        }
+        console.log(request());
+
+        // await 等待 await必须在async函数中使用 当在async中使用await时，代码会等到await关键字后面所有代码执行完毕后才会继续往下执行(前提是await关键字后微promise对象时)；
+        let getUser = async ()=>{
+            let res = await '1234'
+            console.log(res);
+        }
+        getUser();
+
+        let getsex = ()=>{
+            return new Promise((reslove,reject)=>{
+                setTimeout(()=>{
+                    console.log(1111);
+                    reslove('成功了了了了')
+                },2000)
+            })
+        }
+        let getAge = async ()=>{
+            let res = await getsex();
+            console.log(res);
+            console.log(222222);
+        }
+        getAge();
+
+        // async 通常与 await 搭配使用，await必须在async函数中使用，当在async函数中遇到await关键字时，程序会等待await关键字后面所有异步代码执行完毕后才会继续执行，注意：await 后面通常会跟一个promise异步任务当promise状态改变才会执行后面代码
+        // js是单线程的，在执行时会分为同步任务和异步任务，异步任务又分为宏任务(setTimeout,setInterVal)和微任务(promise. await)，微任务优先于宏任务执行，
+
+        let fun = ()=>{
+            return new Promise((reslove,reject)=>{
+                setTimeout(()=>{
+                    reject('失败了')
+                },2000)
+            })
+        }
+        async function fun1(){
+            // 使用try catch 语法捕获await 后面的promise 失败状态
+            try{
+                let res = await fun();
+                console.log(1235235235);
+            }catch(err){
+                console.log(err);
+            }
+        }
+        fun1();
+
+    </script>
+</body>
+
+</html>

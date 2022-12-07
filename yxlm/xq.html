@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .big_img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="" alt="" class="big_img">
+        <div class="B">
+            <img src="" alt="">
+            <p></p>
+        </div>
+        <div class="Q">
+            <img src="" alt="">
+            <p></p>
+        </div>
+        <div class="W">
+            <img src="" alt="">
+            <p></p>
+        </div>
+        <div class="E">
+            <img src="" alt="">
+            <p></p>
+        </div>
+        <div class="R">
+            <img src="" alt="">
+            <p></p>
+        </div>
+    </div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        let url = window.location .href;
+        let arr = url.split('?');
+        let heroId = arr[1];
+        //封装xhr
+        function request(method, url) {
+            return new Promise((reslove, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open(method, url);
+                xhr.send();
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        let data = JSON.parse(xhr.response);
+                        reslove(data);
+                        console.log(data);
+                        $('.big_img').attr('src',data.skins[0].sourceImg);
+                        $('.B>img').attr('src',data.spells[1].abilityIconPath);
+                        $('.Q>img').attr('src',data.spells[2].abilityIconPath);
+                        $('.W>img').attr('src',data.spells[4].abilityIconPath);
+                        $('.E>img').attr('src',data.spells[0].abilityIconPath);
+                        $('.R>img').attr('src',data.spells[3].abilityIconPath);
+                        $('.B>p').text(data.spells[1].description);
+                        $('.Q>p').text(data.spells[2].description);
+                        $('.W>p').text(data.spells[4].description);
+                        $('.E>p').text(data.spells[0].description);
+                        $('.R>p').text(data.spells[3].description);
+                    }
+                }
+            })
+        }
+        request('get', 'https://game.gtimg.cn/images/lol/act/img/js/hero/'+ heroId+'.js');
+
+    </script>
+
+</body>
+</html>

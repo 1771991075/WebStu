@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 400px;
+            height: 600px;
+            margin: 50px auto;
+            border: 1px solid #333;
+        }
+
+        .box .nav ul {
+            height: 50px;
+            width: 100%;
+            background: aqua;
+        }
+
+        .box .nav ul li {
+            float: left;
+            line-height: 50px;
+            width: 100px;
+            text-align: center;
+        }
+
+        .box .nav ul li a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .on a {
+            color: darkred !important;
+            font-weight: bold;
+        }
+
+        .box .con .con_ul .con_li ul {
+            width: 98%;
+            height: 550px;
+            overflow: scroll;
+            margin: auto;
+        }
+
+        .box .con .con_ul .con_li ul a {
+            display: block;
+            width: 80px;
+            height: 100px;
+            float: left;
+            margin: 10px 6px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .box .con .con_ul .con_li ul a img {
+            width: 80px;
+        }
+
+        .box .con .con_ul .con_li ul a p{
+            width: 100%;
+            height: 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <div class="nav">
+            <ul>
+                <li class="on"><a href="javascript:;">首页</a></li>
+                <li><a href="javascript:;">公告</a></li>
+                <li><a href="javascript:;">资讯</a></li>
+                <li><a href="javascript:;">商城</a></li>
+            </ul>
+        </div>
+        <div class="con">
+            <ul class="con_ul">
+                <li class="con_li">
+                    <ul>
+                    </ul>
+                </li>
+                <li>公告页面</li>
+                <li>资讯页面</li>
+                <li>商城页面</li>
+            </ul>
+        </div>
+    </div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        $(function () {
+            $('.con_li').show().siblings().hide();
+            $('.nav>ul>li').on('click', function () {
+                $(this).addClass('on').siblings().removeClass('on');
+                let index = $(this).index();
+                $('.con>ul>li').eq(index).show().siblings().hide();
+            })
+        })
+    </script>
+    <script>
+        //封装xhr
+        function request(method, url) {
+            return new Promise((reslove, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open(method, url);
+                xhr.send();
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        let data = JSON.parse(xhr.response);
+                        reslove(data);
+                        console.log(data);
+                        for ( var i = 0; i < data.hero.length; i++){
+                            var heroId = data.hero[i].heroId;
+                            var a = $('<a href="./xq.html?'+ heroId +'"><img src="https://game.gtimg.cn/images/lol/act/img/champion/'+ data.hero[i].alias +'.png" alt=""><p>'+ data.hero[i].name+ '</p></a>');
+                            $('.con_li>ul').append(a);
+                        }
+                    }
+                }
+            })
+        }
+        
+        request('get', 'https://game.gtimg.cn/images/lol/act/img/js/heroList/hero_list.js');
+
+
+    </script>
+</body>
+
+</html>

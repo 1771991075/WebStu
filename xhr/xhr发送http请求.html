@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+        // 协议分为http、https(比http更安全)
+        // XMLHttpRequest(xhr)
+        // 创建xhr实例
+     -->
+    <script>
+
+        let xhr = new XMLHttpRequest();
+        console.log(xhr);
+        //设置请求方式 get,post 请求地址
+        // 参数一请求方式 参数二请求地址
+        xhr.open("GET", 'http://demo26.crmeb.net/api/category');
+        // 发送请求
+        xhr.send();
+        // 监听请求状态 0,1,2,3,4   前两个状态监听不到，只能监听到后三个状态，
+        xhr.onreadystatechange = function () {
+            console.log('状态改变了');
+            // 0 表示 实例创建成功还没有设置请求方式 和请求地址
+            // 1 表示 设置请求方式请求地址但还没有调用send();
+            // 2 表示 发送请求了但还没有接收到服务端的响应
+            // 3 表示 客户端接收到部分响应数据但还没有完全接受所有响应数据
+            // 4 表示 客户端完全接受到服务端响应 完成请求
+            if (xhr.readyState === 4) {
+                // 获取去请求到的数据 JSON.parse 将字符串转化为对象 JSON.stringify 将对象转化为字符串
+                // console.log(xhr.response);
+                // JSON.parse(xhr.response);
+                // console.log(JSON.parse(xhr.response));
+                let data = JSON.parse(xhr.response);
+                console.log(data.data);
+                let html = '';
+                data.data.forEach(item => {
+                    let div = ` <div>
+                                    <img src="${item.big_pic}" alt="">
+                                    <p>${item.cate_name}</p>
+                                </div>
+                    `;
+                    html+=div;
+                });
+                console.log(html);
+                document.body.innerHTML = html;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

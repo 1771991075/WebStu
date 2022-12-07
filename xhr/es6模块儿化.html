@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        //所谓的模块儿化就是 每一个js文件都是一个模块儿 模块儿与模块儿之间相互不影响；
+        /* 
+         导出模块儿：
+          export default 默认导出属性 每个js文件只能导出一次 每次只能导出一个属性；
+          export {} 导出多个属性 每个js文件可以导出多次 每次可以导出多个属性
+         导入模块儿：
+         export default : import xxx from '模块儿路径'
+         expor {}  : import {xx,xx} from '模块儿路径'
+        */
+        
+        import ajs from './js/a.js';
+        import {a,obj} from './js/b.js';
+        console.log(ajs);
+        console.log(a,obj);
+        console.log(a);
+        console.log(typeof ajs);
+
+    </script>
+</body>
+</html>

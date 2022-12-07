@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let user = [
+            {
+                name: "张三",
+                age: 18
+            },
+            {
+                name: "李四",
+                age: 20
+            }, {
+                name: "王武",
+                age: 10
+            }
+        ]
+        // 获取数组中年龄大于18的元素并放到一个新的数组中
+        // filter 过滤数组 返回满足条件的新的数组 不会改变原数组
+        let newArry = user.filter((item, index) => {
+            console.log(item, index);
+            return item.age >= 18;
+        })
+        console.log(newArry);
+        let arry = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10];
+        let numList = arry.filter((item, index) => {
+            return item > 5
+        })
+        console.log(numList)
+        console.log(arry)
+
+        //  findIndex 查询数组中满足条件的元素所对应的第一个索引
+        //  若该数组中不存在满足当前条件的元素则返回-1
+        let index = arry.indexOf((item, index) => {
+            return item == 10;
+        })
+        console.log(index);
+
+        let userRegest = [
+            {
+                username: "admin",
+                password: 123456
+            }, {
+                username: "lzq",
+                password: 123456
+            }
+        ]
+
+        function isRegiest() {
+            //获取输入框的值
+            let username = document.querySelector("input").value;
+            console.log(username)
+            // 判断当前用户是否注册
+            // for(let i=0;i<userRegest.length;i++){
+            //     if(username == userRegest[i].username){
+            //         alert("已注册")
+            //     }else{
+            //         alert("未注册")
+            //     }
+            // }
+            let index = userRegest.findIndex((item, index) => {
+                return item.username === username;
+            })
+            if (index == -1) {
+                alert("未注册")
+            } else {
+                alert("已注册")
+            }
+        }
+
+        let list = ["张三", "李四", "王武"];
+        //    includes 包含 若数组中包含当前元素则返回true 若不包含这个元素则返回fasle
+        console.log(list.includes("aaa"))
+        let str = 'abcdefg';
+        //    includes 包含 若字符串中包含当前字符则返回true 若不包含这个元素则返回fasle
+        console.log(str.includes("v"))
+
+    </script>
+</body>
+
+</html>

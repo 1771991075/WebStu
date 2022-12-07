@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arry = ["张三",'李四',"王武"]
+        // ... 扩展运算符 将数据结构中每一项取出
+        console.log(...arry)
+        let list = ["1","2"]
+        let newList = [...arry,...list]
+        console.log(newList)
+        
+        let userList = ["张飞",'关羽',"刘备"];
+        //扩展运算符拷贝一层时是深拷贝 又重新开辟了一个新的内存地址
+        let user = [...userList];
+        user[0] = '王武'
+        console.log(user)
+        console.log(userList,'userlist')
+        // let obj = {
+        //     name:"张三"
+        // }
+        // let obj1= obj;
+        // obj1.name = '李四'
+    
+        // console.log(obj1)
+    
+        // console.log(obj)
+        // 深拷贝：
+        // let
+        
+        let goods = {
+            name:"电脑",
+            price:9999,
+            list:["华为","小米","苹果"]
+        }
+        let newGoods = {...goods};
+        newGoods.name = '手机'
+        newGoods.list[0] = "联想"
+        console.log(newGoods)
+        console.log(goods,"-----old")
+        // 若扩展运算符拷贝多层时 就是浅拷贝
+    </script>
+</body>
+</html>
