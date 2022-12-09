@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            background: whitesmoke;
+        }
+
+        .box {
+            width: 1200px;
+            margin: auto;
+        }
+        
+        .box .nav {
+            width: 100%;
+            height: 50px;
+        }
+
+        .box .nav ul {
+            display: flex;
+            height: 50px;
+            width: 100%;
+            background: white;
+            justify-content: space-around;
+        }
+
+        .box .nav ul li {
+            height: 50px;
+            width: 100px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .box .nav ul li a {
+            display: block;
+            width: 60px;
+            height: 50px;
+            text-decoration: none;
+            margin: 0 20px;
+            color: black;
+            font-size: 14px;
+        }
+
+        .box .nav ul li a:hover {
+            color: red;
+        }
+
+        .box .con {
+            width: 1200px;
+        }
+
+        .box .con ul {
+            width: 100%;
+        }
+
+        .box .con ul li:nth-child(5n+5) {
+            margin: 20px 0px 0px 0px;
+        }
+
+        .box .con ul li {
+            background: white;
+            padding: 16px;
+            width: 224px;
+            height: 340px;
+            margin: 20px 20px 0 0;
+            cursor: pointer;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        .box .con ul li:hover {
+            box-shadow: 0px 0px 3px #999;
+        }
+
+        .box .con ul li img {
+            width: 192px;
+            height: 192px;
+        }
+
+        .box .con ul li .span1 {
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .box .con ul li .p1 {
+            margin-top: 12px;
+        }
+
+        .box .con ul li .p2 {
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            display: -webkit-box;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            margin-top: 8px;
+            height: 40px;
+            font-size: 14px;
+            color: #5a5a5a;
+        }
+
+        .box .con ul li .p3 {
+            margin-top: 10px;
+        }
+
+        .box .con ul li .span2 {
+            color: #aaa;
+            font-size: 12px;
+            text-decoration: line-through;
+        }
+
+        .box .con ul li .span3 {
+            color: #aaa;
+            font-size: 12px;
+            float: left;
+        }
+
+        .box .con ul li .span4 {
+            float: right;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .on a {
+            color: red !important;
+            border-bottom: 1px solid red;
+        }
+        .nodata{
+            width: 100%;
+            text-align: center;
+            margin: 100px 0;
+        }
+        .nodata img{
+            width: 200px;
+        }
+        .nodata p{
+            font-size: 14px;
+            color: #919191;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <div class="nav">
+            <ul>
+            </ul>
+        </div>
+        <div class="con">
+            <ul>
+            </ul>
+        </div>
+    </div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script>
+        let id = 53;
+        //导航栏
+        function request(method, url) {
+            return new Promise((reslove, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open(method, url);
+                xhr.send();
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        let data = JSON.parse(xhr.response);
+                        reslove(data);
+                        console.log(data);
+                        let html = '';
+                        data.data.forEach(item => {
+                            let li = ` <li onclick="getId(${item.id})"><a href="javascript:;">${item.cate_name}</a></li>
+                            `;
+                            html += li;
+                        });
+                        document.querySelector('.nav>ul').innerHTML = html;
+                    }
+                }
+            }).then(() => {
+                $('.nav>ul>li').eq(0).addClass('on');
+                $('.nav>ul>li').on('click', function () {
+                    $(this).addClass('on').siblings().removeClass('on');
+                })
+            })
+        }
+        request('get', 'http://demo26.crmeb.net/api/category');
+
+        function getId(id) {
+            id = id;
+            request1('get', 'http://demo26.crmeb.net/api/pc/get_products?page=1&limit=25&cid=' + id + '&sid=0&priceOrder=&news=0');
+        };
+
+        //下方列表
+        function request1(method, url) {
+            return new Promise((reslove, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open(method, url);
+                xhr.send();
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        let data = JSON.parse(xhr.response);
+                        reslove(data);
+                        console.log(data);
+                        if(data.data.list.length === 0){
+                            let html = `<div class="nodata">
+                                <img src="http://demo26.crmeb.net/home/img.noGoods.348185d.png" alt='' />
+                                <p>暂无数据</p>
+                                </div>`
+                                $('.con>ul').html(html);
+                                return 
+                        }
+                        let html = '';
+                        data.data.list.forEach(item => {
+                            let div = `<li>
+                                    <img src="${item.image}" alt="">
+                                    <p class="p1"><span class="span1">￥${item.price}</span><span class="span2">￥${item.ot_price}</span></p>
+                                    <p class="p2">${item.store_name}</p>
+                                    <p class="p3"><span class="span3">${item.sales}人付款</span><span class="span4">${item.star}分</span></p>
+                                    </li>
+                            `;
+                            html += div;
+                        });
+                        document.querySelector('.con>ul').innerHTML = html;
+                    }
+                }
+            })
+        }
+        request1('get', 'http://demo26.crmeb.net/api/pc/get_products?page=1&limit=25&cid=' + id + '&sid=0&priceOrder=&news=0');
+        
+    </script>
+</body>
+
+</html>
