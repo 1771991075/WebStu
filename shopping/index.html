@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
     <title>Document</title>
     <style>
         * {
@@ -21,7 +21,7 @@
             width: 1200px;
             margin: auto;
         }
-        
+
         .box .nav {
             width: 100%;
             height: 50px;
@@ -136,15 +136,18 @@
             color: red !important;
             border-bottom: 1px solid red;
         }
-        .nodata{
+
+        .nodata {
             width: 100%;
             text-align: center;
             margin: 100px 0;
         }
-        .nodata img{
+
+        .nodata img {
             width: 200px;
         }
-        .nodata p{
+
+        .nodata p {
             font-size: 14px;
             color: #919191;
         }
@@ -158,6 +161,9 @@
             <ul>
             </ul>
         </div>
+        <main>
+
+        </main>
         <div class="con">
             <ul>
             </ul>
@@ -197,6 +203,7 @@
 
         function getId(id) {
             id = id;
+            render([]);
             request1('get', 'http://demo26.crmeb.net/api/pc/get_products?page=1&limit=25&cid=' + id + '&sid=0&priceOrder=&news=0');
         };
 
@@ -211,32 +218,36 @@
                         let data = JSON.parse(xhr.response);
                         reslove(data);
                         console.log(data);
-                        if(data.data.list.length === 0){
-                            let html = `<div class="nodata">
-                                <img src="http://demo26.crmeb.net/home/img.noGoods.348185d.png" alt='' />
+                        render(data.data.list);
+                    }
+                }
+            })
+        }
+        request1('get', 'http://demo26.crmeb.net/api/pc/get_products?page=1&limit=25&cid=' + id + '&sid=0&priceOrder=&news=0');
+
+        render([]);
+        function render(list) {
+            if (list.length === 0) {
+                let html = `<div class="nodata">
+                            <img src='http://demo26.crmeb.net/home/img/noGoods.348185d.png' alt='' />
                                 <p>暂无数据</p>
                                 </div>`
-                                $('.con>ul').html(html);
-                                return 
-                        }
-                        let html = '';
-                        data.data.list.forEach(item => {
-                            let div = `<li>
+                document.querySelector('.con>ul').innerHTML = html;
+                return
+            }
+            let html = '';
+            list.forEach(item => {
+                let div = `<li>
                                     <img src="${item.image}" alt="">
                                     <p class="p1"><span class="span1">￥${item.price}</span><span class="span2">￥${item.ot_price}</span></p>
                                     <p class="p2">${item.store_name}</p>
                                     <p class="p3"><span class="span3">${item.sales}人付款</span><span class="span4">${item.star}分</span></p>
                                     </li>
                             `;
-                            html += div;
-                        });
-                        document.querySelector('.con>ul').innerHTML = html;
-                    }
-                }
-            })
+                html += div;
+            });
+            document.querySelector('.con>ul').innerHTML = html;
         }
-        request1('get', 'http://demo26.crmeb.net/api/pc/get_products?page=1&limit=25&cid=' + id + '&sid=0&priceOrder=&news=0');
-        
     </script>
 </body>
 
