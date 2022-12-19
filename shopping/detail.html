@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/detail.css">
+</head>
+
+<body>
+    <div class="box">
+        <div class="con">
+            <div class="left">
+                <img src="" alt="">
+                <div class="leftbtn"><</div>
+                <div class="rightbtn">></div>
+                <ul>
+                </ul>
+            </div>
+            <div class="right">
+                <h3></h3>
+                <div class="bgred">
+                    <div class="leftp">
+                        <p class="leftp_1"></p>
+                        <p class="leftp_2"></p>
+                    </div>
+                    <div class="rightp">
+                        <p class="rightp_1"></p>
+                        <p class="rightp_2">销量</p>
+                    </div>
+                </div>
+                <div class="bgyhq">
+                    <div class="yhq">
+                        <div class="yhqleft">
+                            <p>优惠券</p>
+                        </div>
+                        <div class="yhqright">
+                            <div class="qqq">
+                                <span class="span1"><a class="tyq">通用券</a> <a class="mj">满0减1 </a></span>
+                                <div class="buxianshi">
+                                    <span class="span2">不限时</span><a href="javascript:;">领取</a>
+                                </div>
+                            </div>
+                            <div class="qqq">
+                                <span class="span1"><a class="tyq">通用券</a> <a class="mj">满0减50 </a></span>
+                                <div class="buxianshi">
+                                    <span class="span2">不限时</span><a href="javascript:;">领取</a>
+                                </div>
+                            </div>
+                            <div class="qqq" id="yhq">
+                                <span class="span1"><a class="tyq">通用券</a> <a class="mj">满0减50 </a></span>
+                                <div class="buxianshi">
+                                    <span class="span2">不限时</span><a href="javascript:;">领取</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 更多优惠 -->
+                    <div class="gdyh">
+                        <a href="javascript:;" onclick="getYh()">更多优惠</a><img src="./img/down.png" alt="">
+                    </div>
+                </div>
+                
+                <div class="bottom">
+                    <!-- 颜色分类 -->
+                    <div class="ysfl">
+                        <p>颜色分类</p>
+                        <!-- 型号 -->
+                        <div class="xh">
+                            <div class="xhs">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 数量 -->
+                    <div class="sl">
+                        <p class="slp">数量</p>
+                        <button class="less on">➖</button>
+                        <div class="count">1</div>
+                        <button class="add">➕</button>
+                        <p class="kc">（库存2件）</p>
+                    </div>
+                    <!-- 加入购物车 -->
+                    <div class="buy">
+                        <div class="shopcard">
+                            <a>加入购物车</a>
+                        </div>
+                        <div class="ljgm">
+                            <a>立即购买</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail">
+            <div class="nav">
+                <!-- 产品详情 -->
+                <div class="cpxq">
+                    <a href="javascript:;">产品详情</a>
+                </div>
+                <!-- 评论 -->
+                <div class="pl">
+                    <a href="javascript:;">累计评论</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/jquery-3.6.1.js"></script>
+    <script src="./js/requestList.js"></script>
+    <script>
+        // 获取传过来的id和地址
+        let listurl = window.location.search;
+        let id = listurl.split('?')[1].split('&')[0];
+        let len = listurl.indexOf('&')+1;
+        listurl = listurl.slice(len,listurl.length);
+        
+        // 发送每个商品请求数据
+        function request2(method, url) {
+            return new Promise((reslove, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open(method, url);
+                xhr.send();
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        let data = JSON.parse(xhr.response);
+                        reslove(data);
+                        console.log(data);
+                        let html = '';
+                        let arr = [];
+                        for (let i in data.data.productValue){
+                            arr.push(i);
+                        }
+                        let html1 = '';
+                        //传过去索引号和型号的库存
+                        arr.forEach((item,index)=>{
+                            let xh = `<div class="xhs" onclick="getXh(${index},${data.data.productValue[arr[index]].stock},${data.data.productValue[arr[index]].price})">${item}<div class="check">√</div></div>`;
+                            html1 += xh;
+                        })
+                        //现价
+                        $('.leftp_2').text('￥' + data.data.productValue[arr[0]].price + '');
+                        //库存
+                        $('.kc').text('（库存'+ data.data.productValue[arr[0]].stock +'件）');
+                        document.querySelector('.xh').innerHTML = html1;
+                        //渲染左侧轮播中多个图片
+                        $('.con>.left>img').attr('src', data.data.storeInfo.slider_image[0]);
+                        data.data.storeInfo.slider_image.forEach((item) => {
+                            let li = ` 
+                                <li>
+                                    <img src="${item}" alt="">
+                                </li>
+                            `;
+                            html += li;
+                        });
+                        document.querySelector('.con>.left>ul').innerHTML = html;
+                    }
+                }
+            }).then(() => {
+                //给每个li增加事件
+                $('.con>.left>ul>li').on('mouseenter', function () {
+                    $(this).addClass('active').siblings().removeClass('active');
+                    let src = $(this).children().attr('src');
+                    $('.con>.left>img').attr('src', src);
+                })
+                //判断长度给右按钮更换背景颜色
+                let flag = 0;
+                if ($('.con>.left>ul>li').length > 4) {
+                    $('.rightbtn').css('background', '#333');
+                    $('.rightbtn').on('click', function () {
+                        $('.con>.left>ul').css('transform' , 'translateX(-50px)');
+                        $('.rightbtn').css('background', '#999');
+                        flag = 1;
+                        if(flag == 1){
+                            $('.leftbtn').css('background', '#333');
+                            $('.leftbtn').on('click', function () {
+                                $('.con>.left>ul').css('transform' , 'translateX(0)');
+                                $('.leftbtn').css('background', '#999');
+                                $('.rightbtn').css('background', '#333');
+                            });
+                            flag = 0;
+                        }
+                    })
+                };
+                //刚加载让第一个型号选中
+                $('.xh>div').eq(0).children().show();
+                //型号第一个变色
+                $('.xh>div').eq(0).css({'border':'1px solid #e93323','color':'#e93323'});
+            })
+        }
+        request2('get', 'http://demo26.crmeb.net/api/product/detail/' + id + '');
+
+        requestList('get', listurl,id);
+
+        //定义库存数量变量
+        var kcCount  = 0;
+        //定义型号点击事件
+        function getXh(index,stock,nowprice){
+            $('.xh>div').eq(index).css('border','1px solid #e93323').siblings().css('border','1px solid #d3d3d3');
+            $('.xh>div').eq(index).css('color','#e93323').siblings().css('color','#d3d3d3');
+            $('.xhs>div').hide();
+            $('.xh>div').eq(index).children().show();
+            //更新现价
+            $('.leftp_2').text('￥' + nowprice + '');
+            //更新每个型号库存
+            $('.kc').text('（库存'+ stock +'件）');
+            //并赋值给库存变量
+            kcCount = stock;
+        }
+
+        //数量加减点击事件
+        $('.less').on('click',function(){
+            let count = $('.count').text();
+            $('.less').removeClass('on');
+            $('.add').removeClass('on');
+            count = Number(count)-1;
+            $('.count').text(count);
+            if(count == 1){
+                $('.less').addClass('on');
+            }
+            
+        })
+        $('.add').on('click',function(){
+            let count = $('.count').text();
+            $('.add').removeClass('on');
+            $('.less').removeClass('on');
+            count = Number(count)+1;
+            $('.count').text(count);
+            if(count == kcCount){
+                $('.add').addClass('on');
+            }
+        })
+
+        //优惠券点击事件
+        var flag = 1;
+        function getYh(){
+            $yhq = $(
+                `<div class="qqq">
+                    <span class="span1"><a class="tyq">通用券</a> <a class="mj">满300减88 </a></span>
+                    <div class="buxianshi">
+                        <span class="span2">不限时</span><a href="javascript:;">领取</a>
+                    </div>
+                </div>
+                <div class="qqq">
+                    <span class="span1"><a class="tyq">通用券</a> <a class="mj">满0减100 </a></span>
+                    <div class="buxianshi">
+                        <span class="span2">不限时</span><a href="javascript:;">领取</a>
+                    </div>
+                </div>
+                <div class="qqq" id="yhq">
+                    <span class="span1"><a class="tyq">通用券</a> <a class="mj">满0减20 </a></span>
+                    <div class="buxianshi">
+                        <span class="span2">不限时</span><a href="javascript:;">领取</a>
+                    </div>
+                </div>
+                <div class="qqq" id="yhq">
+                    <span class="span1"><a class="tyq">通用券</a> <a class="mj">满0减10 </a></span>
+                    <div class="buxianshi">
+                        <span class="span2">不限时</span><a href="javascript:;">领取</a>
+                    </div>
+                </div>
+                <div class="qqq" id="yhq">
+                    <span class="span1"><a class="tyq">通用券</a> <a class="mj">满100减80 </a></span>
+                    <div class="buxianshi">
+                        <span class="span2">不限时</span><a href="javascript:;">领取</a>
+                    </div>
+                </div>`
+            );
+            
+            if(flag == 1){
+                $('#yhq').after($yhq);
+                flag = 0;
+                $('.gdyh>a').text('收起').next().attr('src','./img/up.png');
+                $('.yhqright').addClass('on1');
+            }else if(flag == 0){
+                $('#yhq').nextAll().remove();
+                $('.gdyh>a').text('更多优惠').next().attr('src','./img/down.png');
+                $('.yhqright').removeClass('on1');
+                flag = 1;
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
