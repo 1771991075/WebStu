@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .info{
+            width: 100%;
+        }
+        .info>img{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.js"></script>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    // 获取页面传递的参数  location 表示当前网页路径信息对象
+    console.log(location.search.split("=")[1])
+    let id = location.search.split("=")[1];
+    // 发送请求获取英雄详情
+    $.ajax({
+        url:`https://game.gtimg.cn/images/lol/act/img/js/hero/${id}.js`,
+        method:"get",
+        dataType:"json",
+        success(res){
+            console.log(res)
+            let bg = res.skins[0].mainImg;
+            // 获取英雄技能列表
+            let spells = res.spells;
+            render(bg,spells)
+        },
+        error(err){
+            console.log(err)
+        }
+    })
+
+    // 渲染函数
+    function render(bg,spells){
+        let dom = (
+            <div className='info'>
+                <img src={bg} alt="" />
+                <div>
+                    {
+                        spells.map((item,index)=>{
+                            return <div key={index}>
+                                    <img src={item.abilityIconPath} alt="" />
+                                    <div>
+                                        {item.description}
+                                    </div>
+                                   </div>
+                        })
+                    }
+                </div>
+            </div>
+        )
+        ReactDOM.render(dom,document.getElementById("root"))
+    }
+</script>
+
+</html>
