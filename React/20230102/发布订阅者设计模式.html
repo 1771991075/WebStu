@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="user1()">用户1</button>
+    <button onclick="user2()">用户2</button>
+    <button onclick="sendMsg()">发布消息</button>
+</body>
+<script>
+    // 定义公众平台
+    let bus = {
+        //存放订阅者列表
+        list:[],
+        // 订阅者
+        on(callback){
+            this.list.push(callback);
+            console.log('订阅成功');
+        },
+        // 发布者
+        emit(msg){
+            this.list.forEach(item=>{
+                item(msg);
+            })
+        }
+    }
+    function user1(){
+        //订阅消息
+        bus.on((msg)=>{
+            console.log('user1收到消息:' + msg);
+        });
+    }
+
+    function user2(){
+        bus.on((msg)=>{
+            console.log('user2收到消息:' + msg);
+        });
+    }
+
+    function sendMsg(){
+        bus.emit('hello');
+    }
+</script>
+</html>
