@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <div id="root">
+
+    </div>
+</body>
+<!-- react 语法核心库，提供react核心语法 -->
+<script src="../js/react.js"></script>
+<!-- react dom库 用来为react提供dom操作 -->
+<script src="../js/react-dom.js"></script>
+<script>
+    // 原生js创建dom渲染页面
+    // 创建出来的是真实dom
+    let h1 = document.createElement("h1");
+    h1.innerText = '我是原声js创建的h1标签';
+    console.dir(h1);
+    document.getElementById("app").appendChild(h1);
+
+    // 导入react后会生成一个react对象
+    console.log(React);
+    // 导入react后会生成一个reactDOM对象
+    console.log(ReactDOM);
+
+    // 一个html标签由三部分组成：标签名（div,h1,span） 标签内容 标签属性（id,class）
+    // 使用react @17.x创建虚拟dom 
+    // 参数一标签名 参数二 标签属性 参数三 标签内容
+    let span = React.createElement('span',{id:'span'},'我是span标签');
+    let dom = React.createElement('div',{className:'mydiv'},'我是mydiv标签',span);
+    console.log(dom);
+    // 将虚拟DOM转化为真实DOM并渲染页面  参数一：要渲染的虚拟dom 参数二 将虚拟dom渲染到哪个DOM中
+    ReactDOM.render(dom,document.getElementById('root'));
+</script>
+</html>
