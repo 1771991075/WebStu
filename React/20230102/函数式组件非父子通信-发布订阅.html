@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    let bus = {
+        list:[],
+        on(callback){
+            this.list.push(callback);
+        },
+        emit(msg){
+            this.list.forEach(item=>{
+                item(msg);
+            })
+        }
+    }
+
+    function App(){
+        return (
+            <div>
+                <h1>发布订阅者模式实现非父子组件通信</h1>  
+                <One/>
+                <Two/>  
+            </div>
+        )
+    }
+
+    function One(){
+        let msg = 'One组件数据';
+        return (
+            <div>
+                <h2>我是one组件</h2>
+                <button onClick={()=>{
+                    //发布消息
+                    bus.emit(msg);
+                }}>向另一个组件发送数据</button>
+            </div>
+        )
+    }
+
+    function Two(){
+        //订阅消息
+        bus.on((msg)=>{
+            console.log('收到消息:'+ msg);
+        });
+        return (
+            <div>
+                <h2>我是two组件</h2>
+            </div>
+        )
+    }
+
+    ReactDOM.render(<App/>,document.getElementById('root'));
+</script>
+</html>
