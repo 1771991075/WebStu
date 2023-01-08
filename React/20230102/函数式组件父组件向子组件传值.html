@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .app{
+            width: 100%;
+            height: 400px;
+            background: red;
+            color: #fff;
+        }
+        .child{
+            width: 100%;
+            height: 100px;
+            color: #fff;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    function App(){
+        let msg = '好好学习天天向上！！'
+        let user = {
+            name:"张三",
+            age:18
+        }
+        return (
+            <div className='app'>
+                我是父组件
+                <h3>{msg}</h3>
+                {
+                    //在父组件中的子组件标签上 绑定一个自定义属性
+                }
+                <Child mymsg={msg} age={18} user={user} />
+            </div>
+        )
+    }
+    function Child(props){
+        console.log(props);
+        let {mymsg,age,user} = props;
+        return (
+            <div className="child">
+                我是子组件    
+                <h5>{mymsg}---{age}---{user.name}</h5>
+            </div>
+        )
+    }
+    ReactDOM.render(<App/>,document.getElementById('root'));
+</script>
+</html>
