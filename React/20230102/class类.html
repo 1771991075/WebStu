@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class People{
+        //实例对象
+        name="张三";
+        age=18;
+        like="学习";
+        static list=["学习","快乐"];
+        constructor(name,sex){
+            // this指向当前构造出来的实例对象
+            console.log(this);
+            console.log('构造函数被调用了');
+            this.name = name;
+            this.sex = sex;
+            this.job = 'web前端开发工程师'
+        };
+        say(){
+            console.log('我是小明');
+        }
+    }
+
+    let p = new People('李四','男');
+    console.log(p);
+    p.say();
+    console.log(People.list);
+
+    class Teacher extends People{
+        a='哈哈哈';
+        constructor(name,sex,b){
+            super(name,sex);
+            this.b = b;
+        }
+    }
+
+    let t = new Teacher('王五','女','嘿嘿嘿');
+    console.log(t);
+
+</script>
+</html>
