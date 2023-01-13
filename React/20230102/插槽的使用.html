@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header {
+            width: 100%;
+            padding: 20px;
+            color: #fff;
+            background-color: red;
+        }
+
+        footer {
+            width: 100%;
+            padding: 20px;
+            color: #fff;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    /* 
+     插槽：组件内部所携带的内容我们就称之为插槽。
+    */
+    class App extends React.Component {
+        render() {
+            return (
+                <div>
+                    <h1>插槽的使用</h1>
+                    <Child>
+                        哈哈哈哈 嘿嘿嘿
+                    </Child>
+                    <Two>
+                        <header>
+                            头部
+                        </header>
+                        <footer>
+                            尾部
+                        </footer>
+                        哈哈哈哈
+                    </Two>
+                </div>
+            )
+        }
+    }
+    class Child extends React.Component {
+        render() {
+            console.log(this)
+            return (
+                <div>
+                    {
+                        //this.props.children 获取插槽内容
+                    }
+                    child组件 --- {this.props.children}
+                </div>
+            )
+        }
+    }
+
+    class Two extends React.Component {
+        render() {
+            console.log(this)
+            {
+                // 若组件内部内容为多个虚拟节点 那么props中的children属性就是一个数组
+            }
+            return (
+                <div>
+                    {this.props.children[0]}
+                    two组件
+                    {this.props.children[1]}
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"));
+
+</script>
+
+</html>
