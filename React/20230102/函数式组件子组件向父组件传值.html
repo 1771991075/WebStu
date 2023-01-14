@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    function App(){
+        return (
+            <div>
+                <h1>我是父组件</h1>
+                {
+                    // 在父组件的子组件标签上 绑定一个自定义属性，类型必须为函数类型
+                } 
+                <Child getmsg={(msg)=>{
+                    console.log("子组件传递过来的数据："+msg)
+                }} getage={(age)=>{
+                    console.log(age);
+                }}/>
+
+            </div>
+        )
+    }
+
+    function Child(props){
+        let {getmsg,getage} = props;
+        let msg = "好好学习天天向上";
+        return (
+            <div>
+                <h1>我是子组件</h1>
+                <button onClick={()=>{
+                    // 调用父组件传递过来的函数 并传值
+                    getmsg(msg);
+                    getage(18);
+                }}>向父组件传值</button>
+            </div>
+        )
+    }
+    ReactDOM.render(<App/>,document.getElementById('root'));
+
+</script>
+</html>
