@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    // 页面中输入类的dom（输入框），随着你的输入，就能把输入内容维护到状态里，
+    // 等到用的时候，直接从状态中取出来，就叫受控组件，react中的受控组件就是vue中的数据双向绑定
+    class App extends React.Component{
+        state = {
+            username : '',
+            password : '',
+            sex : '男',
+            job : ''
+        }
+        saveUsername = (event)=>{
+            this.setState({
+                username : event.target.value
+            })
+        }
+        savePassword = (event)=>{
+            this.setState({
+                password : event.target.value
+            })
+        }
+        handleSubmit=(event)=>{
+            event.preventDefault();
+            const {username,password} = this.state;
+            alert(`您输入的用户名为${username},输入的密码为${password}`); 
+        }
+        render(){
+            return (
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        用户名:<input onChange={this.saveUsername} type="text" name="username" />
+                        密码:<input onChange={this.savePassword} type="password" name='password' />
+                        <button>登录</button>    
+                    </form>   
+                    {
+                        // 单选框
+                    }
+                    男<input type="radio" name="sex" value="男"  checked={this.state.sex==='男'} onChange={(e)=>{
+                        this.setState({
+                            sex : e.target.value
+                        })
+                    }}/> 
+                    女<input type="radio" name="sex" value="女"  checked={this.state.sex==='女'} onChange={(e)=>{
+                        this.setState({
+                            sex : e.target.value
+                        })
+                    }}/> 
+                    <h2>{this.state.sex}</h2>
+                    {
+                        // 下拉菜单
+                    }
+                    <select name="" id="" onChange={(e)=>{
+                        this.setState({
+                            job : e.target.value
+                        })
+                    }}>
+                        <option value="">请选择</option>    
+                        <option value="web">web</option>  
+                        <option value="java">java</option>  
+                        <option value="UI">UI</option>  
+                    </select>
+                    <h2>你的职业是：{this.state.job}</h2>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById('root'));
+
+</script>
+</html>
