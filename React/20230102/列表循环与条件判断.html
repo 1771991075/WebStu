@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<!-- 用来将jsx语法转化为js语法 -->
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    let hero = ["关羽","张飞","赵云","马超","黄忠"];
+    // 遍历数组
+    // for(let i=0;i<hero.length;i++){
+    //     console.log(hero[i])
+    // }
+    let myEach = hero.forEach((item,index)=>{
+        console.log(item);
+    })
+    console.log(myEach);
+    //map 也可以用来遍历数组 类似于froEach 但是和fromEach有所不同
+    let mymap = hero.map(item=>{
+        console.log(item);
+        return '哈哈哈';
+    });
+    console.log(mymap);
+
+    /* 
+      forEach 和 map 的区别：
+      1.map和forEach都可以用来遍历数组。
+      2.forEach 不可以有Return值 map可以有return值 会将return值放到一个新的数组中\
+      3.map 和forEach都可以改变原数据
+      4.map要比forEach更快
+    */
+    let user = [
+        {
+            name:"张三",
+            age:18,
+            sex:"男"
+        },{
+            name:"李四",
+            age:20,
+            sex:"女"
+        }
+    ];
+    let sex = true;
+    let age = 18
+    // 条件判断
+    function isAge(age){
+        if(age<10){
+            return <h1>少年</h1>
+        }else if(age>=10 && age<18){
+            return <h1>青年</h1>
+        }else{
+            return <h1>成年</h1>
+        }
+    };
+    let dom = (
+        <div>
+            <h1>五虎上将:</h1>
+            <ol>
+                {
+                    hero.map((item,index)=>{
+                        // 列表循环必须要绑定一个key  为更好的实现diff算法
+                        return <li key={index}>{item}</li>
+                    })
+                }    
+            </ol>
+            <h2>用户列表:</h2>
+            <ol>
+                {
+                    user.map((item,index)=>{
+                        return <li key={index}>{item.name}-----{item.age}------{item.sex}</li>
+                    })
+                }    
+            </ol> 
+            <h2>性别:</h2>
+            <h3>{sex?'男':'女'}</h3>
+            {
+                isAge(age)
+            }   
+        </div>
+    )
+    ReactDOM.render(dom,document.getElementById("root"))
+</script>
+</html>
