@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<!-- 用来将jsx语法转化为js语法 -->
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    let name = "张三";
+    let age = 18;
+    let sex = true;
+    let str = "学习使我快乐";
+    let hero = ["关羽","张飞","赵云"]
+    let dog ={
+        name:"小花",
+        color:"black"
+    }
+    function say(){
+        return "说句心里话，我也很想家"
+    }
+    // 创建虚拟dom
+    // {} 数据绑定语法 大括号中可以写js表达式 变量 三目运算法则 调用方法 处理方法
+
+    let dom = (
+        <div>
+            <h1>{name}好好学习</h1>
+            <h1>{sex?'男':'女'}</h1>
+            <h2>{Math.random()}</h2>
+            <h2>{str.replace('学习','游戏')}</h2>
+            <h2>{age}岁</h2>
+            {
+                /* 
+                    jsx语法 会自动将 数组 转化为字符串渲染到页面
+                */
+            }
+            <h3>{hero}</h3>
+            <h3>{say()}</h3>
+            <h3>{dog.name}-----{dog.color}</h3>
+            {
+                // 注意： jsx语法绑定的数据为布尔值时 默认会渲染成空
+            }
+            <h3>{false}</h3>
+        </div>
+    )
+    ReactDOM.render(dom,document.getElementById('root'));
+</script>
+</html>
