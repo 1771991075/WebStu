@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    
+    // 创建类组件
+    // 组件名称(类名)首字母依旧必须大写
+    class App extends React.Component{
+        name='张三';
+        list=["关羽","张飞","赵云"];
+        // 渲染函数 必须要有return值 return必须为 虚拟dom节点
+        render(){
+            // this指向当前组件实例对象App
+            console.log(this);
+            console.log('渲染函数调用了');
+            return (
+                <div>
+                    <h1>我是一个class组件{this.name}</h1>
+                    <ol>
+                        {
+                            this.list.map((item,index)=>{
+                                return <li key={index}>{item}</li>
+                            })
+                        }    
+                    </ol>  
+                    <Child/>  
+                </div>
+            )
+        }
+    }
+
+    class Child extends React.Component{
+        name='李四';
+        constructor(){
+            console.log('构造函数调用了');
+            // constructor 构造函数可省略 写了constructor 那么必须使用super继承类 否则报错
+            super();
+            // 若在constructor中定义实例属性 必须在super继承之后定义
+            console.log(this);
+            this.age = 8;
+            this.sex = "女";
+            this.like = '学习';
+        }
+        render(){
+            console.log("渲染函数调用")
+            // console.log(this)
+            // let user  = this.getUser();
+            return(
+                <div>
+                    <h2>我是Child组件---{this.name}---{this.age}----{this.sex}----{this.like} ---- {this.getUser()}</h2>
+                    {
+                        this.isAge()
+                    }
+                </div>
+            )
+        }
+        getUser(){
+            return "哈哈哈哈哈"
+        }
+        isAge(){
+            if(this.age >=18){
+                return <h2>成年</h2>
+            }else{
+                return <h2>未成年</h2>
+            }
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById("root"))
+</script>
+</html>
