@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        state={
+            num:0,
+            user:{
+                name:"张三",
+                age:18
+            }
+        }
+        render(){
+            return (
+                <div>
+                  <h1>class类组件父传子---{this.state.num}</h1>  
+                  <button onClick={()=>{
+                     this.setState((state)=>{
+                        return {
+                            num:state.num +1
+                        }
+                     })
+                  }}>++</button>
+                  {
+                    //react 单项数据流 
+                  }
+                  {
+                    // 在父组件的子组件标签上绑定一个自定义属性
+                  }
+                  <Child mynum={this.state.num} msg='好好学习天天向上' myuser={this.state.user}></Child> 
+                </div>
+            )
+        }
+    }
+    class Child extends React.Component{
+        render(){
+            console.log(this)
+            let {name,age} = this.props.myuser;
+            return (
+                <div className='child'>
+                    {
+                        //在子组件中使用this.props.属性名获取父组件传递的值
+                    }
+                 子组件  ----- {this.props.mynum}---{this.props.msg}----{name}---{age}
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById("root"));
+
+    /* 
+        父组件向子组件传值：
+        1.在父组件中的子组件标签上绑定自定义属性
+        2.在子组件中使用this.props.属性名获取父组件传递的值
+    */
+
+</script>
+</html>
