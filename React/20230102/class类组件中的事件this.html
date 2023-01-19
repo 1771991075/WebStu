@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        state = {
+            name:"张三",
+            age:19,
+            sex:"男",
+            list:[
+                "刘备",
+                "关羽",
+                "张飞"
+            ]
+        }
+        constructor(){
+            super();
+            // 更改this指向为当前组件实例
+            // this.changeSex = this.changeSex.bind(this);
+        }
+        render(){
+            // this指向当前组件实例
+            return (
+                <div>
+                    <h1>事件中的this指向 --- {this.state.name}----{this.state.age}---{this.state.sex}</h1> 
+                    <button onClick={()=>{
+                        this.state.name = '李四';
+                        this.setState({
+                            name:this.state.name
+                        })
+                    }}>改变name</button>   
+                    <button onClick={this.changeAge}>改变age</button>
+                    <button onClick={this.changeSex.bind(this)}>改变性别</button>
+                    <ol>
+                        {
+                            this.state.list.map((item,index)=>{
+                                return <li key={index} onClick={()=>this.remove(index)}>{item}</li>
+                            })
+                        }
+                    </ol>
+                </div>
+            )
+        }
+        // changeAge(){
+        //     // alert("调用了")
+        //     // this.state.age
+        //     console.log(this) 
+        // }
+        changeAge=()=>{
+            console.log(this)
+            this.state.age ++;
+            this.setState({
+                age:this.state.age
+            })
+        }
+        changeSex(){
+            console.log(this)
+            this.setState({
+                sex:"女"
+            })
+        }
+        remove(index){
+            // this指向组件实例
+            console.log(this)
+            console.log(index)
+            this.state.list.splice(index,1);
+            this.setState({
+                list:this.state.list
+            })
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById("root"));
+
+</script>
+</html>
