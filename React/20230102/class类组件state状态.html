@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        name='张三';
+        // state 状态 是一个对象 用来存放当前组件中状态
+        state = {
+            num:0,
+            msg:'好好学习天天向上',
+            list:['张飞','关于']
+        }
+        render(){
+            console.log('渲染了');
+            return (
+                <div>
+                    <h1>state状态</h1>
+                    <h2>{this.state.num}</h2>
+                    <button onClick={()=>{
+                        // 引入react是单向数据流所以改变状态视图无法直接更新
+                        this.state.num++;
+                        console.log(this);
+                        // 设置状态 更新视图 每调用一次setState render方法就会执行一次
+                        this.setState({
+                            num:this.state.num
+                        })
+                    }}>++</button>
+                    <h2>{this.state.msg}</h2>
+                    <button onClick={()=>{
+                        this.setState({
+                            msg:'好好学习天天游戏'
+                        })
+                    }}>改变msg</button>
+                    <ol>
+                        {
+                            this.state.list.map((item,index)=>{
+                                return (
+                                    <li key={index}>{item}</li>
+                                )
+                            })
+                        }    
+                    </ol>
+                    <button onClick={()=>{
+                        this.state.list.push('刘备');
+                        this.setState({
+                            list:this.state.list
+                        })
+                    }}>添加</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById('root'))
+</script>
+</html>
