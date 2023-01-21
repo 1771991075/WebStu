@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    let cn = "blue"
+    let r = "red";
+    let isRed = false;
+    let href = 'http://www.baidu.com'
+    let url = 'https://t7.baidu.com/it/u=4162611394,4275913936&fm=193&f=GIF'
+    let style = {
+        color: "#fff",
+        background: "black",
+        height: "200px"
+    }
+    let dom = (
+        <div>
+            {
+                // jsx中类名使用 className定义
+            }
+            <h1 className={isRed?r:cn}> 好好学习天天向上</h1>   
+            <a href={href}>百度一下</a> 
+            {
+                // jsx中必须要有结束标签 否则会报错
+            }
+            <img src={url} alt=""></img>
+            <div style={{color:"red",fontSize:"30px"}}>
+                学习使我快乐    
+            </div>
+            <div style={style}>
+             嘿嘿嘿    
+            </div>
+        </div>
+    )
+
+    ReactDOM.render(dom,document.getElementById("root"))
+</script>
+
+</html>

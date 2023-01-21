@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    // 创建组件
+    class App extends React.Component{
+
+        // 构造器
+        constructor(){
+            console.log('App------constructor');
+            super();
+            // 状态
+            this.state = {
+                count : 0
+            }
+        }
+
+        // 点击事件
+        sum = ()=>{
+            let {count} = this.state;
+            this.setState({
+                count : count + 1
+            })
+        }
+
+        // 卸载组件
+        death =()=>{
+            ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+        }
+
+        // 强制更新
+        force = ()=>{
+            this.forceUpdate();
+        }
+
+        // 组件将要挂载前
+        UNSAFE_componentWillMount(){
+            console.log('App------componentWillMount');
+        } 
+
+        // 组件挂载完毕之后(是在组件渲染完毕之后，调用的钩子)
+        componentDidMount(){
+            console.log('App------componentDidMount');
+        }
+
+        // 组件是否要更新---(组件将要更新的阀门)
+        shouldComponentUpdate(){
+            console.log('App------shouldComponentUpdate');
+            // 需要设置返回值(布尔值true、false),不定义shouldComponentUpdate组件，默认返回true，但是定义了一定需要设置返回值
+            return true
+        }
+
+        // 组件将要更新
+        UNSAFE_componentWillUpdate(){
+            console.log('App------componentWillUpdate');
+        }
+
+        // 组件更新完毕
+        componentDidUpdate(){
+            console.log('App------componentDidUpdate');
+        }
+
+        // 组件将要被卸载
+        componentWillUnmount(){
+            console.log('App------componentWillUnmount');
+        }
+
+        // 组件初始化
+        render(){
+            console.log('App------render');
+            let {count} = this.state;
+            return (
+                <div>
+                    <h2>react组件生命周期</h2>
+                    <h3>总和为:{count}</h3>
+                    <button onClick={this.sum}>点击加1</button>
+                    <button onClick={this.death}>卸载组件</button>
+                    <button onClick={this.force}>强制更新</button>
+                </div>
+            )
+        }
+    }
+    
+    // 组件渲染
+    ReactDOM.render(<App/>,document.getElementById('root'));
+</script>
+</html>
