@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<!-- 用来将jsx语法转化为js语法 -->
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<!-- 告诉script标签在里面可以写任意代码 编译时使用babel.js编译 -->
+<script type="text/babel">
+    // let span = React.createElement('span',null,2);
+    // let li = React.createElement('li',null,1,span);
+    // let li2 = React.createElement('li2',null,2);
+    // let ul = React.createElement('ul',null,null,li,li2);
+    // ReactDOM.render(ul,document.getElementById('root'));
+
+    /* 
+     Jsx语法是js扩展语言 兼容所有js语法 jsx的出现就是为了提供给React使用
+     我们一般使用jsx声明式语法创建虚拟DOM React语法采用的是指令式语法创建虚拟dom
+     需要注意的是浏览器只能编译js没有办法直接编译加载jsx语法，那么就需要将jsx语法转化为js语法，
+     我们可以使用babel.js库将jsx编译为js从而加载到浏览器上.
+    */
+
+    // 使用jsx语法创建虚拟DOM 注意 使用jsx语法创建虚拟Dom不可以有多个根标签
+    let ul = (
+        <ul>
+            <li>1 <span>2</span></li>
+            <li>2</li>
+        </ul>
+    )
+    console.log(ul);
+    //  使用react-dom 将虚拟dom渲染成真实dom
+    ReactDOM.render(ul, document.getElementById("root"));
+    
+</script>
+</html>
