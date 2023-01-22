@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+    state={
+        num:0,
+        name:"张三",
+        age:18
+    }
+    render(){
+        console.log("渲染了")
+        return (
+            <div>
+                <h1>Reactv18 setState特性---{this.state.num}----{this.state.name}</h1>  
+                <button onClick={()=>{
+                    this.state.num++;
+                    // 多个setState合并更新
+                    this.setState({
+                        num:this.state.num
+                    })
+                    this.setState({
+                        name:"李四"
+                    },()=>{
+                        console.log("更新完回调")
+                    })
+                    console.log("更新完了")
+                }}>++</button> 
+                <h2>{this.state.age}</h2>
+                <button onClick={()=>{
+                    // react18 在不受react事件控制时调用setState 也是异步的过程
+                    setTimeout(()=>{
+                        this.setState({
+                            age:28
+                        })
+                        this.setState({
+                            name:"李志琦"
+                        })
+                        console.log("改变了")
+                    },1000)
+                }}>更新age</button>
+
+            </div>
+        )
+    }
+  }
+  let root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App/>)
+
+
+    /* 
+    
+    在 react18中 setState其他特性和React17一样，
+    唯一发生改变的是 
+    在不受react事件控制时调用setState 也是异步的过程，并且也会将多个setState合并更新，render方法只会调用一次，而react17不能合并更新
+    
+    */
+
+</script>
+</html>
