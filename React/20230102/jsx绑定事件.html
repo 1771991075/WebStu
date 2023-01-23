@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    
+        let dom = (
+            <div>
+                {
+                    // jsx 绑定事件 遵循驼峰命名法  onClick onMouseenter onChange
+                    // jsx 绑定事件默认不可以加小括号 ，否则会默认调用
+                    // on+事件名称
+                }
+                <button onClick={clickMe}>绑定事件</button>  
+                {
+                 // 事件传递参数
+                } 
+                <button onClick={()=>clickParams("李四")}>事件传参</button> 
+
+                <button onMouseEnter={()=>enter("哈哈哈哈")}>onMouseenter事件</button>
+            </div>
+        )
+
+        ReactDOM.render(dom,document.getElementById("root"));
+        function clickMe(){
+            alert("点我干啥")
+        }
+        function clickParams(name){
+            alert(name)
+        }
+        function enter(msg){
+            console.log(msg)
+        }
+</script>
+</html>
