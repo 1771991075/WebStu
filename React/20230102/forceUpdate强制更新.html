@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        state={
+            user:{
+                name:"袁滔滔",
+                age:38
+            },
+            list:[1,2,3,4,5]
+        }
+        render(){
+            console.log("渲染啦")
+            let {user,list} = this.state;
+            return (
+                <div>
+                <h1>forceUpdate方法的使用</h1>    
+                <h3>{user.name}-----{user.age}</h3>
+                <ul>
+                {
+                    list.map((item,index)=>{
+                        return <li key={index}>{item}</li>
+                    })
+                }    
+                </ul>
+                <button onClick={()=>{
+                    user.name = '苏丽敏'
+                    user.age = 18;
+                    list[4] = 500;
+                    // this.setState({
+                    //     user:user
+                    // })
+                    console.log(this)
+                    // 强制更新 强制调用render方法 非不得已不使用 异步更新
+                    this.forceUpdate(()=>{
+                        console.log("更新完毕")
+                    });
+                }}>改变用户名</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById("root"))
+
+</script>
+</html>
