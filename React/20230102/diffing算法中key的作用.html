@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    /*
+    
+        1.虚拟DOM中key的作用：
+            1）.简单的说：key是虚拟DOM对象的标识，在更新显示时key起着极其重要的作用。
+            2）.详细的说：当状态中的数据发生变化时，react会根据【新数据】生成【新的虚拟DOM】，
+                随后react进行【新虚拟DOM】yu【旧虚拟DOM】的diff比较，比较规则如下：
+
+                a.旧虚拟DOM中找到了与新虚拟DOM相同的key：
+                （1）若虚拟DOM中内容没变，直接使用之前的真实DOM
+                （2）若虚拟DOM中内容变了，则生成新的真实DOM，随后替换掉页面中之前的真实DOM
+                b.旧虚拟DOM中未找到与新虚拟DOM相同的key
+                  根据数据创建新的真实DOM，随后渲染到页面
+
+        2.用index作为key可能会引发的问题:
+            1.若对数据进行：逆序添加、逆序删除等破坏顺序的操作
+              会产生没有必要的真实DOM更新。==> 界面效果没问题，但效率低
+            2.如果结构中还包含输入类的DOM：
+              会产生错误DOM更新 ==> 界面有问题
+            3.注意！！！如果不存在对数据的逆序添加、逆序删除等破坏顺序的操作，
+              仅用于渲染列表用于展示，使用index和key是没有问题的。
+
+        3.开发中如何选择key？
+            1.最好使用每条数据中的唯一标识作为key，比如id、手机号、身份证号、学号等
+            2.如果确定只是简单的展示数据，用index也是可以的。
+
+
+    */
+    class App extends React.Component{
+        state = {
+            data:[
+                {
+                    id:1,
+                    name:'小张',
+                    age:18
+                },
+                {
+                    id:2,
+                    name:'小李',
+                    age:19
+                }
+            ]
+        }
+        addUser = ()=>{
+            const {data} = this.state
+            const p = {id:data.length+1,name:'小王',age:20}
+            this.setState({
+                data:[p,...data]
+            })
+        }
+        render(){
+            return (
+                <ul>
+                    <button onClick={this.addUser}>添加一个小王</button>
+                    <h1>diffing算法中以index作为key</h1>
+                    {
+                        this.state.data.map((item,index)=>{
+                            return <li key={index}>{item.name}---{item.age}--- <input type="text"/></li>    
+                        })
+                    }  
+                    <h1>diffing算法中以id唯一标识作为key</h1>
+                    {
+                        this.state.data.map((item)=>{
+                            return <li key={item.id}>{item.name}---{item.age}--- <input type="text"/></li>    
+                        })
+                    }
+                </ul>
+            )
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById('root'))
+</script>
+</html>
