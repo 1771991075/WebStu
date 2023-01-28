@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component {
+        state = {
+            msg: "好好学习天天向上",
+            html: "<h2>学习使我快乐</h2> <img src='https://n1.itc.cn/img8/wb/smccloud/fetch/2015/09/15/8173412602700564.JPG' alt=''/>",
+            content: ""
+        }
+        render() {
+            return (
+                <div>
+                    <h1>{this.state.msg}</h1>
+                    {
+                        // dangerouslySetInnerHTML 渲染html标签字符串 富文本标签 固定格式
+                    }
+                    <div dangerouslySetInnerHTML = {
+                        {
+                            __html : this.state.html
+                        }
+                    }>
+                    </div>
+                    <button onClick={()=>{
+                        let that = this;
+                        $.ajax({
+                            url:"https://apif.java.crmeb.net/api/front/product/detail/2?type=normal",
+                            method:'get',
+                            dataType:'json',
+                            success(res){
+                                console.log(res.data.productInfo.content);
+                                that.setState({
+                                    content : res.data.productInfo.content
+                                })
+                            }
+                        })
+                    }}>获取商品详情</button>
+                    <div dangerouslySetInnerHTML = {
+                        {
+                            __html : this.state.content
+                        }
+                    }>
+                    </div>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<App />, document.getElementById("root"))
+
+</script>
+
+</html>
