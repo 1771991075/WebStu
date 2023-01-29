@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        .topbtn{
+            margin: 20px auto;
+        }
+        .btn-danger{
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+
+        constructor(){
+            super();
+            this.state = {
+                list :[
+                    {
+                        name:"张三",
+                        sex:"男",
+                        age:"18",
+                        phone:"110"
+                    },
+                    {
+                        name:"李四",
+                        sex:"女",
+                        age:"20",
+                        phone:"120"
+                    }
+                ],
+                listIndex : '',
+                name : '',
+                sex : '',
+                age : '',
+                phone : ''
+            }
+        }
+        render(){
+            let {list,listIndex,name,sex,age,phone} = this.state;
+            return (
+                <div className="container">
+                    <div className="topbtn">
+                        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#myModal">添加学生</button>    
+                    </div>
+                    <div>
+                        <table className="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>性别</th>
+                                    <th>年龄</th>
+                                    <th>联系方式</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    list.map((item,index)=>{
+                                        return (
+                                            <tr key={index}>
+                                                <td>{item.name}</td>
+                                                <td>{item.sex}</td>
+                                                <td>{item.age}</td>
+                                                <td>{item.phone}</td>
+                                                <td>
+                                                    <button type="button" className="btn btn-danger btn-sm" onClick={()=>{
+                                                        list.splice(index,1);
+                                                        this.setState({
+                                                            list:list
+                                                        })
+                                                    }}>删除</button>
+                                                    <button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" onClick={()=>{
+                                                        this.state.name = list[index].name,
+                                                        this.state.sex = list[index].sex,
+                                                        this.state.age = list[index].age,
+                                                        this.state.phone = list[index].phone,
+                                                        this.setState({
+                                                            name : this.state.name,
+                                                            sex : this.state.sex,
+                                                            age : this.state.age,
+                                                            phone : this.state.phone,
+                                                            listIndex:index
+                                                        })
+                                                    }}>编辑</button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>   
+                    </div>
+                    {
+                        // 模态框 
+                    }
+                    <div className="modal fade" id="myModal">
+                        <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
+                    
+                            <div className="modal-header">
+                            <h4 className="modal-title">{this.state.listIndex===''?'添加学生':'修改信息'}</h4>
+                            <button type="button" className="close" data-dismiss="modal" onClick={()=>{
+                                this.setState({
+                                    listIndex:'',
+                                    name:'',
+                                    sex:'',
+                                    age:'',
+                                    phone:''
+                                })
+                            }}>&times;</button>
+                            </div>
+                    
+                            <div className="modal-body">
+                                <div className="input-group mb-3 input-group-lg">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">姓名</span>
+                                    </div>
+                                    <input type="text" className="form-control" placeholder="情输入姓名" value={this.state.name} onChange={(e)=>{
+                                        this.setState({
+                                            name : e.target.value
+                                        })
+                                    }}/>
+                                </div>
+                                <div className="input-group mb-3 input-group-lg">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">性别</span>
+                                    </div>
+                                    <input type="text" className="form-control" placeholder="请输入性别" value={this.state.sex} onChange={(e)=>{
+                                        this.setState({
+                                            sex : e.target.value
+                                        })
+                                    }}/>
+                                </div>
+                                <div className="input-group mb-3 input-group-lg">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">年龄</span>
+                                    </div>
+                                    <input type="text" className="form-control" placeholder="请输入年龄" value={this.state.age} onChange={(e)=>{
+                                        this.setState({
+                                            age : e.target.value
+                                        })
+                                    }}/>
+                                </div>
+                                <div className="input-group mb-3 input-group-lg">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">联系方式</span>
+                                    </div>
+                                    <input type="text" className="form-control" placeholder="请输入联系方式" value={this.state.phone} onChange={(e)=>{
+                                        this.setState({
+                                            phone : e.target.value
+                                        })
+                                    }}/>
+                                </div>
+                            </div>
+                    
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-success" data-dismiss="modal" onClick={()=>{
+                                    if(listIndex !== ''){
+                                        list[listIndex].name = this.state.name,
+                                        list[listIndex].sex = this.state.sex,
+                                        list[listIndex].age = this.state.age,
+                                        list[listIndex].phone = this.state.phone,
+                                        this.setState({
+                                            list : list,
+                                            listIndex : ''
+                                        });
+                                        this.state.name = '',
+                                        this.state.sex = '',
+                                        this.state.age = '',
+                                        this.state.phone = ''
+                                    }else{
+                                        let stu = {
+                                            name: this.state.name,
+                                            sex:this.state.sex,
+                                            age:this.state.age,
+                                            phone:this.state.phone
+                                        }
+                                        list.push(stu);
+                                        this.setState({
+                                            list:list
+                                        });
+                                        this.state.name = '',
+                                        this.state.sex = '',
+                                        this.state.age = '',
+                                        this.state.phone = ''
+                                    }
+                                }}>{this.state.listIndex===''?'确认添加':'确认修改'}</button>
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById('root'));
+
+</script>
+</html>

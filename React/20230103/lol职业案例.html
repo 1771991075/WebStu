@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        body{
+            overflow-y: scroll;
+        }
+        .container{
+            width: 1000px;
+            margin: 10px auto;
+        }
+        .nav{
+            width: 1000px;
+            background-color: blueviolet;
+            border-radius: 5px;
+            height: 50px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .nav span{
+            line-height: 30px;
+            display: inline-block;
+            margin: 0px 10px;
+            cursor: pointer;
+            color: white;
+        }
+        .active{
+            border-bottom: 3px solid red;
+        }
+        ul{
+            width: 1000px;
+        }
+        ul li{
+            width: 80px;
+            height: 100px;
+            margin: 10px 10px;
+            float: left;
+        }
+        ul li img{
+            width: 80px;
+            height: 80px;
+        }
+        ul li p{
+            text-align: center;
+            line-height: 20px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="../js/jquery-3.6.1.js"></script>
+<script type="text/babel">
+
+    class App extends React.Component{
+        state = {
+            navList: [
+                {
+                    name: "全部",
+                    type: "all",
+                }, {
+                    name: "法师",
+                    type: "mage"
+                }, {
+                    name: "战士",
+                    type: "fighter"
+                }, {
+                    name: "坦克",
+                    type: "tank"
+                }, {
+                    name: "刺客",
+                    type: "assassin"
+                }, {
+                    name: "射手",
+                    type: "marksman"
+                }, {
+                    name: "辅助",
+                    type: "support"
+                }
+            ],
+            heroList:[],
+            navIndex:0
+        }
+
+        componentDidMount(){
+            $.ajax({
+                url:'https://game.gtimg.cn/images/lol/act/img/js/heroList/hero_list.js',
+                method:'get',
+                dataType:'json',
+                success:(res)=>{
+                    this.setState({
+                        heroList:res.hero
+                    })
+                }
+            })
+        }
+
+        render(){
+            let {navList,heroList,navIndex} = this.state 
+            return (
+                <div className='container'>
+                    <div className='nav'>
+                        {
+                            navList.map((item,index)=>{
+                                return (
+                                    <span key={index} className={this.state.navIndex===index?'active':''} onClick={()=>{
+                                        this.setState({navIndex:index})
+                                    }}>{item.name}</span>
+                                )
+                            })
+                        }
+                    </div>
+                    <List heroList={heroList} navIndex={navIndex} navList={navList}/>
+                </div>
+            )
+        }
+    }
+    class List extends React.Component{
+        render(){
+            let {heroList,navIndex,navList} = this.props
+            let jobList = []
+            if(navIndex === 0){
+                jobList = heroList
+            }else{
+                let job = navList[navIndex].type;
+                jobList = heroList.filter((item)=>{
+                    return item.roles.includes(job)
+                })
+            }
+            return (
+                <ul>
+                    {
+                        jobList.map((item,index)=>{
+                            return (
+                                <li key={item.heroId}>
+                                    <img src={`https://game.gtimg.cn/images/lol/act/img/champion/${item.alias}.png`} alt="" />
+                                    <p>{item.name}</p>    
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            )
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById('root'))
+
+</script>
+</html>
