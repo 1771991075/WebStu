@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    console.log(React)
+    class App extends React.Component{
+        // 创建ref属性
+        h1Ref=React.createRef();
+        h2Ref = React.createRef();
+        childRef = React.createRef();
+        inputRef = React.createRef();
+        state={
+            title:""
+        }
+        render(){
+            return (
+                <div>
+                    <h1 ref={this.h1Ref}>creactRef的使用</h1>
+                    <h2 ref={this.h2Ref}>好好学习天天向上</h2>
+                    <h3>{this.state.title}</h3>
+                    <button onClick={()=>{
+                        // 获取dom对象
+                        console.log(this.h1Ref.current)
+                        console.log(this.h2Ref.current)
+                        this.h1Ref.current.style.color = 'red'
+                    }}>获取h1标签</button> 
+                    <Child ref={this.childRef} />  
+                    <button onClick={()=>{
+                        console.log(this.childRef.current)
+                       console.log( this.childRef.current.state.msg)
+                       this.setState({
+                        title:this.childRef.current.state.msg
+                       })
+                    }}>获取组件实例</button>
+                    <input type="text"  ref={this.inputRef}/> 
+                    <button onClick={()=>{
+                       console.log( this.inputRef.current.value)
+                    }}>获取输入框内容</button>
+                </div>
+            )
+        }
+    }
+    class Child extends React.Component{
+        state={
+            msg:"学习使我快乐"
+        }
+        render(){
+            return (
+                <div>
+                <h1>我是子组件</h1>    
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById("root"))
+
+</script>
+</html>
