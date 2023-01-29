@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component {
+
+        render() {
+            return (
+                <div>
+                    {
+                        //react 不提倡使用原生js操作DOM如果你非要操作dom,react为我们提供了ref属性来供我们获取dom对象
+                    }
+                    {
+                        // 绑定ref属性 可以通过this.ref.属性名获取dom
+                    }
+                    <h1 ref='a'>ref属性的使用</h1>
+                    <h2 ref='b'>ref属性好用</h2>
+                    <button onClick={() => {
+                        console.log(this)
+                        // 通过ref属性获取dom
+                        console.log(this.refs.a)
+                        this.refs.a.style.color = 'red'
+                        this.refs.b.style.color = 'blue'
+                    }}>获取h1真时dom</button>
+                    {
+                        //ref使用在组件上时 可以通过  this.refs.属性名获取组件实例
+                    }
+                    <Child ref='child'></Child>
+                    <button onClick={() => {
+                        // 获取组件实例
+                        console.log(this.refs.child)
+                        console.log(this.refs.child.state.msg)
+                    }}>ref获取组件实例</button>
+
+                    {
+                        // ref直接获取dom方法已经被废弃了 但是并不意味着不能用了
+                    }
+                </div>
+            )
+        }
+    }
+
+    class Child extends React.Component {
+        state = {
+            msg: "好好学习天天向上！！！"
+        }
+        render() {
+            return (
+                <div>
+                    <h1>我是一个子组件</h1>
+                </div>
+            )
+        }
+        getuer() {
+            return '张三'
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"))
+
+</script>
+
+</html>

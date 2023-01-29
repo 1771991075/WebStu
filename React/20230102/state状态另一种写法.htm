@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        constructor(){
+            super();
+            // 定义组件状态
+            this.state = {
+                user:{
+                    name:"张三",
+                    age:18
+                },
+                num:0
+            }
+        }
+        render(){
+            let {user,num} = this.state;
+            return (
+                <div>
+                    <h1>state状态</h1>
+                    <h2>{user.name}-----{user.age}----{num}</h2>
+                    <button onClick={()=>{
+                        user.name = '李四'
+                        user.age = 28;
+                        this.setState({
+                            user:user
+                        })
+                    }}>改变name</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById("root"))
+
+</script>
+</html>

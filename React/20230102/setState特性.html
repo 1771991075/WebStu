@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        state = {
+            num:0,
+            name:"张三",
+            age:19,
+            msg:"学习使我快乐",
+            title:"react哈哈哈哈"
+        }
+        render(){
+            console.log("渲染啦")
+            return (
+                <div>
+                    <h1>setState特性----{this.state.num}----{this.state.name}---{this.state.age}</h1>
+                    <button onClick={()=>{
+                        this.state.num++;
+                        this.setState({
+                            num:this.state.num
+                        })
+                        this.setState({
+                            name:"李四"
+                        })
+                        this.setState({
+                            age:28
+                        })
+                        console.log("更新完了")
+                    }}>++</button>
+                    <h2>{this.state.msg}</h2>
+                    <button onClick={()=>{
+                        // 异步过程
+                        this.setState({
+                            msg:"好好学习天天向上"
+                        },()=>{
+                            console.log("更新完成啦")
+                        })
+                        console.log("更新完了")
+                    }}>改变msg</button>
+
+                <h2>{this.state.title}</h2>
+                <button onClick={()=>{
+                    setTimeout(()=>{
+                        this.setState({
+                            title:"哈哈哈哈哈改变了"
+                        })
+                        console.log("同步更新完成")
+                        this.setState({
+                            msg:"哎哟"
+                        })
+                    },2000)
+                }}>改变title</button>
+                </div>
+            )
+        }
+    }
+    
+    /* 
+    react 渲染过程：
+    class类组件通过调用render方法生成虚拟DOM,再将虚拟DOM交给ReactDOM中render方法进行处理，将虚拟DOM转化为真实DOM并渲染到浏览器上。每次只要使用setState方法那么组件中的render方法就会从新调用，同时会再生成一个新的虚拟DOM树，新的虚拟DOM树与旧虚拟DOM树使用diff算法进行同级比较，只要发现有dom发生改变那么就会将改变的虚拟DOM转化为真实DOM并更新到浏览器上。
+    */
+
+    /* 
+    setState特性：
+    1. 每方法就会执调用一次setState方法 类组件中render行一次。
+    2. 在同一个业务逻辑中react会自动将多个setState合并更新，也就是说无论写多少个setState render方法只会调用一次，利于性能优化。
+    3. setState可以是同步的过程也可以是异步过程。
+    3.1 当setState在受react事件控制时调用，那么setState就是一个异步的过程，参数二就是更新完成后的回调函数。
+    3.2 当这个事件不受react控制时，那么setState就是同步的过程。例如：setTimeout、原生事件、监听事件....
+    4. setState 在非react控制的事件中使用时，它不会将多个setState合并更新。
+    */
+    ReactDOM.render(<App/>,document.getElementById("root"))
+
+</script>
+</html>
