@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        thead{
+            font-weight: bold;
+        }
+        thead tr td{
+            text-align: center;
+        }
+        .bg{
+            background: #999;
+            border: 2px solid #999;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/jquery-3.6.1.js"></script>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        constructor(){
+            super();
+            this.state = {
+                list : [
+                    {
+                        name:"辣条",
+                        price:0.5,
+                        num:1
+                    },{
+                        name:"巧克力",
+                        price:2,
+                        num:1
+                    },{
+                        name:"奶茶",
+                        price:5,
+                        num:1
+                    },{
+                        name:"烤箱",
+                        price:999,
+                        num:1
+                    }
+                ],
+            }
+        }
+        render(){
+            let {list} = this.state;
+            list.forEach((item,index)=>{
+                if(item.num<=0){
+                    item.num = 0;
+                    $('.less').eq(index).addClass('bg');
+                }else{
+                    $('.less').eq(index).removeClass('bg');
+                }
+                if(item.num>=10){
+                    item.num = 10;
+                    $('.add').eq(index).addClass('bg');
+                }else{
+                    $('.add').eq(index).removeClass('bg');
+                }
+            })
+            return (
+                <div>
+                    <h1>购物车案例</h1>
+                    <table border="1px solid">
+                        <thead>
+                            <tr>
+                                <td>名称</td>    
+                                <td>价格</td>    
+                                <td>数量</td>    
+                                <td>操作</td>    
+                            </tr>    
+                        </thead>  
+                        <tbody>
+                            {
+                                list.map((item,index)=>{
+                                    return (
+                                        <tr key={index}>
+                                            <td>{item.name}</td>   
+                                            <td>{item.price}</td> 
+                                            <td><button className="less" onClick={()=>{
+                                                item.num--;
+                                                this.setState({
+                                                    num : item.num
+                                                })
+                                            }}>-</button>{item.num}<button className="add" onClick={()=>{
+                                                item.num++;
+                                                this.setState({
+                                                    num : item.num
+                                                })
+                                            }}>+</button></td> 
+                                            <td><button onClick={()=>{
+                                                list.splice({index}.index,1);
+                                                this.setState({
+                                                    list : list
+                                                })
+                                            }}>删除</button></td>  
+                                        </tr>
+                                    )
+                                })
+                            }    
+                        </tbody>  
+                    </table> 
+                    {
+                        this.getSum()
+                    }
+                </div>
+            )
+        }
+        getSum(){
+            let sum = 0;
+            this.state.list.forEach(item=>{
+                sum += item.price*item.num;
+            })
+            return <h2>商品总价:{sum}</h2> 
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById('root'));
+
+</script>
+</html>

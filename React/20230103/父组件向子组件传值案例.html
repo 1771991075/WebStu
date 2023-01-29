@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .goods {
+            width: 100%;
+            margin-top: 0;
+        }
+
+        .goods img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="../js/jquery-3.6.1.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        state = {
+            topList : [],
+            hotList : []
+        }
+        render(){
+            return (
+                <div>
+                    <div>
+                        <button onClick={()=>this.getTopList()}>获取商品排行榜</button>    
+                    </div>
+                    <div>
+                        {
+                            this.state.topList.map((item,index)=>{
+                                return <Goods key={index} goods={item} />
+                            })
+                        }  
+                    </div> 
+                    <div>
+                        <button onClick={()=>this.getHotList()}>获取热门商品</button>    
+                    </div>
+                    <div>
+                        {
+                            this.state.hotList.map((item,index)=>{
+                                return <Goods key={index} goods={item} />
+                            })
+                        } 
+                    </div>
+                </div>
+            )
+        }
+        getTopList(){
+            $.ajax({
+                url : 'https://apif.java.crmeb.net/api/front/product/leaderboard',
+                method : 'get',
+                dataType : 'json',
+                success : (res)=>{
+                    console.log(res.data);
+                    this.setState({
+                        topList : res.data
+                    })
+                }
+            })
+        }
+        getHotList(){
+            $.ajax({
+                url : 'https://apif.java.crmeb.net/api/front/index/product/1/?page=1&limit=10',
+                method : 'get',
+                dataType : 'json',
+                success : (res)=>{
+                    console.log(res.data.list);
+                    this.setState({
+                        hotList : res.data.list
+                    })
+                }
+            })
+        }
+    }
+    class Goods extends React.Component{
+        render(){
+            return (
+                <div className='goods'>
+                    <img src={this.props.goods.image} alt="" />
+                    <p>{this.props.goods.storeName}</p>
+                    <p>{this.props.goods.price}</p>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById('root'));
+</script>
+</html>

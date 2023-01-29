@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        nav{
+            display: flex;
+        }
+        nav>div{
+            flex: 1;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            position: relative;
+        }
+        .active::before{
+            content: "";
+            width: 30px;
+            height: 3px;
+            background-color: red;
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            margin-left: -15px;
+        }
+        .navbar{
+            width: 100%;
+            background-color: red;
+            color: #fff;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            display: flex;
+        }
+        .navbar div{
+            flex: 1;
+        }
+        .left{
+            text-align: left;
+        }
+        .center{
+            text-align: center;
+        }
+        .right{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        state = {
+            navList : ['首页','购物车','订单','我的'],
+            index : 0
+        }
+        render(){
+            return (
+                <div>
+                    <nav>
+                        {
+                            this.state.navList.map((item,index)=>{
+                                return <div key={index} className={this.state.index === index?'active':''} onClick={()=>{
+                                    this.setState({
+                                        index : index
+                                    })
+                                }}>{item}</div>
+                            })
+                        }
+                    </nav>
+                    { this.state.index === 0 && <Home/> }   
+                    { this.state.index === 1 && <ShopCar/> } 
+                    { this.state.index === 2 && <Order/> } 
+                    { this.state.index === 3 && <Mine/> } 
+                </div>
+            )
+        }
+    }
+
+    class Home extends React.Component{
+        render(){
+            return (
+                <Content>
+                    <div>home</div>
+                    <div>首页</div>
+                    <div>三</div>
+                </Content>
+            )
+        }
+    }
+    class ShopCar extends React.Component{
+        render(){
+            return (
+                <Content>
+                    <div>图标</div>
+                    <div>购物车</div>
+                    <div></div>
+                </Content>
+            )
+        }
+    }
+    class Order extends React.Component{
+        render(){
+            return (
+                <Content>
+                    <div>图标</div>
+                    <div>我的订单</div>
+                    <div></div>
+                </Content>
+            )
+        }
+    }
+    class Mine extends React.Component{
+        render(){
+            return (
+                <Content>
+                    <div>＜</div>
+                    <div>我的</div>
+                    <div>×</div>
+                </Content>
+            )
+        }
+    }
+    class Content extends React.Component{
+        render(){
+            return (
+                <div className="navbar">
+                    <div className="left">{this.props.children[0]}</div>
+                    <div className="center">{this.props.children[1]}</div>
+                    <div className="right">{this.props.children[2]}</div>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById('root'));
+</script>
+</html>

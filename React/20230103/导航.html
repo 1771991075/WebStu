@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul{
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            display: flex;
+            justify-content: space-around;
+        }
+        ul li span{
+            display: inline-block;
+        }
+        .on{
+            border-bottom: 3px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/jquery-3.6.1.js"></script>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        constructor(){
+            super();
+            this.state = {
+                list : [
+                    "首页",
+                    "分类",
+                    "购物车",
+                    "我的"
+                ],
+                com : [
+                    <Index/>,
+                    <List/>,
+                    <Shopcard/>,
+                    <My/>
+                ],
+                index : 0
+            }
+        }
+        render(){
+            return (
+                <div>
+                    <ul>
+                        {
+                            this.state.list.map((item,index)=>{
+                                return <li key={index}><span onClick={()=>{
+                                    $('li').eq({index}.index).addClass('on').siblings().removeClass('on');
+                                    this.state.index = {index}.index
+                                    this.setState({
+                                        index : this.state.index
+                                    })
+                                }}>{item}</span></li>
+                            })
+                        }  
+                    </ul>
+                    {
+                        this.show()
+                    }
+                </div>
+            )
+        }
+        show(){
+            return this.state.com[this.state.index];
+        }
+    }
+    class Index extends React.Component{
+        render(){
+            return (
+                <div className="con">
+                    <h1>首页</h1>
+                </div>
+            )
+        }
+    }
+
+    class List extends React.Component{
+        render(){
+            return (
+                <div className="con">
+                    <h1>分类</h1> 
+                </div>
+            )
+        }
+    }
+
+    class Shopcard extends React.Component{
+        render(){
+            return (
+                <div className="con">
+                    <h1>购物车</h1> 
+                </div>
+            )
+        }
+    }
+
+    class My extends React.Component{
+        render(){
+            return (
+                <div className="con">
+                    <h1>我的</h1>  
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById('root'));
+    
+    $('li').eq(0).addClass('on');
+</script>
+</html>
