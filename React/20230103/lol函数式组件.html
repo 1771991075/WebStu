@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        li {
+            width: 80px;
+            height: 100px;
+            text-align: center;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        li img {
+            width: 80px;
+            height: 80px;
+        }
+
+        li a {
+            font-size: 14px;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.js"></script>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    function sendAjax(url, method, data = null) {
+        return new Promise((reslove, reject) => {
+            $.ajax({
+                url,
+                method,
+                data,
+                success(res) {
+                    reslove(JSON.parse(res))
+                },
+                error(err) {
+                    reject(err)
+                }
+            })
+        })
+    }
+
+    function App(props){
+        let {list} = props;
+        return (
+            <ul>
+                {
+                    list.hero.map((item,index)=>{
+                        return <Child item={item} key={index} />
+                    })
+                }
+            </ul>
+        )
+    }
+        
+    function Child(props){
+        let {item} = props;
+        return (
+            <li onClick={()=>href(item.heroId)}>
+                <img src={'https://game.gtimg.cn/images/lol/act/img/champion/'+ item.alias +'.png'} alt=""></img>
+                <a>{item.name}</a>
+            </li>
+        )
+    }
+
+    async function arrData() {
+        let data = await sendAjax('https://game.gtimg.cn/images/lol/act/img/js/heroList/hero_list.js', 'get');
+        ReactDOM.render(<App list={data} />, document.getElementById('root'));
+    }
+    arrData();
+
+    function href(id){
+        window.location.href = '../20230102/xq.html?id='+id;
+    }
+</script>
+
+</html>
