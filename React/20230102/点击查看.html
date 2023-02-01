@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    const list=[
+            {
+                name:"张三",
+                age:18,
+                sex:true
+            },
+            {
+                name:"李四",
+                age:8,
+                sex:false
+            },{
+                name:"王红",
+                age:15,
+                sex:false
+            }
+        ]
+    let div = (
+        <table border="1px">
+            <thead>
+                <tr>
+                    <td>姓名</td>    
+                    <td>年龄</td>  
+                    <td>性别</td> 
+                    <td>查看</td>
+                </tr> 
+            </thead>    
+            <tbody>
+                {
+                    list.map((item,index)=>{
+                        return (
+                            <tr key={index}>
+                                <td>{item.name}</td>
+                                <td>{item.age<14 ? '少年' : item.age<18 && item.age>=14? '青年' : '成年'}</td>
+                                <td>{item.sex?'男':'女'}</td>
+                                <td><button onClick={()=>{
+                                    alert('我是:' + item.name + ',性别:' + (item.sex?'男':'女') + ',年龄段:' + (item.age<14 ? '少年' : item.age<18 && item.age>=14? '青年' : '成年'))
+                                }}>点我</button></td>
+                            </tr>
+                        )
+                    })
+                }
+            </tbody>
+        </table>
+    )
+
+    ReactDOM.render(div,document.getElementById('root'));
+
+</script>
+</html>
