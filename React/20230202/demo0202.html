@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        .box{
+            width: 100%;
+        }
+        .nav{
+            width: 100%;
+            height: 50px;
+            background-color: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        input{
+            width: 50%;
+            height: 30px;
+            padding-left: 10px;
+        }
+        .item{
+            width: 100%;
+        }
+        .item img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+
+    class App extends React.Component{
+
+        state={
+            list: [
+                {
+                    name: "白羊座",
+                    url: "./image/baiyang.png"
+                }, {
+                    name: "处女座",
+                    url: "./image/chunv.png"
+                }, {
+                    name: "金牛座",
+                    url: "./image/jinniu.png"
+                }, {
+                    name: "巨蟹座",
+                    url: "./image/juxie.png"
+                }, {
+                    name: "魔羯座",
+                    url: "./image/moxie.png"
+                }, {
+                    name: "射手座",
+                    url: "./image/sheshou.png"
+                }, {
+                    name: "狮子座",
+                    url: "./image/shizi.png"
+                }, {
+                    name: "双鱼座",
+                    url: "./image/shuangyu.png"
+                }, {
+                    name: "双子座",
+                    url: "./image/shuangzi.png"
+                }, {
+                    name: "水平座",
+                    url: "./image/shuiping.png"
+                }, {
+                    name: "天秤座",
+                    url: "./image/tiancheng.png"
+                }, {
+                    name: "天蝎座",
+                    url: "./image/tianxie.png"
+                },
+            ],
+            keyWord:''
+        }
+
+        render(){
+            const {list,keyWord} = this.state 
+            return (
+                <div className="box">
+                    <div className="nav">
+                        <input type="text" placeholder="请输入星座" value={keyWord} onChange={(e)=>{this.setState({keyWord:e.target.value})}}/>
+                    </div>
+                    <div className="con">
+                        {
+                            list.map((item,index)=>{
+                                return item.name.includes(keyWord) && <div className="item" key={index}><img src={item.url} alt="" /></div>
+                            })
+                        }
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById('root'))
+
+</script>
+</html>
