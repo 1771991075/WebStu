@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="emit1()">订阅1</button>
+    <button onclick="emit1()">订阅2</button>
+    <button onclick="emit1()">订阅3</button>
+    <button onclick="send()">发布消息</button>
+    <script>
+
+        let bus = {
+            // 所有订阅者
+            list:[],
+            // 订阅
+            emit(callback){
+                console.log("订阅成功------11111111111111");
+                this.list.push(callback)
+            },
+            //发布
+            sendMsg(){
+                this.list.forEach(item => {
+                    item('收到msg')
+                });
+            }
+        }
+
+        //订阅者1
+        function emit1(){
+            bus.emit((msg)=>{
+                console.log("收到消息",msg);
+            })
+        }
+        //订阅者2
+        function emit2(){
+            bus.emit(()=>{
+            })
+        }
+        //订阅者3
+        function emit3(){
+            bus.emit(()=>{
+            })
+        }
+
+        //发布消息
+        function send(){
+            console.log("发送成功------11111111111111");
+            bus.sendMsg()
+        }
+
+
+    </script>
+</body>
+</html>
