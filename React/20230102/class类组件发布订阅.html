@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .one{
+            background-color: aqua;
+            width: 100%;
+            height: 200px;
+        }
+        .two{
+            background-color: aquamarine;
+            width: 100%;
+            height: 200px;
+        }
+        .three{
+            background-color: coral;
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+
+    let bus = {
+        list:[],
+        //发布
+        emit(num){
+            console.log('发布成功...');
+            let index = bus.list.findIndex(item=>{
+                return item.user === 'getNum'
+            })
+            if(index != -1){
+                bus.list[index].callback(num)
+            }
+        },
+        //订阅
+        on(user,callback){
+            console.log('订阅成功...');
+            this.list.push({user,callback})
+        }
+    }
+
+    class App extends React.Component{
+
+        render(){
+            return (
+                <div>
+                    <One/>
+                    <Two/>
+                    <Three/>
+                </div>
+            )
+        }
+    }
+
+    class One extends React.Component{
+
+        state={ 
+            num:''
+        }
+
+        constructor(){
+            super()
+            //订阅消息
+            bus.on('getNum',(msg)=>{
+                console.log(msg);
+                this.setState({
+                    num:msg
+                })
+            })
+        }
+
+        render(){
+            const {num} = this.state
+            return (
+                <div className="one">
+                    <h1>收到num:---------------</h1>{num}
+                </div>
+            )
+        }
+    }
+
+    class Two extends React.Component{
+        state={
+            num:100
+        }
+
+        constructor(){
+            super()
+            bus.on('sendNum',(msg)=>{
+                console.log(msg);
+            })
+        }
+        render(){
+            const {num} = this.state
+            return (
+                <div className="two">
+                    <h1>Two组件----</h1>
+                    <h1>发送num:---------------{num}</h1><button onClick={()=>{
+                        bus.emit(num)
+                    }}>发送</button>
+                </div>
+            )
+        }
+    }
+
+    class Three extends React.Component{
+        state={
+
+        }
+        constructor(){
+            super()
+            bus.on('three',(msg)=>{
+                console.log(msg);
+            })
+        }
+        render(){
+            return (
+                <div className="three">
+                    <h1>Three组件------------</h1>
+                </div>
+            )
+        }
+    }   
+
+    ReactDOM.render(<App/>,document.getElementById('root'))
+
+</script>
+</html>

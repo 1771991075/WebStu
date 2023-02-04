@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .one{
+            width: 100%;
+            height: 200px;
+            background-color: red;
+        }
+        .two{
+            width: 100%;
+            height: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    console.log(React);
+    let Context = React.createContext()
+    console.log(Context);
+    class App extends React.Component{
+
+        state={
+            num:20
+        }
+        render(){
+            return (
+                <div>
+                    <Context.Provider value={{name:'张三',age:this.state.num,setAge:(newNum)=>{
+                        this.setState({
+                            num:newNum
+                        })
+                    }}}>
+                        <One/>
+                        <Two/>    
+                    </Context.Provider>
+                </div>
+            )
+        }
+    }
+
+    class One extends React.Component{
+        render(){
+            return (
+                <Context.Consumer>
+                    {
+                        (value)=>{
+                            return (
+                                <div className="one">
+                                    <h1>我是one组件---------------{value.name}-----{value.age}</h1>
+                                </div>
+                            )
+                        }
+                    }
+                </Context.Consumer>
+            )
+        }
+    }
+
+    class Two extends React.Component{
+        render(){
+            return (
+                <Context.Consumer>
+                    {
+                        (value)=>{
+                            return (
+                                <div className="two">
+                                    <h1>我是two组件---------------{value.name}-----{value.age}</h1>  
+                                    <button onClick={()=>{
+                                        value.setAge(1000000000000)
+                                    }}>改变age</button>
+                                </div>
+                            )
+                        }
+                    }
+                </Context.Consumer>
+            )
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById('root'))
+
+</script>
+</html>
