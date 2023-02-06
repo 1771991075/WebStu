@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        state = {
+            str:'少年!!!!!!!!!!!奔跑吧',
+            timer:null
+        }
+
+        render(){
+            const {str} = this.state
+            return (
+                <div className='box'> 
+                    <h1>{str}</h1>
+                    <button onClick={()=>{this.start()}}>开始</button>
+                    <button onClick={()=>{this.ss()}}>暂停</button>
+                </div>
+            )
+        }
+        start(){
+            if(this.state.timer){
+                return 
+            }
+            this.state.timer = setInterval(()=>{
+                let {str} = this.state
+                let str1 = str.substr(0,1)
+                let str2 = str.substr(1)
+                let newStr = str2 + str1
+                console.log(newStr);
+                this.setState({
+                    str:newStr
+                })
+            },500)
+            this.setState({
+                timer:this.state.timer
+            })
+            
+        }
+        ss(){
+            clearInterval(this.state.timer)
+            this.setState({
+                timer:null
+            })
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById('root'))
+</script>
+</html>
