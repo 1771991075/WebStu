@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .nav {
+            width: 100%;
+            height: 50px;
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            display: flex;
+            justify-content: space-around;
+            background-color: aquamarine;
+        }
+
+        .navv{
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .on {
+            padding-bottom: 10px;
+            border-bottom: 3px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component {
+        state = {
+            list: ['电影', '影院', '资讯', '我的'],
+            active: 0
+        }
+        render() {
+            const { list, active } = this.state
+            return (
+                <div>
+                    <div>
+                        {active===0 && <Nav1/>}
+                        {active===1 && <Nav2/>}
+                        {active===2 && <Nav3/>}
+                        {active===3 && <Nav4/>}
+                    </div>
+                    <div className="nav">
+                        {
+                            list.map((item, index) => {
+                                return (
+                                    <div className="navv" key={index} onClick={() => { this.setState({ active: index }) }}>
+                                        <a className={active === index ? 'on' : ''}>{item}</a>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    class Nav1 extends React.Component {
+        render() {
+            return (
+                <div className="nav1">
+                    <p>电影</p>
+                </div>
+            )
+        }
+    }
+
+    class Nav2 extends React.Component {
+        render() {
+            return (
+                <div className="nav1">
+                    <p>影院</p>
+                </div>
+            )
+        }
+    }
+
+    class Nav3 extends React.Component {
+        render() {
+            return (
+                <div className="nav1">
+                    <p>资讯</p>
+                </div>
+            )
+        }
+    }
+
+    class Nav4 extends React.Component {
+        render() {
+            return (
+                <div className="nav1">
+                    <p>我的</p>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'))
+
+</script>
+
+</html>

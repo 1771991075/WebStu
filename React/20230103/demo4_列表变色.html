@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .style1{
+            background-color: red;
+        }
+        .style2{
+            background-color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        state = {
+            arr:[0,1,2,3,4,5,6,7,8,9,10],
+            cls:'',
+            idx:''
+        }
+        render(){
+            const {arr,cls,idx} = this.state
+            return (
+                <div>
+                    <ul>
+                        {
+                            arr.map((item,index)=>{
+                                return <li className={index===idx?cls:''} key={index} onClick={()=>{
+                                    let c = item%2==0?'style1':'style2'
+                                    this.setState({cls:c,idx:index})
+                                }}>{item}</li>
+                            })
+                        }
+                    </ul>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById('root'))
+</script>
+</html>
