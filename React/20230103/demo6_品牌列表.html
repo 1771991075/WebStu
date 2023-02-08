@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 1000px;
+            margin: 20px auto;
+        }
+
+        .add {
+            width: 1000px;
+            height: 150px;
+            border: 1px solid #09b5b1;
+            border-radius: 5px;
+            padding: 15px 0px;
+            font-size: 14px;
+        }
+
+        .add p {
+            color: white;
+            font-size: 16px;
+            padding-left: 10px;
+            line-height: 40px;
+            height: 40px;
+            background-color: #09b5b1;
+        }
+
+        .ipt {
+            padding: 20px 50px;
+        }
+
+        input {
+            width: 200px;
+            height: 25px;
+        }
+
+        .add button {
+            width: 50px;
+            height: 30px;
+            background-color: #09b5b1;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .list{
+            margin-top: 20px;
+        }
+        .table{
+            border: 1px solid #dee2e6;
+        }
+        .del{
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+
+    class App extends React.Component {
+
+        state = {
+            list: [
+                {
+                    id: 1,
+                    name: "奔驰",
+                    date: '2023年01月01日 17:50:50'
+                }, {
+                    id: 2,
+                    name: "宝马",
+                    date: '2023年01月01日 17:50:50'
+                }, {
+                    id: 3,
+                    name: "法拉利",
+                    date: '2023年01月01日 17:50:50'
+                }, {
+                    id: 4,
+                    name: "劳斯莱斯",
+                    date: '2023年01月01日 17:50:50'
+                },
+            ],
+            name:'',
+            keyWord:''
+        }
+
+        render() {
+            const { list,keyWord } = this.state
+            return (
+                <div className="box">
+                    <div className="add">
+                        <p>添加品牌</p>
+                        <div className="ipt">
+                            Id: <input type="text" />
+                            Name: <input type="text" onChange={(e)=>{this.setState({name:e.target.value})}}/>  <button onClick={this.add}>添加</button>
+                            搜索名称关键字: <input type="text" placeholder="请输入关键字" value={this.state.keyWord} onChange={(e)=>{this.search(e)}} />
+                        </div>
+                    </div>
+                    <div className="list">
+                        <table className="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Citme</th>
+                                    <th>Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    list.map((item, index) => {
+                                        return (
+                                            item.name.includes(keyWord) && <tr key={index}>
+                                                <td>{item.id}</td>
+                                                <td>{item.name}</td>
+                                                <td>{item.date}</td>
+                                                <td><button className="del" onClick={()=>{this.del(item.id)}}>删除</button></td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )
+        }
+        //当前时间
+        getDate(){
+            let date = new Date()
+            let year = date.getFullYear()
+            let month = date.getMonth()+1
+            let day = date.getDate()
+            let hours = date.getHours()
+            let minutes = date.getMinutes()
+            let seconds = date.getSeconds()
+            month = month<10 ? "0"+ month : month
+            day = day<10 ? "0"+ day : day
+            hours = hours<10 ? "0"+ hours : hours
+            minutes = minutes<10 ? "0"+ minutes : minutes
+            seconds = seconds<10 ? "0"+ seconds : seconds
+            let nowDate = year + '年' + month + '月' + day + '日   ' + hours + ':' + minutes + ':' + seconds
+            return nowDate
+        }
+        //添加
+        add = ()=>{
+            const {list,name} = this.state
+            if(!name){
+                alert('请输入品牌')
+                return 
+            }
+            let nowDate = this.getDate()
+            let obj = {
+                id:list[list.length-1].id+1,
+                name:name,
+                date:nowDate
+            }
+            list.push(obj)
+            this.setState({
+                list:list
+            })
+        }
+        //删除
+        del(id){
+            const {list} = this.state
+            let index = list.findIndex(item=>{
+                return item.id === id
+            })
+            list.splice(index,1)
+            this.setState({
+                list:list
+            })
+        }
+        //搜索
+        search(e){
+            this.setState({
+                keyWord:e.target.value
+            })
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'))
+</script>
+
+</html>

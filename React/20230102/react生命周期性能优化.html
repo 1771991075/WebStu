@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component {
+        state = {
+            list: []
+        }
+        render() {
+            let { list } = this.state
+            return (
+                <div>
+                    <button onClick={() => {
+                        let newList = JSON.parse(JSON.stringify(list))
+                        newList[0].name = '哈哈哈哈'
+                        this.setState({
+                            list: newList
+                        })
+                    }}>改变</button>
+                    {
+                        list.map((item, index) => {
+                            return <Hero key={index} item={item} />
+                        })
+                    }
+                </div>
+            )
+        }
+        componentDidMount() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("get", 'https://game.gtimg.cn/images/lol/act/img/js/heroList/hero_list.js');
+            xhr.send();
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    let res = JSON.parse(xhr.response);
+                    console.log(res)
+                    this.setState({
+                        list: res.hero
+                    })
+                }
+            }
+        }
+    }
+
+    class Hero extends React.Component {
+        /* 
+            判断组件是否应该被更新，若要更新则返回true 若不需要更新则返回false
+        */
+        shouldComponentUpdate(nextProps,nextState){
+            // nextProps 父组件最新传递过来的属性
+            console.log(nextProps)
+            // nextState 表示组件最新状态
+            // console.log(nextState)
+            colsole.log(this.props)
+            if(nextProps.item.name !== this.props.item.name){
+                return true
+            }else{
+                return false
+            }
+        }
+
+        render() {
+            console.log('渲染了')
+            return (
+                <div>
+                    <img src={`https://game.gtimg.cn/images/lol/act/img/champion/${this.props.item.alias}.png`} alt="" />
+                    <p>{this.props.item.name}</p>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'))
+
+</script>
+
+</html>

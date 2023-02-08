@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        body{
+            overflow-y: scroll;
+        }
+        .container{
+            width: 1000px;
+            margin: 10px auto;
+        }
+        .nav{
+            width: 1000px;
+            background-color: blueviolet;
+            border-radius: 5px;
+            height: 50px;
+            padding: 10px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .nav span{
+            line-height: 30px;
+            display: inline-block;
+            margin: 0px 10px;
+            cursor: pointer;
+            color: white;
+        }
+        .active{
+            border-bottom: 3px solid red;
+        }
+        ul{
+            width: 1000px;
+        }
+        ul li{
+            width: 80px;
+            height: 100px;
+            margin: 10px 10px;
+            float: left;
+        }
+        ul li img{
+            width: 80px;
+            height: 80px;
+        }
+        ul li p{
+            text-align: center;
+            line-height: 20px;
+            font-size: 13px;
+        }
+        input{
+            width: 150px;
+            height: 20px;
+            border: 0px;
+            outline: none;
+            border: 1px solid blueviolet;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="../js/jquery-3.6.1.js"></script>
+<script type="text/babel">
+
+    let Context = React.createContext()
+
+    class App extends React.Component{
+        state = {
+            navList: [
+                {
+                    name: "全部",
+                    type: "all",
+                }, {
+                    name: "法师",
+                    type: "mage"
+                }, {
+                    name: "战士",
+                    type: "fighter"
+                }, {
+                    name: "坦克",
+                    type: "tank"
+                }, {
+                    name: "刺客",
+                    type: "assassin"
+                }, {
+                    name: "射手",
+                    type: "marksman"
+                }, {
+                    name: "辅助",
+                    type: "support"
+                }
+            ],
+            heroList:[],
+            navIndex:0,
+            jobList:[],
+            keyWord:''
+        }
+
+        componentDidMount(){
+            $.ajax({
+                url:'https://game.gtimg.cn/images/lol/act/img/js/heroList/hero_list.js',
+                method:'get',
+                dataType:'json',
+                success:(res)=>{
+                    console.log(res);
+                    this.setState({
+                        heroList:res.hero,
+                        jobList:res.hero
+                    })
+                }
+            })
+        }
+
+        render(){
+            let {navList,heroList,navIndex,jobList,keyWord} = this.state 
+            return (
+                <div className='container'>
+                    <Context.Provider value={{navList:navList,heroList:heroList,navIndex:navIndex,jobList:jobList,keyWord:keyWord,changeIndex:(index)=>{
+                        if(index === 0){
+                            jobList = heroList
+                        }else{
+                            let job = navList[index].type;
+                            jobList = heroList.filter((item)=>{
+                                return item.roles.includes(job)
+                            })
+                        }
+                        this.setState({navIndex:index,jobList:jobList})
+                    },changeKeyWord:(keyWord)=>{
+                        this.setState({keyWord:keyWord})
+                    }}}>
+                        <Header/>
+                        <List/>
+                    </Context.Provider>
+                </div>
+            )
+        }
+    }
+    class Header extends React.Component{
+        state = {
+            keyWord:''
+        }
+        render(){
+            const {keyWord} = this.state
+            return (
+                <Context.Consumer>
+                    {
+                        (value)=>{
+                            return (
+                                <div className='nav'>
+                                    {
+                                        value.navList.map((item,index)=>{
+                                            return (
+                                                <span key={index} className={value.navIndex===index?'active':''} onClick={()=>{
+                                                    value.changeIndex(index)
+                                                }}>{item.name}</span>
+                                            )
+                                        })
+                                    }
+                                    <input type="text" placeholder="搜索" value={keyWord} onChange={(e)=>{
+                                        this.setState({keyWord:e.target.value})
+                                        value.changeKeyWord(e.target.value)
+                                    }}/>
+                                </div>
+                            )
+                        }
+                    }
+                </Context.Consumer>
+                
+            )
+        }
+    }
+    class List extends React.Component{
+        render(){
+            return (
+                <Context.Consumer>
+                    {
+                        (value)=>{
+                            return (
+                                <ul>
+                                    {
+                                        value.jobList.map((item,index)=>{
+                                            return (
+                                                (item.name.includes(value.keyWord) || item.title.includes(value.keyWord)) && <li key={item.heroId}>
+                                                    <img src={`https://game.gtimg.cn/images/lol/act/img/champion/${item.alias}.png`} alt="" />
+                                                    <p>{item.name}</p>    
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            )
+                        }
+                    }
+                </Context.Consumer>
+            )
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById('root'))
+
+</script>
+</html>

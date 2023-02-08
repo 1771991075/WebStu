@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../font-awesome-4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        .container{
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+            background: url(https://game.gtimg.cn/images/lol/lolstrategy/bg.jpg) top center no-repeat;
+            background-size: 100% auto;
+        }
+        .box{
+            width: 1000px;
+            margin: 50px auto;
+        }
+        .nav{
+            width: 1000px;
+            height: 40px;
+            display: flex;
+            margin-top: 50px;
+        }
+        .nav input{
+            height: 25px;
+            width: 150px;
+            padding: 0px 10px;
+            background-color: #111419;
+            color: #b59758;
+            margin-right: 50px;
+            font-size: 12px;
+            border: 0;
+            outline: none;
+        }
+        .nav input:hover{
+            outline: 1px solid #b59758;
+        }
+        .nav ul{
+            width: 400px;
+            height: 25px;
+            display: flex;
+            justify-content: space-between;
+            background-color: #111419;
+        }
+        .nav ul li{
+            width: 70px;
+            text-align: center;
+            color: #5e625a;
+            font-size: 12px;
+            line-height: 25px;
+            background-color: #111419;
+            box-sizing: border-box;
+            border: 1px solid #111419;
+            cursor: pointer;
+        }
+        .nav ul li:hover{
+            color: #b59758;
+            border: 1px solid #b59758;
+        }
+        .active{
+            color: #b59758 !important;
+            border: 1px solid #b59758 !important;
+        }
+        .list{
+            width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .list .item{
+            width: 140px;
+            height: 180px;
+            background-color: #111419;
+            margin: 8px 8px 0px 0px;
+            position: relative;
+            border: 1px solid #111419;
+        }
+        .list .item:hover{
+            transform: scale(1.1);
+            transition: all 0.5s;
+            border: 1px solid #b59758;
+        }
+        .list .item img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+        .name{
+            width: 140px;
+            height: 20px;
+            background-color: #111419;
+            text-align: center;
+            padding: 5px 0px;
+            color: #fff5e0;
+            position: absolute;
+            bottom: 0px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+
+    let Context = React.createContext()
+
+    class App extends React.Component {
+
+        state = {
+            navList: [
+                {
+                    name: "全部",
+                    type: "all",
+                }, {
+                    name: "法师",
+                    type: "mage"
+                }, {
+                    name: "战士",
+                    type: "fighter"
+                }, {
+                    name: "坦克",
+                    type: "tank"
+                }, {
+                    name: "刺客",
+                    type: "assassin"
+                }, {
+                    name: "射手",
+                    type: "marksman"
+                }, {
+                    name: "辅助",
+                    type: "support"
+                }
+            ],
+            heros:[],
+            index:0,
+            job:'',
+            jobList:[],
+            keyWord:''
+        }
+
+        componentDidMount() {
+            let xhr = new XMLHttpRequest();
+            xhr.open('get', 'https://game.gtimg.cn/images/lol/act/img/js/heroList/hero_list.js')
+            xhr.send()
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    let data = JSON.parse(xhr.response)
+                    console.log(data.hero)
+                    this.setState({
+                        heros:data.hero,
+                        jobList:data.hero
+                    })
+                }
+            }
+        }
+
+        render() {
+            let {navList,heros,job,index,jobList,keyWord} = this.state
+            return (
+                <div className="container">
+                    <div className="box">
+                        <Context.Provider value={{
+                            navList,
+                            heros,
+                            job,
+                            index,
+                            jobList,
+                            keyWord,
+                            changeIndex:(index)=>{
+                                if(index === 0) {
+                                    jobList = heros
+                                    this.setState({index,jobList})
+                                    return 
+                                }
+                                job = navList[index].type
+                                jobList = heros.filter(item=>{
+                                    return item.roles.includes(job)
+                                })
+                                this.setState({index,jobList})
+                            },
+                            changeKeyWord:(keyWord)=>{
+                                this.setState({keyWord})
+                            }
+                        }}>
+                            <Header />
+                            <List />
+                        </Context.Provider>
+                    </div>
+                </div>
+                
+            )
+        }
+    }
+
+    class Header extends React.Component {
+        state={
+            keyWord:''
+        }
+        render() {
+            const {keyWord} = this.state
+            return (
+                <Context.Consumer>
+                    {
+                        (value) => {
+                            return (
+                                <div className="header">
+                                    <h2>英雄列表</h2>
+                                    <div className="nav">
+                                        <input type="text" placeholder="搜索" onChange={(e)=>{
+                                            value.changeKeyWord(e.target.value)
+                                            this.setState({keyWord:e.target.value})
+                                        }}/> 
+                                        <ul>
+                                            {
+                                                value.navList.map((item,index)=>{
+                                                    return <li key={index} onClick={()=>{
+                                                        value.changeIndex(index)
+                                                    }} className={value.index===index?'active':''}>{item.name}</li>
+                                                })
+                                            }    
+                                        </ul>  
+                                    </div>
+                                </div>
+                            )
+                        }
+                    }
+                </Context.Consumer>
+            )
+        }
+    }
+
+    class List extends React.Component {
+        render() {
+            return (
+                <Context.Consumer>
+                    {
+                        (value) => {
+                            return (
+                                <div className="list">
+                                    {
+                                        value.jobList.map((item,index)=>{
+                                            return (
+                                                (item.name.includes(value.keyWord) || item.title.includes(value.keyWord) ) &&
+                                                <div key={index}>
+                                                    <div className="item">
+                                                        <img src={`https://game.gtimg.cn/images/lol/act/img/skinloading/${item.heroId}000.jpg`} alt="" />
+                                                        <p className="name">{item.name}</p>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            )
+                        }
+                    }
+                </Context.Consumer>
+            )
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'))
+
+
+
+</script>
+
+</html>

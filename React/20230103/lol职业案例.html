@@ -67,6 +67,8 @@
 <script src="../js/jquery-3.6.1.js"></script>
 <script type="text/babel">
 
+    let Context = React.createContext()
+
     class App extends React.Component{
         state = {
             navList: [
@@ -103,6 +105,7 @@
                 method:'get',
                 dataType:'json',
                 success:(res)=>{
+                    console.log(res);
                     this.setState({
                         heroList:res.hero
                     })

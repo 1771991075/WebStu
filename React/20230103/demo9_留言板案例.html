@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 1200px;
+            margin: auto;
+            padding-bottom: 5px;
+        }
+        #ipt{
+            width: 100%;
+        }
+        #txt{
+            width: 100%;
+        }
+        .box{
+            border-bottom: 1px solid #999;
+        }
+        .box p{
+            font-size: 12px;
+            width: 100%;
+        }
+        .box button{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        state={
+            userList:[
+                {
+                    name:'小明',
+                    content:'小明是个帅哥！'
+                },
+                {
+                    name:'小红',
+                    content:'小红是个美女！'
+                },
+            ]
+        }
+        render(){
+            const {userList} = this.state
+            return (
+                <div className='container'>
+                    <Msg sendMsg={(msg)=>{
+                        userList.push(msg)
+                        this.setState({
+                            userList:userList,
+                        })
+                    }}/>
+                    <Show userList={userList} delMsg={(index)=>{
+                        userList.splice(index,1)
+                        this.setState({
+                            userList:userList
+                        })
+                    }}/>
+                </div>
+            )
+        }
+    }
+
+    class Msg extends React.Component{
+        state={
+            name:'',
+            content:''
+        }
+        render(){
+            const {name,content} = this.state
+            return (
+                <div>
+                    <h2>评论人</h2>
+                    <input type="text" name="" id="ipt" value={this.state.name} onChange={(e)=>{this.setState({name:e.target.value})}} />
+                    <h2>评论内容</h2>
+                    <textarea name="" id="txt" cols="30" rows="10" value={this.state.content} onChange={(e)=>{this.setState({content:e.target.value})}}></textarea>
+                    <button onClick={()=>{
+                        if(!this.state.name || !this.state.content){
+                            alert('请补充完整信息')
+                            return
+                        }
+                        let msg = {name,content}
+                        this.props.sendMsg(msg)
+                        this.setState({name:'',content:''})
+                    }}>发表</button>
+                </div>
+            )
+        }
+    }
+
+    class Show extends React.Component{
+        render(){
+            const {userList} = this.props
+            return (
+                <div>
+                    <h2>留言板</h2>
+                    {
+                        userList.map((item,index)=>{
+                            return (
+                                <div key={index} className='box'>
+                                    <p>作者:{item.name}</p>
+                                    <p>内容:{item.content} <button onClick={()=>{
+                                        this.props.delMsg(index)
+                                    }}>删除</button></p>
+                                </div>
+                            )
+                        })
+                    }
+                    {
+                        userList.length===0 && <div>暂无数据</div>
+                    }
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById('root'))
+
+</script>
+</html>

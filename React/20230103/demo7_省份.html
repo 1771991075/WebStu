@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script src="../js/react.js"></script>
+<script src="../js/react-dom.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    class App extends React.Component {
+        state={
+            provinceArray: [
+                {
+                    provinceName: "河南省",
+                    cityList: [
+                        {
+                            cityName: "郑州市",
+                            areaList: ["高新区", "中原区", "金水区", "二七区"]
+                        }, {
+                            cityName: "安阳市",
+                            areaList: ["文峰区", "北关区", "开发区", "汤阴县", "安阳县"]
+                        }, {
+                            cityName: "新乡市",
+                            areaList: ["红旗区", "原阳县", "新乡新区"]
+                        }
+                    ]
+                },{
+                    provinceName: "福建省",
+                    cityList: [
+                        {
+                            cityName: "福州市",
+                            areaList: ["滨海区", "吴岩区"]
+                        }, {
+                            cityName: "厦门市",
+                            areaList: ["集美区", "翔安区", "思明区"]
+                        }
+                    ]
+                }
+            ],
+            provinceIndex:0,
+            cityIndex:0,
+            areaIndex:0
+        }
+        render() {
+            const {provinceArray,provinceIndex,cityIndex,areaIndex} = this.state
+            return (
+                <div>
+                    <select value={provinceIndex} onChange={(e)=>{this.setState({
+                        provinceIndex:e.target.value,
+                        cityIndex:0,
+                        areaIndex:0
+                    })}}>
+                        {
+                            provinceArray.map((item,index)=>{
+                                return <option value={index} key={index}>{item.provinceName}</option>
+                            })
+                        }
+                    </select>
+                    <select value={cityIndex} onChange={(e)=>{
+                        this.setState({
+                            cityIndex:e.target.value,
+                            areaIndex:0
+                        })
+                    }}>
+                        {
+                            provinceArray[provinceIndex].cityList.map((item,index)=>{
+                                return <option value={index} key={index}>{item.cityName}</option>
+                            })
+                        }
+                    </select>
+                    <select value={areaIndex} onChange={(e)=>{
+                        this.setState({
+                            areaIndex:e.target.value
+                        })
+                    }}>
+                        {
+                            provinceArray[provinceIndex].cityList[cityIndex].areaList.map((item,index)=>{
+                                return <option value={index} key={index}>{item}</option>
+                            })
+                        }
+                    </select>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'))
+
+</script>
+
+</html>
