@@ -1,0 +1,15 @@
+#root{
+    width: 1000px;
+    height: 200px;
+    margin: auto;
+    background-color: aquamarine;
+    color: azure;
+}
+#box{
+    width: 500px;
+    height: 300px;
+    margin: auto;
+}
+#box img{
+    width: 100%;
+}
