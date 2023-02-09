@@ -9,9 +9,33 @@
 </head>
 
 <body>
-    <script>
-        
+    <div>
 
+    </div>
+    <script>
+        function request(options = {}){
+            const {url,method='GET', onProgress,data=null} = options;
+            return new Promise((reslove)=>{
+                const xhr = new XMLHttpRequest();
+                xhr.open('get','https://game.gtimg.cn/images/lol/act/img/js/heroList/hero_list.js');
+                xhr.send()
+                xhr.addEventListener('readystatechange',()=>{
+                    if(xhr.readyState===xhr.DONE){
+                        // let data = JSON.parse(xhr.response)
+                        reslove(xhr.responseText)
+                    }
+                })
+                xhr.addEventListener('progress',(e)=>{
+                    console.log(e.loaded,e.total);
+                    onProgress && onProgress({
+                        loaded:e.loaded,
+                        total:e.total
+                    })
+                })
+            })
+        }
+
+        request()
     </script>
 </body>
 
