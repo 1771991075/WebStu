@@ -102,3 +102,15 @@
     4.React-cli
 
 ## 12.axios
+
+    从浏览器创建 XMLHttpRequests 
+    从 node.js 创建 http 请求 
+    支持 Promise API 
+    拦截请求和响应 
+    转换请求和响应数据 
+    取消请求 
+    自动转换JSON数据 
+    客户端支持防御XSRF
+
+    安装：npm i axios
+          yarn add axios
