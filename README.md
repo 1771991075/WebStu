@@ -93,6 +93,12 @@
         html-webpack-plugin
         搭建开发环境：webpack-dev-server
         配置脚本命令
+    2.webpack创建React-cli
+        初始化项目 
+            ```push        
+            npm init
+            ``` 
+        安装依赖 
 
 ## 11.React
 
