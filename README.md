@@ -41,7 +41,6 @@
         offset
         scroll
 
-
 ## 4.ES6
 
     1.let const声明变量常量
@@ -93,12 +92,33 @@
         html-webpack-plugin
         搭建开发环境：webpack-dev-server
         配置脚本命令
+
     2.webpack创建React-cli
-        初始化项目 
-            ```push        
+
+        初始化项目   
+
             npm init
-            ``` 
+
         安装依赖 
+
+            npm i webpack webpack-cli style-loader css-loader html-webpack-plugin webpack-dev-server -D
+            npm i babel-loader @babel/core @babel/preset-env @ babel/preset-react -D
+            
+        安装react react-dom
+
+            npm i react react-dom
+
+        创建开发目录
+            在项目根目录下创建src文件夹、public文件夹
+            在public文件夹下创建index.html
+
+        编写配置文件
+            webpack.config.dev.js
+            webpack.config.pro.js
+
+        配置文件中配置脚本命令
+            start
+            build
 
 ## 11.React
 
@@ -118,5 +138,7 @@
     自动转换JSON数据 
     客户端支持防御XSRF
 
-    安装：npm i axios
-          yarn add axios
+    安装：
+        npm i axios
+
+        yarn add axios
