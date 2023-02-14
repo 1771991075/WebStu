@@ -102,7 +102,7 @@
         安装依赖 
 
             npm i webpack webpack-cli style-loader css-loader html-webpack-plugin webpack-dev-server -D
-            npm i babel-loader @babel/core @babel/preset-env @ babel/preset-react -D
+            npm i babel-loader @babel/core @babel/preset-env @babel/preset-react -D
             
         安装react react-dom
 
