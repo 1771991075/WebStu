@@ -8,21 +8,28 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-    <div id="root">
-        <h1>{{message}}</h1>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <button v-on:click="showInfo($event,666)">点我提示信息</button>
     </div>
 </body>
-<script type="text/javascript">
+<script>
 
-    const { createApp } = Vue
-  
+    const {createApp} = Vue;
+    
     createApp({
-        data() {
+        data(){
             return {
-                message: 'Hello Vue!'
+                name:'尚硅谷'
+            }
+        },
+        methods:{
+            showInfo(e,number){
+                console.log(e,number)
             }
         }
-    }).mount('#root')
-    
+    }).mount('#app')
+
+
 </script>
 </html>
