@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="keyWord">
+        <ul>
+            <li v-for="(p,index) of filList" :key="index">
+                {{p.name}}---{p.age}---{{index}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+
+    const {createApp} = Vue
+
+    createApp({
+        data(){
+            return{
+                keyWord:'',
+                list:[
+                    {id:'001',name:'张三',age:18},
+                    {id:'002',name:'李四',age:19},
+                    {id:'003',name:'王五',age:20}
+                ],
+                filList:[]
+            }
+        },
+        watch:{
+            keyWord:{
+                immediate:true,
+                handler(val){
+                    this.filList = this.list.filter(item=>{
+                        return item.name.indexOf(val) !== -1
+                    })
+                }
+            }
+        }
+    }).mount('#app')
+
+</script>
+</html>
