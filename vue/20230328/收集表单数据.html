@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <form @submit.prevent="demo">
+            账号：<input type="text" v-model.trim="userInfo.username"><br />
+            密码：<input type="password" v-model="userInfo.password"><br />
+            性别：
+            男<input type="radio" name="sex" value="true" v-model="userInfo.sex">
+            女<input type="radio" name="sex" value="false" v-model="userInfo.sex">
+            <br />
+            爱好：
+            学习<input type="checkbox" value="study" v-model="userInfo.hobby">
+            打游戏<input type="checkbox" value="play" v-model="userInfo.hobby">
+            吃饭<input type="checkbox" value="eat" v-model="userInfo.hobby"><br />
+            所属校区：
+            <select name="" id="" v-model="userInfo.city">
+                <option value="">请选择校区</option>
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="shenzhen">深圳</option>
+            </select><br />
+            <input type="checkbox" v-model="userInfo.agree">阅读并接受
+            <button>提交</button>
+        </form>
+    </div>
+</body>
+<script>
+
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+            return {
+                userInfo: {
+                    username: '',
+                    password: '',
+                    sex: 'true',
+                    hobby: [],
+                    city: 'beijing',
+                    agree: ''
+                }
+            }
+        },
+        methods: {
+            demo() {
+                console.log(JSON.stringify(this.userInfo));
+            }
+        }
+    }).mount('#app')
+
+</script>
+
+</html>
