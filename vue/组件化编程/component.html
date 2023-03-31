@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <student></student>
+        <hr>
+        <school></school>
+    </div>
+</body>
+<script>
+    const { createApp } = Vue
+
+    //创建组件
+    const school = {
+        template:`
+            <div>
+                <h1>{{name}}</h1>
+                <h1>{{address}}</h1>
+            </div>
+        `,
+        data(){
+            return {
+                name:'郑州大学',
+                address:'中原区'
+            }
+        }
+    }
+
+    const student = {
+        template:`
+            <div>
+                <h1>{{name}}</h1>
+                <h1>{{age}}</h1>
+            </div>
+        `,
+        data(){
+            return {
+                name:'张三',
+                age:18
+            }
+        }
+    }
+
+    createApp({
+        data() {
+            return {
+                n:10
+            }
+        },
+        //注册组件
+        components:{
+            school,
+            student
+        }
+    }).mount('#app')
+
+</script>
+
+</html>
