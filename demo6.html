@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./vue/vue.js"></script>
+</head>
+
+<body>
+    <div id="app" style="padding: 100px;">
+        <div style="display:flex;justify-content: space-around;">
+            <div class="box" style="width: 300px; border: 1px solid gray; margin-right: 100px; padding: 30px;">
+                <form>
+                    <legend>{{editState?'编辑学生信息':'新增学生信息'}}</legend>
+                    <div class="form-group">
+                        <label for="">学号</label>
+                        <input type="text" class="form-control" id="" placeholder="请输入姓名"
+                            v-model.trim.number="editData.num" :disabled="editState">
+                    </div>
+                    <div class="form-group">
+                        <label for="">姓名</label>
+                        <input type="text" class="form-control" id="" placeholder="请输入姓名" v-model.trim="editData.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="">性别</label>
+                        <input type="text" class="form-control" id="" placeholder="请输入性别" v-model.trim="editData.sex">
+                    </div>
+                    <div class="form-group">
+                        <label for="">年龄</label>
+                        <input type="text" class="form-control" id="" placeholder="请输入年龄" v-model.number="editData.age">
+                    </div>
+                    <div class="form-group">
+                        <label for="">分数</label>
+                        <input type="text" class="form-control" id="" placeholder="请输入分数"
+                            v-model.number="editData.score">
+                    </div>
+                    <button type="submit" class="btn btn-primary"
+                        @click.prevent="addStu">{{editState?'编辑':'新增'}}</button>
+                </form>
+            </div>
+            <div class="table">
+                <div style="margin-bottom: 20px;">
+                    <label for="">搜索:</label>
+                    <input type="text" class="form-control" id="" placeholder="请输入关键字" v-model="keywords"
+                        style="width: 200px;display: inline-block;margin-right: 50px;">
+                    <label for="">排序:</label>
+                    <select v-model="defaultSort">
+                        <option value="0">正常</option>
+                        <option value="1">升序</option>
+                        <option value="-1">降序</option>
+                    </select>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>年龄</th>
+                            <th>分数</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in searchList " :key="index">
+                            <td>{{item.num}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.sex}}</td>
+                            <td>{{item.age}}</td>
+                            <td>{{item.score}}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger" @click="delStu(index)">删除</button>
+                                <button type="button" class="btn btn-primary" @click="isShow(index)">编辑</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                index: 0,
+                editState: false,
+                searchList: [],
+                editData: {
+                    num: '',
+                    name: '',
+                    sex: '',
+                    age: '',
+                    score: '',
+                },
+                keywords: '',
+                defaultSort: 0,
+                stu: [
+                    {
+                        num: 1,
+                        name: "张三",
+                        age: 12,
+                        sex: "男",
+                        score: 90,
+                    },
+                    {
+                        num: 2,
+                        name: "李四",
+                        age: 18,
+                        sex: "男",
+                        score: 50,
+                    },
+                    {
+                        num: 3,
+                        name: "王红",
+                        age: 8,
+                        sex: "女",
+                        score: 100,
+                    },
+                    {
+                        num: 4,
+                        name: "小利",
+                        age: 20,
+                        sex: "女",
+                        score: 70
+                    },
+                    {
+                        num: 5,
+                        name: "王li",
+                        age: 8,
+                        sex: "女",
+                        score: 30,
+                    },
+                ],
+            },
+            created() {
+                this.searchList = [...this.stu]
+            },
+            methods: {
+                addStu() {
+                    if (this.editState) {
+                        this.$set(this.stu, this.index, this.editData)
+                        this.editState = false
+                        return
+                    }
+                    if (this.stu.findIndex(item => item.num === this.editData.num) !== -1) {
+                        console.log(this.stu.findIndex(item => item.num === this.editData.num));
+                        alert('学号重复！')
+                        return
+                    }
+                    this.stu.push(this.editData)
+                },
+                delStu(index) {
+                    this.stu.splice(index, 1)
+                },
+                isShow(index) {
+                    this.index = index
+                    this.editData = this.stu[index]
+                    this.editState = true
+                }
+            },
+            watch: {
+                keywords(newVal) {
+                    let arr = this.stu.filter(item => {
+                        return item.num == newVal || item.name == newVal || item.sex == newVal || item.age == newVal || item.score == newVal
+                    })
+                    this.searchList = arr
+                },
+                defaultSort(newVal){
+                    console.log('排序',newVal);
+                    if(this.keywords){
+                        newVal === '1' && this.searchList.sort((a, b) => a.score - b.score);
+                        newVal === '-1' && this.searchList.sort((a, b) => b.score - a.score);
+                    }else{
+                        this.searchList = [...this.stu]
+                        newVal === '1' && this.searchList.sort((a, b) => a.score - b.score);
+                        newVal === '-1' && this.searchList.sort((a, b) => b.score - a.score);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,37 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{
-            margin: 0px;
-            padding: 0px;
+        body {
+            background-color: #ccc;
         }
-        #root{
-            width: 100vh;
-            height: 100vh;
-            background: #3333;
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .wrap {
+            background-color: azure;
+            width: 800px;
+            border-radius: 5px;
+            margin: 0 auto;
+        }
+
+        .tap ul {
+            /* display: flex; */
+            /* float: left; */
+            justify-content: space-around;
+            overflow: hidden;
+        }
+
+        .tap ul li {
+            float: left;
+            padding: 3px 7px;
+            border-radius: 3px;
+            background-color: #fff;
+            color: #80bd01;
+            margin: 10px 15px;
+            cursor: pointer;
+        }
+
+        .tap .active {
+            background-color: #80bd01;
+            color: #fff;
+        }
+
+        .item {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 10px;
+            line-height: 30px;
+            width: 95%;
+            overflow: hidden;
+        }
+
+        .item img {
+            width: 30px;
+            height: 30px;
+            float: left;
+        }
+
+        .count {
+            color: #b4b4b4;
+            font-size: 10px;
+            float: left;
+            margin: 0 10px;
+        }
+
+        .count-big {
+            font-size: 16px;
+            color: #9e78c0;
+        }
+
+        .goods {
+            background-color: #80bd01;
+            color: #fff;
+            padding: 0px 3px;
+            border-radius: 2px;
+            float: left;
+            margin: 0 5px;
+        }
+
+        .item a {
+            color: #333;
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: middle;
+            /* float: left; */
+            font-size: 14px;
+        }
+
+        .time {
+            float: right;
+            font-size: 10px;
+            color: #b4b4b4;
         }
     </style>
 </head>
-<body>
-    <div id="root">
 
+<body>
+    <div class="wrap">
+        <div class="tap">
+            <ul>
+                <li class="active">全部</li>
+                <li class="jh">精华</li>
+                <li>分享</li>
+                <li>问答</li>
+            </ul>
+        </div>
+        <div class="list">
+
+        </div>
     </div>
+    <script>
+        let list = document.querySelector(`.list`)
+        let lis = document.querySelectorAll(`li`)
+        console.log(lis);
+        let api = 'https://cnodejs.org/api/v1/topics'
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].addEventListener(`click`, function () {
+                for (let i of lis) {
+                    i.classList.remove(`active`)
+                }
+                this.classList.add(`active`)
+                i === 0 && sendApi('')
+                i === 1 && sendApi('good')
+                i === 2 && sendApi('share')
+                i === 3 && sendApi('ask')
+            })
+
+        }
+        sendApi('')
+        function sendApi (value) {
+
+            // 创建XMLHttpRequest
+            // 处理兼容性问题
+            if (window.XMLHttpRequest) {
+                var xhr = new XMLHttpRequest()
+            } else if (window.ActiveXObject) {
+                var xhr = new ActiveXObject()
+            }
+            // 配置请求信息(请求路径    请求方式)
+            xhr.open(`get`, `https://cnodejs.org/api/v1/topics?tab=${value}`)
+            // 发送请求
+            xhr.send()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    list.innerHTML = ''
+                    var getMsg = JSON.parse(xhr.responseText).data
+                    console.log(getMsg);
+                    getMsg.forEach(item => {
+                        let isTop = item.top ? `置顶` : ``
+                        console.log(isTop);
+                        list.innerHTML += `
+                            <div class="item">
+                                <img src="${item.author.avatar_url}">
+                                <span class="count"><span class="count-big">${item.reply_count}</span>/${item.visit_count}</span>
+                                <span class="goods">${isTop}</span><a href="#"> ${item.title}</a>
+                            </div>
+                        `.trim()
+                    });
+                }
+            }
+        }
+
+    </script>
 </body>
 <script>
-    // function fun(){
-    //     prompt(`
-    //     请选择你的操作:
-    //         1.存钱
-    //         2.取钱
-    //         3.查看余额
-    //         4.退出
-    //     `)
-    // }
-    // fun()
+
 </script>
+
 </html>

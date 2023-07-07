@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function findMax(arr){
+            if(!arr.length) return ;
+            if(arr.length === 1) return 1;
+            var res = {}
+            for(var i = 0; i<arr.length; i++){
+                if(res[arr[i]]){
+                    res[arr[i]] = 1;
+                }else{
+                    res[arr[i]] ++;
+                }
+            }
+            var keys = Object.keys(arr)
+            var max = 0;
+            var naxStr = '';
+            for(var i = 0; i<keys.length; i++){
+                if(res[keys[i]] > max){
+                    max = res[keys[i]]
+                    maxStr = keys[i]
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
